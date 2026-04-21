@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Drive AI Sales Inc. — Every Lead. Answered. Now.</title>
+<meta name="description" content="AI-powered lead response for dealerships. Under 60 seconds. 24/7. Text, email, voice. Works inside your CRM.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="https://drive-ai-sales.pages.dev/logo/logo-hires.png" type="image/png">
+<link rel="apple-touch-icon" href="https://drive-ai-sales.pages.dev/logo/logo-hires.png">
+<!-- Preconnect to Google Fonts so DNS+TLS happens in parallel with HTML parse (~300ms earlier font paint) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preload frame 1 so canvas has content the instant the page paints -->
+<link rel="preload" as="image" href="https://drive-ai-sales.pages.dev/frames/f_0001.jpg" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{overscroll-behavior:none}
+body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* WANDA SPHERICAL ORB — glossy 3D sphere with internal aurora plasma + floating particles */
+.orb-wrap{position:relative;width:520px;height:520px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:1;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.orb-wrap:hover{transform:scale(1.04)}
+.orb-wrap:hover .orb-canvas{filter:brightness(1.1) saturate(1.1)}
+.orb-canvas{position:absolute;inset:0;width:100%;height:100%;transition:filter .4s}
+.orb-caption{position:absolute;bottom:-2.6rem;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.92);text-shadow:0 0 14px rgba(232,122,0,.55);pointer-events:none}
+.orb-caption strong{color:#E87A00;font-weight:700}
+
+/* Hero layout: two-column on desktop so orb sits beside text */
+#s0.hero-split .sec-inner{gap:3rem;justify-content:space-between;flex-wrap:wrap;align-items:center}
+#s0.hero-split .text-block{flex:1 1 380px;max-width:560px;margin-right:auto}
+
+/* WANDA MODAL */
+.wanda-modal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.wanda-modal.show{opacity:1;pointer-events:auto}
+.wanda-modal-inner{background:linear-gradient(180deg,rgba(25,15,5,.98),rgba(10,8,4,.98));border:1px solid rgba(232,122,0,.28);border-radius:22px;padding:2.2rem 2.2rem 2rem;max-width:500px;width:100%;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(232,122,0,.15),inset 0 1px 0 rgba(255,255,255,.05);transform:translateY(20px) scale(.95);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.wanda-modal.show .wanda-modal-inner{transform:translateY(0) scale(1)}
+.wanda-avatar{width:180px;height:180px;margin:0 auto 1.1rem;position:relative}
+.wanda-title{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:4px;color:#fff;margin-bottom:.3rem;text-shadow:0 0 14px rgba(232,122,0,.6)}
+.wanda-title em{font-style:normal;color:#E87A00;display:block;font-size:.55em;letter-spacing:5px;margin-top:.15rem}
+.wanda-sub{font-size:.95rem;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:1.6rem;max-width:400px;margin-left:auto;margin-right:auto}
+.wanda-sub strong{color:#fff}
+.wanda-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+.wanda-btns .btn{justify-content:center;width:100%}
+.wanda-btns .btn[disabled]{opacity:.5;cursor:not-allowed;pointer-events:none}
+.wanda-hint{font-size:.8rem;color:rgba(255,255,255,.5);letter-spacing:.3px}
+.wanda-hint a{color:#E87A00;text-decoration:none;font-weight:600}
+.wanda-hint a:hover{text-decoration:underline}
+.wanda-close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;transition:all .3s}
+.wanda-close:hover{background:rgba(232,122,0,.15);border-color:rgba(232,122,0,.4);color:#E87A00}
+
+@media(max-width:900px){
+  /* Orb: responsive width so it never clips on narrow phones (iPhone SE 320px etc) */
+  .orb-wrap{width:min(320px,82vw);height:min(320px,82vw);margin:1.5rem auto 2.5rem}
+  .orb-caption{bottom:-2rem;font-size:.7rem}
+  #s0.hero-split .sec-inner{flex-direction:column}
+  #s0.hero-split .text-block{margin-right:0;max-width:100%}
+  /* Scroll cue on mobile: drop absolute positioning (was overlapping the stacked orb),
+     render as inline block below the orb in normal flow. */
+  #s0 .scroll-cue{position:static;transform:none;margin:1rem auto 2rem;animation:fu .5s .5s both}
+  .wanda-avatar{width:140px;height:140px}
+  .wanda-modal-inner{padding:1.8rem 1.3rem 1.5rem}
+  .wanda-title{font-size:1.7rem}
+}
+
+/* SCROLL-SCRUB CANVAS BACKDROP */
+#stage{position:fixed;inset:0;z-index:0;pointer-events:none;background:#000}
+#stage canvas{display:block;width:100%;height:100%}
+#stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,.55) 100%);pointer-events:none}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;transition:opacity .6s ease}
+#loader.gone{opacity:0;pointer-events:none}
+.lmark{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:4px;color:rgba(255,255,255,.92);margin-bottom:1.6rem;text-transform:uppercase}
+.lmark em{font-style:normal;color:#E87A00}
+.lparticles{width:280px;height:18px;display:flex;align-items:center;justify-content:space-between;gap:2px}
+.lparticle{flex:1;height:3px;min-width:2px;background:rgba(255,255,255,.08);border-radius:50%;transition:all .35s cubic-bezier(.4,0,.2,1);transform:scale(.7)}
+.lparticle.on{background:#E87A00;box-shadow:0 0 8px rgba(232,122,0,.9),0 0 16px rgba(232,122,0,.4);transform:scale(1);height:5px;border-radius:50%}
+.lparticle.tip{background:#FFD08A;box-shadow:0 0 12px rgba(255,200,130,1),0 0 24px rgba(232,122,0,.6);transform:scale(1.3);height:6px;animation:lpulse .8s ease-in-out infinite}
+@keyframes lpulse{0%,100%{transform:scale(1.1);opacity:.85}50%{transform:scale(1.4);opacity:1}}
+.ltxt{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:1.1rem}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem 1rem 0;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,0) 100%);transition:background .4s;-webkit-transform:translateZ(0);transform:translateZ(0);will-change:background}
+.nav.scrolled{background:rgba(0,0,0,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-backdrop{display:none}
+.nav-mark{display:flex;align-items:center;color:#fff;text-decoration:none;margin-left:1.25rem}
+.nav-mark img{height:68px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(232,122,0,.38));transition:filter .3s,transform .3s}
+.nav-mark:hover img{filter:drop-shadow(0 0 18px rgba(232,122,0,.6));transform:scale(1.04)}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s,text-shadow .3s;position:relative}
+.nav-links a:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.3)}
+.nav-links a.active{color:#E87A00}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#E87A00;box-shadow:0 0 8px #E87A00}
+.nav-cta{background:#E87A00!important;color:#000!important;padding:.5rem 1.2rem;border-radius:4px;transition:all .3s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:#FF8C00!important;box-shadow:0 0 20px rgba(232,122,0,.5),0 0 40px rgba(232,122,0,.2)!important;transform:scale(1.05)}
+
+/* Progress rail: thin bar under the nav showing scroll % */
+.nav-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#E87A00,#FF8C00);z-index:101;width:0%;transition:width .1s linear;box-shadow:0 0 8px rgba(232,122,0,.6)}
+
+/* MOBILE NAV TOGGLE */
+.nav-toggle{display:none;background:none;border:0;width:44px;height:44px;color:#fff;cursor:pointer;align-items:center;justify-content:center;padding:0;position:relative;z-index:110}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:#fff;position:relative;transition:all .3s}
+.nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0;width:22px;height:1.5px;background:#fff;transition:all .3s}
+.nav-toggle span::before{top:-7px}
+.nav-toggle span::after{top:7px}
+.nav.open .nav-toggle span{background:transparent}
+.nav.open .nav-toggle span::before{top:0;transform:rotate(45deg)}
+.nav.open .nav-toggle span::after{top:0;transform:rotate(-45deg)}
+
+/* SECTIONS */
+.sec{min-height:100vh;display:flex;align-items:center;position:relative;z-index:2}
+.sec-inner{max-width:1400px;margin:0 auto;padding:5rem 3rem;width:100%;display:flex;align-items:center}
+.sec-left .sec-inner{justify-content:flex-start}
+.sec-right .sec-inner{justify-content:flex-end}
+.sec-center .sec-inner{justify-content:center}
+
+/* Text block: frame-range gated — visible only when canvas is in its scene.
+   Drives a cinematic sync between video and story. */
+.text-block{max-width:500px;padding:1.75rem 2rem;border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.06);opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.215,.61,.355,1),transform .6s cubic-bezier(.215,.61,.355,1)}
+.text-block.in-scene{opacity:1;transform:translateY(0)}
+.sec-right .text-block{text-align:right}
+.sec-center .text-block{text-align:center;max-width:600px}
+
+.ol{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E87A00;margin-bottom:.6rem}
+.h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5.5rem);line-height:.93;letter-spacing:2px;margin-bottom:1rem}
+.h1 em,.h2 em{font-style:normal;color:#E87A00}
+.h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:1px;margin-bottom:.8rem}
+.bd{font-size:1.05rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.84);margin-bottom:1.2rem}
+.bd strong{color:#fff;font-weight:600}
+
+.btn-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.sec-right .btn-row{justify-content:flex-end}
+.sec-center .btn-row{justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
+.btn-fill{background:#E87A00;color:#000}
+.btn-fill:hover{background:#FF8C00;box-shadow:0 0 25px rgba(232,122,0,.3)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.18);border-radius:4px;transition:all .3s}
+.btn-ghost:hover{border-color:#E87A00;color:#E87A00;box-shadow:0 0 15px rgba(232,122,0,.15);transform:translateY(-2px)}
+.btn-liquid{background:#E87A00;color:#000;position:relative;overflow:hidden;border-radius:50px;padding:.8rem 2.2rem}
+.btn-liquid:hover{background:#FF8C00;box-shadow:0 0 30px rgba(232,122,0,.4);transform:scale(1.03)}
+.btn-liquid .liquid-blob{position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.2);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s ease,height .5s ease;pointer-events:none}
+.btn-liquid:hover .liquid-blob{width:300px;height:300px}
+
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.pill{background:rgba(232,122,0,.1);border:1px solid rgba(232,122,0,.2);color:#E87A00;padding:.35rem .8rem;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.pill:hover{background:rgba(232,122,0,.18);border-color:rgba(232,122,0,.35)}
+
+.counter-row{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:.5rem}
+.counter-item{text-align:center}
+.counter{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#E87A00;line-height:1}
+.sl{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:.3rem}
+
+.rr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.rr:last-child{border:none}
+.rr-l{font-size:.95rem;color:rgba(255,255,255,.72)}
+.rr-v{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#E87A00}
+
+@keyframes blink{50%{border-color:transparent}}
+@keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(1rem)}to{opacity:1;transform:translateY(0)}}
+.scroll-cue{position:absolute;bottom:2.6rem;left:0;right:0;margin:0 auto;width:fit-content;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.7rem;opacity:0;animation:fu .5s 1.2s forwards;pointer-events:none}
+.scroll-cue-text{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 0 14px rgba(232,122,0,.35)}
+.scroll-cue-mouse{width:26px;height:42px;border:2px solid rgba(255,255,255,.65);border-radius:13px;position:relative;box-shadow:0 0 18px rgba(232,122,0,.25)}
+.scroll-cue-mouse::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:8px;background:#E87A00;border-radius:2px;transform:translateX(-50%);animation:sw 1.6s ease infinite;box-shadow:0 0 8px #E87A00}
+.scroll-cue-chev{display:flex;flex-direction:column;gap:4px;margin-top:.1rem}
+.scroll-cue-chev svg{width:22px;height:10px;opacity:.6;animation:chev 1.6s ease infinite}
+.scroll-cue-chev svg:nth-child(2){animation-delay:.2s}
+@keyframes sw{0%{transform:translate(-50%,0);opacity:1}70%{transform:translate(-50%,14px);opacity:.2}100%{transform:translate(-50%,0);opacity:0}}
+@keyframes chev{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(3px)}}
+
+/* CPU CHIP — motherboard-style hub with L-shaped traces, vias, and traveling particle dots */
+.chip{position:relative;z-index:2;padding:6rem 2rem 6rem;min-height:auto;display:flex;flex-direction:column;align-items:center;gap:4rem;overflow:hidden}
+.chip-hd{position:relative;width:min(640px,94vw);max-width:640px;text-align:center;z-index:3;margin:0 auto;align-self:center}
+.chip-hd .ol{margin-bottom:.5rem}
+.chip-hd .h2{font-size:clamp(1.9rem,4.2vw,3rem);margin-bottom:.5rem}
+.chip-hd .bd{font-size:.98rem;color:rgba(255,255,255,.72);max-width:520px;margin:0 auto}
+.chip-inner{position:relative;width:min(760px,94vw);aspect-ratio:1/1;margin:0 auto;z-index:1}
+
+/* Square die in the middle with layered substrate rings */
+.chip-core{position:absolute;top:38%;left:38%;width:24%;height:24%;display:flex;align-items:center;justify-content:center;z-index:3;border-radius:14%;background:radial-gradient(circle at 30% 25%,rgba(255,180,90,.35),rgba(232,122,0,.08) 65%);border:1.5px solid rgba(232,122,0,.55);box-shadow:0 0 55px rgba(232,122,0,.45),0 0 110px rgba(232,122,0,.2),inset 0 0 38px rgba(232,122,0,.2),inset 0 0 0 4px rgba(0,0,0,.35)}
+.chip-core::before{content:"";position:absolute;inset:8%;border:1px solid rgba(232,122,0,.35);border-radius:10%}
+/* Halo ring pulses via opacity only — GPU-composited, zero repaint cost */
+.chip-core::after{content:"";position:absolute;inset:-14%;border:1px solid rgba(232,122,0,.35);border-radius:16%;opacity:.35;animation:corehalo 3.2s ease-in-out infinite}
+.chip-core-lbl{font-family:'Bebas Neue',sans-serif;font-size:clamp(.95rem,2.1vw,1.4rem);letter-spacing:2.5px;color:#fff;text-shadow:0 0 14px rgba(232,122,0,.9);position:relative;z-index:2;text-align:center;line-height:.95;padding:0 .3rem}
+.chip-core-lbl em{font-style:normal;color:#E87A00;display:block;font-size:.72em;letter-spacing:4px;margin-top:.15rem}
+.chip-core-tick{position:absolute;top:.45rem;right:.6rem;font-family:ui-monospace,Menlo,monospace;font-size:.55rem;color:rgba(232,122,0,.7);letter-spacing:1px}
+@keyframes corehalo{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.6;transform:scale(1.04)}}
+
+.chip-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
+.chip-trace{stroke:rgba(232,122,0,.38);stroke-width:.55;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.chip-trace-hi{stroke:rgba(232,122,0,.5);stroke-width:.25;fill:none;stroke-dasharray:1.2 3}
+.chip-via{fill:#E87A00}
+.chip-via-ring{fill:none;stroke:rgba(232,122,0,.55);stroke-width:.3}
+.chip-pad{fill:#FFB060}
+.chip-particle{fill:#FFC070}
+
+/* Node cards — 8 capability labels around the chip. Position via inline top/left %.
+   width in % keeps them stable at any container size (no overlap on mobile). */
+.chip-node{position:absolute;width:19%;min-width:96px;max-width:160px;transform:translate(-50%,-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.9rem .5rem;background:rgba(10,10,12,.88);border:1px solid rgba(232,122,0,.22);border-radius:10px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:default}
+.chip-node::before{content:"";position:absolute;inset:-1px;border-radius:10px;background:linear-gradient(135deg,rgba(232,122,0,.4),transparent 60%);opacity:0;transition:opacity .4s;z-index:-1;filter:blur(6px)}
+.chip-node:hover{border-color:rgba(232,122,0,.7);background:rgba(232,122,0,.1);box-shadow:0 0 0 1px rgba(232,122,0,.35),0 14px 36px rgba(232,122,0,.3),0 0 50px rgba(232,122,0,.18);transform:translate(-50%,-50%) scale(1.06)}
+.chip-node:hover::before{opacity:.5}
+/* Node dots — static glow (no box-shadow animation, opacity pulse on a halo ring is GPU-cheap). */
+.chip-node-dot{width:9px;height:9px;border-radius:50%;background:#E87A00;box-shadow:0 0 10px #E87A00,0 0 20px rgba(232,122,0,.5);position:relative}
+.chip-node-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(232,122,0,.55);opacity:.3;animation:nodehalo 2s ease-in-out infinite}
+.chip-node:nth-child(even) .chip-node-dot::after{animation-delay:.4s}
+.chip-node:nth-child(3n) .chip-node-dot::after{animation-delay:.8s}
+@keyframes nodehalo{0%,100%{opacity:.15;transform:scale(.85)}50%{opacity:.7;transform:scale(1.4)}}
+.chip-node-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.9);text-align:center;line-height:1.15}
+
+@media(max-width:900px){
+  .chip{padding:5rem .8rem 4rem;min-height:auto}
+  .chip-inner{width:96vw;aspect-ratio:1/1;max-width:480px}
+  .chip-hd{position:relative;top:auto;left:auto;transform:none;margin:0 auto 2rem;width:100%}
+  .chip-hd .bd{font-size:.88rem}
+  .chip-node{width:22%;min-width:68px;padding:.55rem .3rem}
+  .chip-node-lbl{font-size:.55rem;letter-spacing:1px}
+  .chip-node-dot{width:7px;height:7px}
+}
+
+/* SERVICES ACCORDION — single-column list, click each to expand */
+.services{background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:6rem 2rem;position:relative;z-index:2}
+.services-inner{max-width:880px;margin:0 auto;text-align:center}
+.services-hd .ol{margin-bottom:.8rem}
+.services-hd .h2{margin-bottom:.6rem}
+.services-hd .bd{max-width:640px;margin:0 auto 3.5rem;color:rgba(255,255,255,.72)}
+.services-list{display:flex;flex-direction:column;gap:.8rem;text-align:left}
+.svc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:all .4s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.svc[open]{background:rgba(232,122,0,.055);border-color:rgba(232,122,0,.3);box-shadow:0 14px 36px rgba(232,122,0,.14),0 0 0 1px rgba(232,122,0,.12)}
+.svc:not([open]):hover{background:rgba(232,122,0,.03);border-color:rgba(232,122,0,.2);transform:translateX(4px)}
+.svc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1.4rem;padding:1.2rem 1.5rem;user-select:none}
+.svc summary::-webkit-details-marker{display:none}
+.svc-icon{width:88px;height:88px;flex-shrink:0;object-fit:contain;transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .4s}
+.svc[open] .svc-icon{transform:scale(1.08);filter:drop-shadow(0 0 16px rgba(232,122,0,.55))}
+.svc:not([open]):hover .svc-icon{filter:drop-shadow(0 0 10px rgba(232,122,0,.35))}
+.svc-title{flex:1;display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.svc-label{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:3px;color:#fff;line-height:1}
+.svc-tag{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#E87A00}
+.svc-chev{flex-shrink:0;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(232,122,0,.3);color:#E87A00;transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.svc-chev svg{width:14px;height:14px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.svc[open] .svc-chev{background:#E87A00;color:#000;border-color:#E87A00;box-shadow:0 0 18px rgba(232,122,0,.5)}
+.svc[open] .svc-chev svg{transform:rotate(180deg)}
+.svc-body{padding:0 1.5rem 1.5rem calc(88px + 1.5rem + 1.4rem);color:rgba(255,255,255,.78);line-height:1.6;font-size:.98rem;max-width:720px}
+.svc-body strong{color:#fff}
+.svc-body ul{list-style:none;padding:0;margin:.8rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.svc-body li{background:rgba(232,122,0,.12);border:1px solid rgba(232,122,0,.22);color:#E87A00;padding:.3rem .7rem;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;border-radius:4px}
+
+/* LEAD CAPTURE */
+.capture{position:relative;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.85) 100%);padding:6rem 3rem}
+.capture-inner{max-width:700px;margin:0 auto;text-align:center}
+.capture .ol{margin-bottom:.6rem}
+.capture .h2{margin-bottom:.6rem}
+.capture .bd{color:rgba(255,255,255,.8);margin-bottom:2rem}
+.lead-form{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem}
+.lead-form input{flex:1 1 260px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.95rem 1.1rem;font-family:'Barlow',sans-serif;font-size:.95rem;border-radius:6px;transition:all .3s;min-width:220px}
+.lead-form input:focus{outline:none;border-color:#E87A00;box-shadow:0 0 0 3px rgba(232,122,0,.18);background:rgba(255,255,255,.06)}
+.lead-form input::placeholder{color:rgba(255,255,255,.4);letter-spacing:.5px}
+.lead-form button{background:#E87A00;color:#000;border:0;padding:.95rem 1.8rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:6px;cursor:pointer;transition:all .3s}
+.lead-form button:hover{background:#FF8C00;box-shadow:0 0 24px rgba(232,122,0,.5);transform:translateY(-1px)}
+.capture-alt{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:1px}
+.capture-alt a{color:#E87A00;text-decoration:none;border-bottom:1px solid transparent;transition:border .3s}
+.capture-alt a:hover{border-bottom-color:#E87A00}
+
+/* FOOTER */
+.footer{border-top:1px solid rgba(255,255,255,.06);background:#000;position:relative;z-index:2;padding:4rem 2rem 2rem}
+.footer-inner{max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;align-items:center;width:100%}
+.social-row{display:flex;gap:1.4rem;align-items:stretch;width:100%;max-width:1600px}
+.social-row a{flex:1 1 0;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;max-height:320px;border-radius:28px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);transition:all .5s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden}
+.social-row a::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,122,0,.18),transparent 65%);opacity:0;transition:opacity .5s}
+.social-row a:hover{background:rgba(232,122,0,.06);border-color:rgba(232,122,0,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(232,122,0,.28),0 0 0 1px rgba(232,122,0,.2) inset}
+.social-row a:hover::before{opacity:1}
+.social-row img{width:68%;height:68%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .4s;position:relative;z-index:1}
+.social-row a:hover img{transform:scale(1.08);filter:drop-shadow(0 0 26px rgba(232,122,0,.8))}
+.footer-bot{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;align-items:center}
+.footer-c{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.5px}
+.footer-l{display:flex;gap:1rem;flex-wrap:wrap}
+.footer-l a{font-size:.6rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s;letter-spacing:1px}
+.footer-l a:hover{color:#E87A00}
+
+@media(max-width:900px){
+  .nav{padding:.7rem 1.1rem}
+  .nav-mark{margin-left:0}
+  .nav-mark img{height:54px}
+  .nav-toggle{display:inline-flex}
+  .nav-links{position:fixed;top:0;right:0;bottom:0;width:min(90vw,380px);height:100vh;min-height:100dvh;background:rgba(8,8,8,.98);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:block;padding:6rem 0 3rem;transform:translateX(100%);transition:transform .35s ease;z-index:105;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .nav-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:103}
+  .nav.open .nav-backdrop{opacity:1;pointer-events:auto}
+  .nav.open .nav-links{transform:translateX(0)}
+  .nav-links li{display:block;width:100%;list-style:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .nav-links li:last-child{border-bottom:none;padding-top:.6rem}
+  .nav-links li a{display:block;padding:1.55rem 1.8rem;font-size:1rem;letter-spacing:2.5px;color:rgba(255,255,255,.85)}
+  .nav-links li a.nav-cta{display:block;margin:1.8rem 1.5rem 0;padding:1.15rem 1.4rem;text-align:center;border-radius:6px;font-size:.9rem}
+  .nav-links a.active::after{display:none}
+  .sec-inner{padding:6rem 1.2rem 3rem}
+  .text-block{max-width:100%;padding:1.4rem}
+  .sec-right .text-block,.sec-right .btn-row,.sec-right .counter-row{text-align:left;justify-content:flex-start}
+  .sec-right .counter-row,.sec-center .counter-row{justify-content:flex-start}
+  .counter-row{gap:1.3rem}
+  .counter{font-size:2.1rem}
+  .services{padding:4rem 1rem}
+  .svc summary{padding:1rem;gap:1rem}
+  .svc-icon{width:64px;height:64px}
+  .svc-label{font-size:1.15rem;letter-spacing:2px}
+  .svc-tag{font-size:.62rem;letter-spacing:1.8px}
+  .svc-chev{width:28px;height:28px}
+  .svc-chev svg{width:12px;height:12px}
+  .svc-body{padding:0 1rem 1.2rem calc(64px + 1rem + 1rem);font-size:.9rem}
+  .capture{padding:4rem 1.2rem}
+  .lead-form{flex-direction:column}
+  .lead-form input,.lead-form button{flex:0 0 auto;width:100%}
+  .footer{padding:2rem 1.2rem 1.2rem}
+  .footer-bot{gap:.8rem;text-align:center}
+  .social-row{gap:.7rem}
+  .social-row a{border-radius:18px;max-height:180px}
+  .social-row img{width:70%;height:70%}
+  .footer{padding:3rem 1rem 1.5rem}
+  .sec{min-height:90vh}
+  .h1{font-size:clamp(2.2rem,9vw,3.4rem)}
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL-SCRUB CANVAS -->
+<div id="stage"><canvas id="c"></canvas></div>
+
+<!-- WANDA MODAL -->
+<div class="wanda-modal" id="wandaModal" role="dialog" aria-modal="true" aria-labelledby="wandaTitle" aria-hidden="true">
+  <div class="wanda-modal-inner">
+    <button class="wanda-close" id="wandaClose" aria-label="Close">×</button>
+    <div class="wanda-avatar">
+      <canvas class="orb-canvas" id="wandaModalCanvas"></canvas>
+    </div>
+    <div class="wanda-title" id="wandaTitle">WANDA<em>Inbound Intake · Drive AI Sales Inc.</em></div>
+    <div class="wanda-sub"><strong>This is what we build for you.</strong> Wanda is Drive AI Sales Inc.'s own inbound intake AI — call her to experience exactly what we'd set up for your dealership. She answers in under 10 seconds, qualifies, books a discovery call, and hands off to the team. 24/7.</div>
+    <div class="wanda-btns">
+      <a href="tel:+15875257155" class="btn btn-liquid" id="wandaPhone">Call Wanda Now</a>
+    </div>
+    <div class="wanda-hint">Or dial <a href="tel:+15875257155">+1 (587) 525-7155</a></div>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="lmark">Drive <em>AI</em> Sales Inc.</div>
+  <div class="lparticles" id="lparticles"></div>
+  <div class="ltxt">Loading <span id="pct">0</span>%</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-progress" id="navProgress"></div>
+<nav class="nav" id="nav">
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <a href="#s0" class="nav-mark" aria-label="Drive AI Sales Inc.">
+    <img src="https://drive-ai-sales.pages.dev/logo/logo-hires.png" alt="Drive AI Sales Inc.">
+  </a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="navToggle"><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#s-ai">Intelligence</a></li>
+    <li><a href="#s1">Problem</a></li>
+    <li><a href="#s2">Integration</a></li>
+    <li><a href="#s3">Response</a></li>
+    <li><a href="#s4">Results</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="diagnostic.html" class="nav-cta">Free Diagnostic</a></li>
+  </ul>
+</nav>
+
+<!-- SCENE 1: HERO (frames 0-713) — two-column split with Wanda particle orb -->
+<section class="sec sec-left hero-split" id="s0">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">Edmonton's Premier Dealership AI CRM</div>
+      <h1 class="h1">Leads In.<br>Appointments<br><em>Out.</em></h1>
+      <div class="bd"><strong>Phone. Email. SMS. Social messaging.</strong> Every channel a buyer uses — we answer on it in under 60 seconds. 24/7. Inside your CRM. Before your competitor even sees the lead.</div>
+      <div style="font-family:monospace;font-size:14px;color:#E87A00;margin-bottom:1.2rem;min-height:1.5em;"><span id="typewriter"></span><span style="border-right:2px solid #E87A00;animation:blink .8s step-end infinite;">&nbsp;</span></div>
+      <div class="btn-row">
+        <a href="diagnostic.html" class="btn btn-liquid">Free Diagnostic</a>
+        <a href="discovery.html" class="btn btn-ghost">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Scroll cue: absolute on desktop (anchored to section bottom), static on mobile
+         where it flows in the normal column between text-block and orb-wrap. -->
+    <div class="scroll-cue">
+      <div class="scroll-cue-text">Scroll</div>
+      <div class="scroll-cue-mouse"></div>
+      <div class="scroll-cue-chev">
+        <svg viewBox="0 0 22 10" fill="none"><path d="M2 2L11 8L20 2" stroke="#E87A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 22 10" fill="none"><path d="M2 2L11 8L20 2" stroke="#E87A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- WANDA particle orb — click to open call modal. Canvas renders orange particle field. -->
+    <div class="orb-wrap" id="wandaOrb" role="button" tabindex="0" aria-label="Talk to Wanda, our AI voice agent">
+      <canvas class="orb-canvas" id="wandaHeroCanvas"></canvas>
+      <div class="orb-caption">Tap to talk to <strong>Wanda</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 2: AI INTELLIGENCE — CPU chip hub -->
+<section class="chip" id="s-ai">
+  <!-- Header is a SIBLING of chip-inner (not a child), so the flex column layout
+       stacks it above the chip cleanly. -->
+  <div class="chip-hd text-block" style="background:none;border:none;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none">
+    <div class="ol">The Intelligence</div>
+    <div class="h2">One AI. <em>Every Channel.</em></div>
+    <div class="bd">A dealership nervous system. Lead comes in on any channel — we pick it up, qualify it, book it, follow up. All routed through one AI core.</div>
+  </div>
+
+  <div class="chip-inner">
+    <!-- Central AI die -->
+    <div class="chip-core">
+      <div class="chip-core-tick">AI-01</div>
+      <div class="chip-core-lbl">Drive AI<em>Core</em></div>
+    </div>
+
+    <!--
+      PCB traces: L-shaped paths from each node → core.
+      Core bounding box: 38–62 both axes.
+      Nodes sit at cardinal + diagonal compass points (3/18/50/82/97%).
+      Cardinal traces are straight. Diagonal traces bend at 90° before entering core.
+      Vias (circles) drawn at each bend point.
+      Traveling "electrons" = <circle> + <animateMotion> along the named path.
+    -->
+    <svg class="chip-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <!-- Static traces: from each new node position to the core die edge (38–62).
+           Cardinals are straight, diagonals L-bend at (38/62, 20) or (38/62, 80). -->
+      <path id="trN"  class="chip-trace" d="M 50 8 V 38"/>
+      <path id="trE"  class="chip-trace" d="M 92 50 H 62"/>
+      <path id="trS"  class="chip-trace" d="M 50 92 V 62"/>
+      <path id="trW"  class="chip-trace" d="M 8 50 H 38"/>
+      <path id="trNE" class="chip-trace" d="M 80 20 H 62 V 38"/>
+      <path id="trSE" class="chip-trace" d="M 80 80 H 62 V 62"/>
+      <path id="trSW" class="chip-trace" d="M 20 80 H 38 V 62"/>
+      <path id="trNW" class="chip-trace" d="M 20 20 H 38 V 38"/>
+
+      <!-- Vias at L-bend corners (62/38, 20/80) -->
+      <circle class="chip-via-ring" cx="62" cy="20" r="1.4"/>
+      <circle class="chip-via-ring" cx="62" cy="80" r="1.4"/>
+      <circle class="chip-via-ring" cx="38" cy="80" r="1.4"/>
+      <circle class="chip-via-ring" cx="38" cy="20" r="1.4"/>
+      <circle class="chip-via" cx="62" cy="20" r=".65"/>
+      <circle class="chip-via" cx="62" cy="80" r=".65"/>
+      <circle class="chip-via" cx="38" cy="80" r=".65"/>
+      <circle class="chip-via" cx="38" cy="20" r=".65"/>
+
+      <!-- Core-edge solder pads -->
+      <rect class="chip-pad" x="49" y="37" width="2" height="2"/>
+      <rect class="chip-pad" x="61" y="49" width="2" height="2"/>
+      <rect class="chip-pad" x="49" y="61" width="2" height="2"/>
+      <rect class="chip-pad" x="37" y="49" width="2" height="2"/>
+      <rect class="chip-pad" x="61" y="37" width="2" height="2"/>
+      <rect class="chip-pad" x="61" y="61" width="2" height="2"/>
+      <rect class="chip-pad" x="37" y="61" width="2" height="2"/>
+      <rect class="chip-pad" x="37" y="37" width="2" height="2"/>
+
+      <!-- One traveling particle per trace. Longer duration + no filter = light CPU. -->
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="0s"><mpath href="#trN"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-0.4s"><mpath href="#trNE"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-0.8s"><mpath href="#trE"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-1.2s"><mpath href="#trSE"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-1.6s"><mpath href="#trS"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-2s"><mpath href="#trSW"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-2.4s"><mpath href="#trW"/></animateMotion></circle>
+      <circle class="chip-particle" r="1.1"><animateMotion dur="3s" repeatCount="indefinite" begin="-2.8s"><mpath href="#trNW"/></animateMotion></circle>
+    </svg>
+
+    <!-- Capability nodes (8 positioned via inline top/left %) — pulled inward
+         from extreme edges so cards never spill past chip-inner or into the header. -->
+    <div class="chip-node" style="top:8%;left:50%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Phone AI</div></div>
+    <div class="chip-node" style="top:20%;left:80%"><div class="chip-node-dot"></div><div class="chip-node-lbl">SMS / Text</div></div>
+    <div class="chip-node" style="top:50%;left:92%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Email</div></div>
+    <div class="chip-node" style="top:80%;left:80%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Facebook DMs</div></div>
+    <div class="chip-node" style="top:92%;left:50%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Instagram DMs</div></div>
+    <div class="chip-node" style="top:80%;left:20%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Appointments</div></div>
+    <div class="chip-node" style="top:50%;left:8%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Lead Qualification</div></div>
+    <div class="chip-node" style="top:20%;left:20%"><div class="chip-node-dot"></div><div class="chip-node-lbl">Custom Automations</div></div>
+  </div>
+</section>
+
+<!-- SCENE 3: THE PROBLEM (frames 1428-2141) -->
+<section class="sec sec-right" id="s1">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">The Problem</div>
+      <div class="h2">Your Sales Manager<br>Is <em>Drowning.</em></div>
+      <div class="bd">The industry average dealership takes <strong>17 hours</strong> to respond to a lead. Half are never followed up at all. Meanwhile <strong>78% of buyers purchase from whoever calls back first</strong> — and by the time your team gets to their pipeline, those deals have already been written somewhere else.</div>
+      <div class="counter-row">
+        <div class="counter-item"><div class="counter" data-target="17" data-suffix="hrs">0</div><div class="sl">Industry Avg Response</div></div>
+        <div class="counter-item"><div class="counter" data-target="50" data-suffix="%">0</div><div class="sl">Leads Never Worked</div></div>
+        <div class="counter-item"><div class="counter" data-target="78" data-suffix="%">0</div><div class="sl">Buy From 1st Responder</div></div>
+      </div>
+      <div class="bd" style="font-size:.78rem;color:rgba(255,255,255,.45);margin-top:.6rem;margin-bottom:0">Sources: Harvard Business Review, MIT/LeadResponseManagement</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 4: THE INTEGRATION (frames 2142-2855) -->
+<section class="sec sec-left" id="s2">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">The Integration</div>
+      <div class="h2">We <em>Integrate</em> With<br>Your Current Tools.</div>
+      <div class="bd">Whatever you're already running — CRM, phone system, inventory software, booking platform — we work around it. We build <strong>custom integrations and automations</strong> tailored to your stack, so nothing changes for your team except that leads stop falling through the cracks.</div>
+      <div class="pills">
+        <div class="pill">Phone Automation</div>
+        <div class="pill">SMS / Text</div>
+        <div class="pill">Email Sequences</div>
+        <div class="pill">Facebook / IG DMs</div>
+        <div class="pill">24/7 Coverage</div>
+        <div class="pill">Custom Automations</div>
+        <div class="pill">Tailored Integrations</div>
+        <div class="pill">Live in &lt;24h</div>
+      </div>
+      <div class="bd" style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:0">Built around your existing tools. Direct integrations depend on what your platform allows — we'll scope it with you on the discovery call.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 5: THE RESPONSE (frames 2856-3569) -->
+<section class="sec sec-right" id="s3">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">The Response</div>
+      <div class="h2"><em>Under 60 Seconds.</em><br>Every Time.</div>
+      <div class="bd">Contacting a lead within <strong>5 minutes makes them 21x more likely to convert</strong> than waiting 30 minutes. We answer in under a minute on the exact channel they used — SMS, email, phone, or social DM — so your dealership is always first.</div>
+      <div class="counter-row">
+        <div class="counter-item"><div class="counter" data-target="60" data-prefix="&lt;" data-suffix="s">0</div><div class="sl">Response</div></div>
+        <div class="counter-item"><div class="counter" data-target="8" data-suffix="+">0</div><div class="sl">Touches / Lead</div></div>
+        <div class="counter-item"><div class="counter" data-target="30" data-suffix="d">0</div><div class="sl">Cadence</div></div>
+      </div>
+      <div class="bd" style="font-size:.78rem;color:rgba(255,255,255,.45);margin-top:.6rem;margin-bottom:0">Source: InsideSales.com / Lead Response Management Study</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 6: THE RESULT (frames 3570-4283) -->
+<section class="sec sec-left" id="s4">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">Results</div>
+      <div class="h2">Appointments That<br><em>Actually Show.</em></div>
+      <div class="bd">Qualified. Confirmed. Auto-reminded by SMS the night before and morning of. Your floor traffic on autopilot while your team focuses on closing the deals that walked in.</div>
+      <div style="margin-top:.5rem;max-width:22rem">
+        <div class="rr"><span class="rr-l">Response Time</span><span class="rr-v">17hrs → 47s</span></div>
+        <div class="rr"><span class="rr-l">Appointment Show Rate</span><span class="rr-v">41% → 68%</span></div>
+        <div class="rr"><span class="rr-l">Leads Worked</span><span class="rr-v">50% → 100%</span></div>
+        <div class="rr"><span class="rr-l">Additional Deals / Mo</span><span class="rr-v">+11</span></div>
+        <div class="rr"><span class="rr-l">Gross Profit / Mo</span><span class="rr-v">+$33K</span></div>
+        <div class="rr"><span class="rr-l">Staff Added</span><span class="rr-v">0</span></div>
+      </div>
+      <div class="bd" style="margin-top:1rem;font-style:italic;color:rgba(255,255,255,.6)">"I stopped checking the CRM every hour because I finally trusted something was handling it."<br><span style="font-style:normal;font-size:.7rem;color:rgba(255,255,255,.35);">— GM, Mid-Size Alberta Franchise Dealer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 7: THE CLOSE (frames 4284-4992) -->
+<section class="sec sec-center" id="s-close" style="min-height:80vh">
+  <div class="sec-inner">
+    <div class="text-block">
+      <div class="ol">The Close</div>
+      <div class="h2">Your Team Closes.<br>We <em>Handle Everything Else.</em></div>
+      <div class="bd">You walk deals across the line on the showroom floor. We work the top of the funnel 24/7 — qualifying, following up, booking, reminding, re-engaging. Zero new staff. Zero new tools. One dashboard in the CRM you already use.</div>
+      <div class="btn-row">
+        <a href="#capture" class="btn btn-liquid">See Your Score</a>
+        <a href="discovery.html" class="btn btn-ghost">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES ACCORDION — single-column, click to expand -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-hd">
+      <div class="ol">What We Automate</div>
+      <div class="h2">Every Touch.<br><em>Automated.</em></div>
+      <div class="bd">14 workflows your team used to do manually — now running 24/7 inside your stack. Tap any to expand.</div>
+    </div>
+    <div class="services-list">
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/leads-handled-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Lead Response</div><div class="svc-tag">Under 60 seconds · Every channel</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Every inbound lead gets a response in <strong>under 60 seconds</strong>, on the exact channel the buyer used — phone, SMS, email, or social DM. No leads sitting in the CRM while your team is on the floor.
+          <ul><li>Phone · SMS · Email · Social</li><li>24/7</li><li>Channel-matched</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/calendar-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Appointments</div><div class="svc-tag">Qualified · Confirmed · Reminded</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Qualified, booked, and confirmed. SMS reminders land the night before and morning of — the one-two that lifts show rates from an industry-average <strong>41% to 68%</strong>.
+          <ul><li>SMS reminders</li><li>Rebooking</li><li>No-show recovery</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/phone-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Voice AI</div><div class="svc-tag">Inbound + outbound calls</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          A natural-sounding phone agent that handles inbound calls and outbound follow-ups. Knows your inventory, financing programs, and hours. <strong>Transfers to a human</strong> the moment the deal is ready.
+          <ul><li>Natural voice</li><li>Inventory-aware</li><li>Human handoff</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/email-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Email Campaigns</div><div class="svc-tag">Sequenced · Personalized · Tracked</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Personalized sequences by customer segment. <strong>7+ touches across 30 days</strong>. Opens and clicks tracked. The instant a customer engages, the thread routes to a human.
+          <ul><li>7+ touches</li><li>Segment-aware</li><li>Engagement routing</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/live-chat.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Live Chat</div><div class="svc-tag">Website · 24/7 · Instant</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          24/7 website chat that actually answers. Inventory questions, pricing, trade-in estimates, test-drive booking — all handled in-chat, with a human pulled in for anything that needs one.
+          <ul><li>Always on</li><li>Trade-in estimates</li><li>Instant booking</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/funnel-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Pipeline Management</div><div class="svc-tag">Clean · Organized · Nudged</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Dedupes records, flags stale leads, resurfaces lost opportunities, nudges stuck deals along. Your CRM stays organized without anyone touching it.
+          <ul><li>Auto-dedupe</li><li>Stale-lead revival</li><li>Deal nudges</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/test-drive-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Test Drive Booking</div><div class="svc-tag">Select · Book · Confirm · Follow up</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          End-to-end flow: vehicle selection, time slot, driver confirmation, pre-flight reminder texts, and post-drive follow-up to capture the next step while interest is hot.
+          <ul><li>Vehicle selector</li><li>Pre-drive confirm</li><li>Post-drive follow-up</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/duplicate-contacts-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">De-Duping</div><div class="svc-tag">Merge · Clean · Never chase twice</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Spots duplicate lead records across phone, email, web form, and social channels. Merges them automatically so your team never chases the same customer twice with competing messages.
+          <ul><li>Cross-channel matching</li><li>Auto-merge</li><li>Conflict resolution</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/templates-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Templates</div><div class="svc-tag">Brand-matched · Scenario-tuned</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Pre-built response templates for every common dealership scenario — fresh lead, no-show, financing question, trade-in, post-sale — all customized to your brand voice, activated automatically on pattern match.
+          <ul><li>Scenario library</li><li>Brand-voice tuned</li><li>Auto-trigger</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/marketing-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Marketing</div><div class="svc-tag">Drip · Seasonal · Event-driven</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Drip campaigns, seasonal promos, event invitations, incentive rollouts — launched on your schedule, measured against actual conversions not just opens.
+          <ul><li>Drip sequences</li><li>Seasonal promos</li><li>Conversion-tracked</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/forecasting-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Forecasting</div><div class="svc-tag">Know the month before it ends</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Predictive close-rate modeling based on current pipeline health, response times, and your historical patterns. See what the month looks like before it lands.
+          <ul><li>Close-rate forecast</li><li>Pipeline health</li><li>Trend-based</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/reports-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Reports</div><div class="svc-tag">Daily · Weekly · Monthly</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Automated dashboards covering response times, show rates, deals closed, and gross profit delta. Delivered to your inbox on whatever cadence you want.
+          <ul><li>Response metrics</li><li>Show rate</li><li>Gross profit delta</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/reports-icon-2.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Analytics</div><div class="svc-tag">Source → Response → Show → Close</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Full-funnel visibility: source → response → appointment → show → close. Find the lead channel and message type that prints money, double down on it.
+          <ul><li>Full funnel</li><li>Source attribution</li><li>Message testing</li></ul>
+        </div>
+      </details>
+
+      <details class="svc" name="svc">
+        <summary>
+          <img class="svc-icon" src="https://drive-ai-sales.pages.dev/icons/settings-icon.png" alt="" loading="lazy" decoding="async">
+          <div class="svc-title"><div class="svc-label">Custom Integrations</div><div class="svc-tag">Built around your stack</div></div>
+          <span class="svc-chev" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="svc-body">
+          Custom integrations built around your CRM, phone, inventory, chat, and DMS — whatever you run, we work around it. Direct integrations depend on what your platform allows; we scope it on the discovery call.
+          <ul><li>CRM sync</li><li>Phone system</li><li>Inventory feed</li><li>DMS</li></ul>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE -->
+<section class="capture" id="capture">
+  <div class="capture-inner">
+    <div class="ol">Free Assessment</div>
+    <div class="h2">See What You're<br><em>Leaving On The Table.</em></div>
+    <div class="bd">7 questions. 2 minutes. Your personalized revenue-leak estimate and response-time score, delivered to your inbox.</div>
+    <form class="lead-form" id="leadForm" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST">
+      <input type="text" name="name" placeholder="Full name" required>
+      <input type="email" name="email" placeholder="Work email" required>
+      <input type="text" name="dealership" placeholder="Dealership" required>
+      <button type="submit">Send me the audit →</button>
+    </form>
+    <div class="capture-alt">Or <a href="discovery.html">book a 15-min discovery call</a> — zero pressure.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="social-row">
+      <a href="https://instagram.com/driveai.sales" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://drive-ai-sales.pages.dev/icons/instagram-icon.png" alt="" loading="lazy" decoding="async"></a>
+      <a href="https://facebook.com/driveaisalesinc" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://drive-ai-sales.pages.dev/icons/facebook-icon.png" alt="" loading="lazy" decoding="async"></a>
+      <a href="https://tiktok.com/@drive.ai.sales" target="_blank" rel="noopener" aria-label="TikTok"><img src="https://drive-ai-sales.pages.dev/icons/tik-tok-icon.png" alt="" loading="lazy" decoding="async"></a>
+      <a href="https://linkedin.com/company/drive-ai-sales" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="https://drive-ai-sales.pages.dev/icons/linkedin-icon.png" alt="" loading="lazy" decoding="async"></a>
+    </div>
+    <div class="footer-bot">
+      <div class="footer-c">© 2026 Drive AI Sales Inc. — Edmonton, AB</div>
+      <div class="footer-l">
+        <a href="diagnostic.html">Diagnostic</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="discovery.html">Book a Call</a>
+        <a href="mailto:brandon@driveaisales.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ==== SCROLL-SCRUB FRAME SEQUENCE (canvas 2D, 4993 frames) ==== */
+(function(){
+  var FRAME_COUNT    = 4993;
+  var FRAME_PAD      = 4;
+  var FRAME_EXT      = 'jpg';
+  var FRAME_DIR      = 'https://drive-ai-sales.pages.dev/frames/';
+  var LERP           = 0.22;
+  var SENSITIVITY    = 1.0;
+  var BATCH          = 28;
+  var BLOCK_UNTIL    = 300;    // first N frames must load before scroll activates. 300 gives a comfortable buffer; rest stream in background.
+  var EASING         = 'smoothstep';
+
+  var c = document.getElementById('c');
+  var ctx = c.getContext('2d', { alpha:false });
+  var loader = document.getElementById('loader');
+  var pctEl = document.getElementById('pct');
+  var lparticles = document.getElementById('lparticles');
+
+  // Build particle loader bar (48 particles)
+  var PARTICLE_COUNT = 48;
+  var particleEls = [];
+  for(var pi=0; pi<PARTICLE_COUNT; pi++){
+    var d = document.createElement('div');
+    d.className = 'lparticle';
+    lparticles.appendChild(d);
+    particleEls.push(d);
+  }
+  function updateParticleBar(pct){
+    var lit = Math.round((pct/100) * PARTICLE_COUNT);
+    for(var i=0; i<PARTICLE_COUNT; i++){
+      var el = particleEls[i];
+      el.classList.remove('on','tip');
+      if(i === lit - 1 && lit < PARTICLE_COUNT) el.classList.add('tip');
+      else if(i < lit) el.classList.add('on');
+    }
+  }
+
+  var frames = new Array(FRAME_COUNT);
+  var loaded = 0, ready = false, current = 0, lastDrawn = -1;
+
+  function pad(n){ n = String(n); while(n.length<FRAME_PAD) n='0'+n; return n; }
+  function frameUrl(i){ return FRAME_DIR + 'f_' + pad(i+1) + '.' + FRAME_EXT; }
+  function shape(t){
+    if(EASING === 'smoothstep') return t*t*(3-2*t);
+    if(EASING === 'easeInOut')  return t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+    return t;
+  }
+
+  function fitCanvas(){
+    var dpr = Math.min(window.devicePixelRatio||1, 2);
+    var W = window.innerWidth, H = window.innerHeight;
+    c.width = Math.round(W*dpr); c.height = Math.round(H*dpr);
+    c.style.width = W+'px'; c.style.height = H+'px';
+    if(lastDrawn >= 0) drawFrame(lastDrawn, true); else if(frames[0]) drawFrame(0, true);
+  }
+  function drawFrame(i, force){
+    if(!force && i === lastDrawn) return;
+    var img = frames[i];
+    // If target frame isn't loaded yet, walk BACKWARD only (never show future
+    // frames the user hasn't scrolled to — prevents "flash ahead" jump).
+    // If nothing found going back, hold whatever's currently drawn.
+    if(!img){
+      for(var step=1; step<=30; step++){
+        if(frames[i-step]){ img = frames[i-step]; i = i-step; break; }
+      }
+    }
+    if(!img) return; // hold lastDrawn — no flicker
+    var cw = c.width, ch = c.height;
+    var iw = img.naturalWidth, ih = img.naturalHeight;
+    var scale = Math.max(cw/iw, ch/ih);
+    var dw = iw*scale, dh = ih*scale;
+    var dx = (cw-dw)/2, dy = (ch-dh)/2;
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,cw,ch);
+    ctx.drawImage(img, dx, dy, dw, dh);
+    lastDrawn = i;
+  }
+  function computeTarget(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if(max <= 0) return 0;
+    var raw = Math.max(0, Math.min(1, (window.pageYOffset / max) * SENSITIVITY));
+    return shape(raw) * (FRAME_COUNT - 1);
+  }
+  function tick(){
+    if(ready){
+      var t = computeTarget();
+      var d = t - current;
+      if(Math.abs(d) > 0.001){
+        current += d * LERP;
+        drawFrame(Math.round(current));
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  function loadOne(i){
+    return new Promise(function(resolve){
+      var img = new Image();
+      img.decoding = 'async';
+      img.onload = function(){
+        frames[i] = img; loaded++;
+        var pct = Math.round((loaded/FRAME_COUNT)*100);
+        pctEl.textContent = pct; updateParticleBar(pct);
+        resolve();
+      };
+      img.onerror = function(){ loaded++; resolve(); };
+      img.src = frameUrl(i);
+    });
+  }
+  async function preload(){
+    // Phase 1: blocking load of first N frames so scroll unlocks fast
+    var blocking = [];
+    for(var i=0; i<Math.min(BLOCK_UNTIL, FRAME_COUNT); i++){
+      blocking.push(i);
+    }
+    var bi = 0;
+    async function blockWorker(){
+      while(bi < blocking.length){ var my = bi++; await loadOne(blocking[my]); }
+    }
+    var blockWorkers = [];
+    for(var w=0; w<BATCH; w++) blockWorkers.push(blockWorker());
+    await Promise.all(blockWorkers);
+
+    // Draw the first frame, fit canvas, release loader — user can scroll now
+    fitCanvas();
+    drawFrame(0, true);
+    ready = true;
+    loader.classList.add('gone');
+    setTimeout(function(){ loader.style.display='none'; }, 700);
+
+    // Phase 2: stream remaining frames in background
+    var i2 = BLOCK_UNTIL;
+    async function streamWorker(){
+      while(i2 < FRAME_COUNT){ var my = i2++; await loadOne(my); }
+    }
+    var streamWorkers = [];
+    for(var w=0; w<BATCH; w++) streamWorkers.push(streamWorker());
+    await Promise.all(streamWorkers);
+  }
+
+  window.addEventListener('resize', fitCanvas, { passive:true });
+  requestAnimationFrame(tick);
+  preload();
+
+  /* ==== SECTION REVEAL (IntersectionObserver, viewport-based) ==== */
+  // Earlier we gated on frame index, which decoupled from DOM position and
+  // caused "invisible on scroll down" — by the time the user was looking at a
+  // section, its frame window had already passed. Fix: reveal when section
+  // actually enters the viewport. Simpler, and matches what the eye expects.
+  var textBlocks = document.querySelectorAll('.sec .text-block, .chip-hd.text-block');
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting) e.target.classList.add('in-scene');
+      else e.target.classList.remove('in-scene');
+    });
+  }, { threshold: 0.18, rootMargin: '-8% 0px -8% 0px' });
+  textBlocks.forEach(function(el){ revealObs.observe(el); });
+
+  /* ==== SCROLL-SPY NAV + PROGRESS RAIL ==== */
+  // Map nav links to their target sections; whichever section's top is nearest
+  // viewport center → that link is active. Also drives the thin orange rail.
+  var navLinks = document.querySelectorAll('.nav-links a[data-scene]');
+  var navProgress = document.getElementById('navProgress');
+  var sceneMap = [];
+  navLinks.forEach(function(a, idx){
+    var href = a.getAttribute('href');
+    if(!href || href.charAt(0) !== '#') return;
+    var target = document.getElementById(href.slice(1));
+    if(target) sceneMap.push({ link: a, target: target });
+  });
+  function updateScrollSpy(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? (window.pageYOffset / max) * 100 : 0;
+    navProgress.style.width = pct + '%';
+    var mid = window.innerHeight * 0.4; // consider "active" when top of section is above this line
+    var activeIdx = -1;
+    for(var i=0; i<sceneMap.length; i++){
+      var r = sceneMap[i].target.getBoundingClientRect();
+      if(r.top <= mid && r.bottom > mid){ activeIdx = i; break; }
+    }
+    sceneMap.forEach(function(s, i){ s.link.classList.toggle('active', i === activeIdx); });
+  }
+  window.addEventListener('scroll', updateScrollSpy, { passive:true });
+  updateScrollSpy();
+})();
+
+/* ==== NAV MOBILE TOGGLE ==== */
+(function(){
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var backdrop = document.getElementById('navBackdrop');
+  function setOpen(o){ nav.classList.toggle('open', o); toggle.setAttribute('aria-expanded', String(o)); toggle.setAttribute('aria-label', o ? 'Close menu' : 'Menu'); }
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.pageYOffset > 60); }, { passive:true });
+  toggle.addEventListener('click', function(){ setOpen(!nav.classList.contains('open')); });
+  if(backdrop) backdrop.addEventListener('click', function(){ setOpen(false); });
+  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') setOpen(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && nav.classList.contains('open')) setOpen(false); });
+})();
+
+/* ==== COUNTERS ==== */
+(function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el = e.target; var target = parseInt(el.dataset.target);
+        var prefix = el.dataset.prefix||''; var suffix = el.dataset.suffix||'';
+        if(target === 0){ el.textContent = prefix+'0'+suffix; obs.unobserve(el); return; }
+        var cur = 0, step = Math.max(1, Math.ceil(target/50));
+        var t = setInterval(function(){ cur += step; if(cur >= target){ cur = target; clearInterval(t); } el.textContent = prefix+cur+suffix; }, 30);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: .4 });
+  document.querySelectorAll('.counter').forEach(function(c){ obs.observe(c); });
+})();
+
+/* ==== TYPEWRITER ==== */
+(function(){
+  var el = document.getElementById('typewriter'); if(!el) return;
+  var phrases = [
+    'Answering SMS in 12 seconds...',
+    'Picking up a phone call at 2 AM...',
+    'Replying to Facebook DMs...',
+    'Emailing a test-drive confirmation...',
+    'Booking an appointment for Tuesday 4pm...',
+    'Re-engaging a 3-day-old no-show...',
+    'Syncing everything back to your CRM...'
+  ];
+  var pi=0, ci=0, del=false;
+  function type(){
+    var p = phrases[pi];
+    if(!del){ el.textContent = p.substring(0, ci+1); ci++; if(ci === p.length){ del=true; setTimeout(type, 2000); return; } setTimeout(type, 50); }
+    else{ el.textContent = p.substring(0, ci-1); ci--; if(ci === 0){ del=false; pi=(pi+1)%phrases.length; setTimeout(type, 500); return; } setTimeout(type, 30); }
+  }
+  type();
+})();
+
+/* ==== LIQUID BLOB ==== */
+document.querySelectorAll('.btn-liquid').forEach(function(btn){
+  var blob = document.createElement('span'); blob.className = 'liquid-blob'; btn.appendChild(blob);
+});
+
+/* ==== WANDA SPHERICAL ORB ====
+   Glossy 3D sphere with flowing aurora plasma interior.
+   Inspired by ChatGPT voice-mode, Gemini sphere, Humane Ai Pin aesthetic.
+   Layered render:
+     1) Outer halo — soft radial bloom
+     2) Sphere body — clipped circle with dark warm base
+     3) Plasma blobs — 7 orbiting orange/amber radial gradients (composited 'lighter')
+     4) Central glow — warm light from 30%/30% lit from above-left
+     5) Rim light — subtle bottom crescent bounce
+     6) Specular highlight — bright reflection top-left
+     7) Outer rim stroke — defines sphere edge cleanly
+     8) Orbiting satellites — 3 tiny sparks around outside
+   amplitude drives: halo size+brightness, plasma speed, satellite orbit speed */
+(function(){
+  function createOrb(canvas){
+    if(!canvas) return null;
+    var ctx = canvas.getContext('2d', { alpha:true });
+    var amplitude = 0;
+    var talking = false;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0, cx = 0, cy = 0, R = 0;
+
+    // Plasma blobs — flowing color clouds inside the sphere (11 blobs, richer interior)
+    var blobs = [];
+    var SHADES = [
+      'rgba(255,200,120,',
+      'rgba(255,150,60,',
+      'rgba(232,122,0,',
+      'rgba(255,100,30,',
+      'rgba(200,80,10,',
+      'rgba(255,180,100,',
+      'rgba(255,220,140,',
+      'rgba(255,240,180,',
+      'rgba(220,90,10,',
+      'rgba(255,130,40,',
+      'rgba(255,170,80,'
+    ];
+    for(var i=0; i<11; i++){
+      blobs.push({
+        angle: Math.random() * Math.PI * 2,
+        orbitR: 0.12 + Math.random() * 0.5,
+        speed: 0.003 + Math.random() * 0.008,
+        dir: Math.random() < 0.5 ? 1 : -1,
+        size: 0.3 + Math.random() * 0.45,
+        color: SHADES[i % SHADES.length],
+        osc: Math.random() * Math.PI * 2,
+        oscSpeed: 0.005 + Math.random() * 0.012
+      });
+    }
+
+    // AMBIENT FLOATING PARTICLES — 80 small drifting particles in and around the sphere.
+    // They give the "life" feel — tiny motes orbiting at many radii with slight turbulence.
+    var particles = [];
+    for(var p=0; p<80; p++){
+      particles.push({
+        angle: Math.random() * Math.PI * 2,
+        orbitR: 0.4 + Math.random() * 1.05, // some inside sphere (.4-1.0), some outside (1.0-1.45)
+        angVel: (0.0008 + Math.random() * 0.0045) * (Math.random() < 0.5 ? 1 : -1),
+        size: 0.35 + Math.random() * 1.2,
+        color: SHADES[Math.floor(Math.random() * SHADES.length)],
+        alpha: 0.25 + Math.random() * 0.55,
+        oscPhase: Math.random() * Math.PI * 2,
+        oscSpeed: 0.004 + Math.random() * 0.016,
+        oscAmp: 0.02 + Math.random() * 0.09,
+        sparkle: Math.random() < 0.15
+      });
+    }
+
+    // BRIGHT FEATURE SATELLITES — 5 larger glow sparks orbiting outside
+    var sats = [];
+    for(var s=0; s<5; s++){
+      sats.push({
+        angle: (s / 5) * Math.PI * 2 + Math.random() * 0.4,
+        speed: (0.002 + Math.random() * 0.003) * (s % 2 === 0 ? 1 : -1),
+        r: 1.1 + Math.random() * 0.15,
+        glowSize: 6 + Math.random() * 4
+      });
+    }
+
+    function fit(){
+      var rect = canvas.getBoundingClientRect();
+      w = Math.max(1, Math.round(rect.width * dpr));
+      h = Math.max(1, Math.round(rect.height * dpr));
+      canvas.width = w; canvas.height = h;
+      cx = w/2; cy = h/2;
+      // Sphere at 28% of canvas — leaves 44% clearance for halo/particles/satellites
+      R = Math.min(w, h) * 0.28;
+    }
+
+    function radialFill(x, y, innerR, outerR, stops){
+      var g = ctx.createRadialGradient(x, y, innerR, x, y, outerR);
+      for(var i=0; i<stops.length; i++) g.addColorStop(stops[i][0], stops[i][1]);
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, w, h);
+
+      // -------- 1) OUTER HALO (behind everything) --------
+      var haloR = R * (1.55 + amplitude * 0.35);
+      var haloIntensity = 0.22 + amplitude * 0.4;
+      radialFill(cx, cy, R * 0.95, haloR, [
+        [0, 'rgba(232,122,0,' + haloIntensity + ')'],
+        [0.35, 'rgba(232,122,0,' + (haloIntensity * 0.45) + ')'],
+        [1, 'rgba(232,122,0,0)']
+      ]);
+
+      // -------- 2/3/4/5) SPHERE INTERIOR (clipped) --------
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.clip();
+
+      // Dark warm base — black with an orange undertone
+      ctx.fillStyle = '#0a0400';
+      ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+      // Plasma blobs — additive blended so they bloom where they overlap
+      ctx.globalCompositeOperation = 'lighter';
+      for(var i=0; i<blobs.length; i++){
+        var b = blobs[i];
+        b.angle += b.speed * b.dir * (1 + amplitude * 1.2);
+        b.osc += b.oscSpeed;
+        var orbit = b.orbitR * R * (0.85 + 0.15 * Math.sin(b.osc));
+        var bx = cx + Math.cos(b.angle) * orbit;
+        var by = cy + Math.sin(b.angle) * orbit;
+        var bsize = b.size * R * (1 + amplitude * 0.25);
+        var alpha = 0.55 + amplitude * 0.2;
+        var g = ctx.createRadialGradient(bx, by, 0, bx, by, bsize);
+        g.addColorStop(0, b.color + alpha + ')');
+        g.addColorStop(0.5, b.color + (alpha * 0.35) + ')');
+        g.addColorStop(1, b.color + '0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+      }
+
+      // Central warm glow — light seems to come from upper-left (like a lit sphere)
+      var coreX = cx - R * 0.25, coreY = cy - R * 0.25;
+      var g2 = ctx.createRadialGradient(coreX, coreY, 0, coreX, coreY, R * 1.1);
+      g2.addColorStop(0, 'rgba(255,220,160,' + (0.35 + amplitude * 0.25) + ')');
+      g2.addColorStop(0.5, 'rgba(232,122,0,' + (0.12 + amplitude * 0.15) + ')');
+      g2.addColorStop(1, 'rgba(232,122,0,0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+      // Rim light — bottom-right crescent gives a 3D shading hint
+      var rimX = cx + R * 0.35, rimY = cy + R * 0.55;
+      var g3 = ctx.createRadialGradient(rimX, rimY, 0, rimX, rimY, R * 0.85);
+      g3.addColorStop(0, 'rgba(255,140,50,0.22)');
+      g3.addColorStop(1, 'rgba(255,140,50,0)');
+      ctx.fillStyle = g3;
+      ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+      ctx.restore();
+      ctx.globalCompositeOperation = 'source-over';
+
+      // -------- 6) SPECULAR HIGHLIGHT (on top of sphere) --------
+      var sx = cx - R * 0.38, sy = cy - R * 0.42;
+      var gS = ctx.createRadialGradient(sx, sy, 0, sx, sy, R * 0.32);
+      gS.addColorStop(0, 'rgba(255,255,255,' + (0.55 + amplitude * 0.15) + ')');
+      gS.addColorStop(0.4, 'rgba(255,240,210,0.2)');
+      gS.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gS;
+      ctx.beginPath(); ctx.arc(sx, sy, R * 0.32, 0, Math.PI * 2); ctx.fill();
+
+      // -------- 7) OUTER RIM STROKE — crisp edge definition --------
+      ctx.lineWidth = 1 * dpr;
+      ctx.strokeStyle = 'rgba(255,160,80,0.45)';
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+      ctx.lineWidth = 2 * dpr;
+      ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+      ctx.beginPath(); ctx.arc(cx, cy, R - 1.5 * dpr, 0, Math.PI * 2); ctx.stroke();
+
+      // -------- 8) AMBIENT FLOATING PARTICLES — 80 motes drifting in and around sphere --------
+      ctx.globalCompositeOperation = 'lighter';
+      for(var pi=0; pi<particles.length; pi++){
+        var pt = particles[pi];
+        pt.angle += pt.angVel * (1 + amplitude * 0.8);
+        pt.oscPhase += pt.oscSpeed;
+        var orbit = pt.orbitR * (1 + Math.sin(pt.oscPhase) * pt.oscAmp);
+        var px2 = cx + Math.cos(pt.angle) * orbit * R;
+        var py2 = cy + Math.sin(pt.angle) * orbit * R;
+        var sz2 = pt.size * dpr * (1 + amplitude * 0.5) * (pt.sparkle ? 2 : 1);
+        var a = pt.alpha * (0.6 + amplitude * 0.4);
+        if(pt.sparkle){
+          // Sparkle particles get a tiny glow halo
+          var pg = ctx.createRadialGradient(px2, py2, 0, px2, py2, sz2 * 2.2);
+          pg.addColorStop(0, pt.color + a + ')');
+          pg.addColorStop(0.4, pt.color + (a * 0.45) + ')');
+          pg.addColorStop(1, pt.color + '0)');
+          ctx.fillStyle = pg;
+          ctx.beginPath(); ctx.arc(px2, py2, sz2 * 2.2, 0, Math.PI * 2); ctx.fill();
+        } else {
+          ctx.fillStyle = pt.color + a + ')';
+          ctx.beginPath(); ctx.arc(px2, py2, sz2, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+
+      // -------- 9) BRIGHT SATELLITES — 5 feature sparks on outer orbit --------
+      for(var si=0; si<sats.length; si++){
+        var sat = sats[si];
+        sat.angle += sat.speed * (1 + amplitude * 0.8);
+        var satR = R * sat.r * (1 + amplitude * 0.05);
+        var satX = cx + Math.cos(sat.angle) * satR;
+        var satY = cy + Math.sin(sat.angle) * satR;
+        var gSz = sat.glowSize * dpr;
+        var gSat = ctx.createRadialGradient(satX, satY, 0, satX, satY, gSz);
+        gSat.addColorStop(0, 'rgba(255,210,140,0.95)');
+        gSat.addColorStop(0.4, 'rgba(232,122,0,0.45)');
+        gSat.addColorStop(1, 'rgba(232,122,0,0)');
+        ctx.fillStyle = gSat;
+        ctx.beginPath(); ctx.arc(satX, satY, gSz, 0, Math.PI * 2); ctx.fill();
+        // Bright core dot
+        ctx.fillStyle = 'rgba(255,240,200,1)';
+        ctx.beginPath(); ctx.arc(satX, satY, 2 * dpr, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // Amplitude easing — idle breathing + talk pulse
+      var target;
+      if(talking){
+        target = 0.4 + 0.35 * Math.abs(Math.sin(performance.now() * 0.006))
+                     + 0.12 * Math.sin(performance.now() * 0.017);
+      } else {
+        target = 0.1 + 0.08 * Math.sin(performance.now() * 0.0012);
+      }
+      amplitude += (target - amplitude) * 0.1;
+
+      requestAnimationFrame(draw);
+    }
+
+    function setTalking(v){ talking = v; }
+
+    fit();
+    draw();
+    window.addEventListener('resize', fit);
+    return { setTalking: setTalking, el: canvas };
+  }
+
+  var heroOrb = createOrb(document.getElementById('wandaHeroCanvas'));
+  var modalOrb = createOrb(document.getElementById('wandaModalCanvas'));
+  var orbClick = document.getElementById('wandaOrb');
+  var modal = document.getElementById('wandaModal');
+  var closeBtn = document.getElementById('wandaClose');
+  var webBtn = document.getElementById('wandaWeb');
+
+  function openModal(){
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if(modalOrb) modalOrb.setTalking(true); // demo talk animation while modal is open
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if(modalOrb) modalOrb.setTalking(false);
+  }
+
+  if(orbClick){
+    orbClick.addEventListener('click', openModal);
+    orbClick.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(); }
+    });
+  }
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal && modal.classList.contains('show')) closeModal();
+  });
+
+  /* Web-call: GHL voice widget integration.
+     Paste your GHL voice agent embed URL here and the button will load it in an iframe.
+     Example format: 'https://widgets.leadconnectorhq.com/voice-ai/<agent-id>'  */
+  var GHL_VOICE_EMBED_URL = ''; // ← PASTE YOUR GHL VOICE-AGENT EMBED URL HERE
+
+  if(webBtn){
+    webBtn.addEventListener('click', function(){
+      if(!GHL_VOICE_EMBED_URL){
+        alert('GHL voice-agent embed URL not yet configured.\n\nGrab it from GHL: Settings → Conversation AI → Voice Agent → Embed, then paste into GHL_VOICE_EMBED_URL in the page script.\n\nFor now, use "Call Wanda Now" to reach her by phone.');
+        return;
+      }
+      // Open GHL widget in a full-screen iframe overlay
+      var wrap = document.createElement('div');
+      wrap.style.cssText = 'position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:1rem';
+      var close = document.createElement('button');
+      close.textContent = '×';
+      close.setAttribute('aria-label','Close call');
+      close.style.cssText = 'position:absolute;top:1rem;right:1rem;width:44px;height:44px;border-radius:50%;background:rgba(232,122,0,.15);border:1px solid rgba(232,122,0,.5);color:#fff;font-size:1.4rem;cursor:pointer;z-index:1';
+      close.onclick = function(){ wrap.remove(); };
+      var iframe = document.createElement('iframe');
+      iframe.src = GHL_VOICE_EMBED_URL;
+      iframe.allow = 'microphone; camera; autoplay';
+      iframe.style.cssText = 'width:min(520px,96vw);height:min(720px,92vh);border:0;border-radius:18px;background:#0a0a0a;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(232,122,0,.25)';
+      wrap.appendChild(close); wrap.appendChild(iframe);
+      document.body.appendChild(wrap);
+    });
+  }
+})();
+
+/* ==== LEAD FORM (fallback to mailto if formspree not configured) ==== */
+(function(){
+  var form = document.getElementById('leadForm');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    if(form.action.indexOf('REPLACE_WITH_FORMSPREE_ID') !== -1){
+      // Fallback: mailto with prefilled body (no formspree set up yet)
+      e.preventDefault();
+      var fd = new FormData(form);
+      var subject = 'Drive AI — Diagnostic request from ' + (fd.get('name') || '');
+      var body = 'Name: ' + (fd.get('name')||'') + '\nEmail: ' + (fd.get('email')||'') + '\nDealership: ' + (fd.get('dealership')||'') + '\n\n—';
+      window.location.href = 'mailto:brandon@driveaisales.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
+  });
+})();
+</script>
+</body>
+</html>
