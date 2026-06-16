@@ -275,7 +275,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 
 /* Text block: frame-range gated, visible only when canvas is in its scene.
    Drives a cinematic sync between video and story. */
-.text-block{max-width:500px;padding:1.75rem 2rem;border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.06);opacity:0;transform:translateY(30px) scale(.985);transition:opacity .6s cubic-bezier(.215,.61,.355,1),transform .6s cubic-bezier(.215,.61,.355,1)}
+.text-block{max-width:500px;padding:1.85rem 2.1rem;border-radius:20px;background:linear-gradient(157deg,rgba(255,255,255,.07),rgba(0,0,0,.42));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 12px 36px rgba(0,0,0,.4);opacity:0;transform:translateY(30px) scale(.985);transition:opacity .6s cubic-bezier(.215,.61,.355,1),transform .6s cubic-bezier(.215,.61,.355,1)}
 .text-block.in-scene{opacity:1;transform:none}
 /* ==== APPEAR-INTO REVEAL: standalone blocks below the hero (FAQ, social, footer).
    Sections already reveal above; this extends the same motion language so everything
@@ -303,9 +303,9 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
 .btn-fill{background:#E87A00;color:#000}
 .btn-fill:hover{background:#FF8C00;box-shadow:0 0 25px rgba(232,122,0,.3)}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.18);border-radius:4px;transition:all .3s}
-.btn-ghost:hover{border-color:#E87A00;color:#E87A00;box-shadow:0 0 15px rgba(232,122,0,.15);transform:translateY(-2px)}
-.btn-liquid{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);border-radius:8px;padding:.8rem 2.2rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.btn-ghost{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:.8rem 2.2rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 14px rgba(0,0,0,.25);transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.btn-ghost:hover{border-color:rgba(232,122,0,.6);color:#FFC076;background:linear-gradient(160deg,rgba(232,122,0,.18),rgba(232,122,0,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 18px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.3);transform:translateY(-1px)}
+.btn-liquid{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);border-radius:10px;padding:.8rem 2.2rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .btn-liquid .liquid-blob{display:none}
 .btn-liquid:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px)}
 
@@ -364,7 +364,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 
 /* Node cards, 8 capability labels around the chip. Position via inline top/left %.
    width in % keeps them stable at any container size (no overlap on mobile). */
-.chip-node{position:absolute;width:19%;min-width:96px;max-width:160px;transform:translate(-50%,-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.9rem .5rem;background:rgba(10,10,12,.88);border:1px solid rgba(232,122,0,.22);border-radius:10px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:default}
+.chip-node{position:absolute;width:19%;min-width:96px;max-width:160px;transform:translate(-50%,-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.9rem .5rem;background:linear-gradient(157deg,rgba(32,27,34,.92),rgba(10,10,12,.92));border:1px solid rgba(232,122,0,.3);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 6px 18px rgba(0,0,0,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:default}
 .chip-node::before{content:"";position:absolute;inset:-1px;border-radius:10px;background:linear-gradient(135deg,rgba(232,122,0,.4),transparent 60%);opacity:0;transition:opacity .4s;z-index:-1;filter:blur(6px)}
 .chip-node:hover{border-color:rgba(232,122,0,.7);background:rgba(232,122,0,.1);box-shadow:0 0 0 1px rgba(232,122,0,.35),0 14px 36px rgba(232,122,0,.3),0 0 50px rgba(232,122,0,.18);transform:translate(-50%,-50%) scale(1.06)}
 .chip-node:hover::before{opacity:.5}
@@ -393,9 +393,9 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .services-hd .h2{margin-bottom:.6rem}
 .services-hd .bd{max-width:640px;margin:0 auto 3.5rem;color:rgba(255,255,255,.72)}
 .services-list{display:flex;flex-direction:column;gap:.8rem;text-align:left}
-.svc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:all .4s cubic-bezier(.2,.8,.2,1);overflow:hidden}
-.svc[open]{background:rgba(232,122,0,.055);border-color:rgba(232,122,0,.3);box-shadow:0 14px 36px rgba(232,122,0,.14),0 0 0 1px rgba(232,122,0,.12)}
-.svc:not([open]):hover{background:rgba(232,122,0,.03);border-color:rgba(232,122,0,.2);transform:translateX(4px)}
+.svc{background:linear-gradient(157deg,rgba(255,255,255,.075),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.10);border-radius:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 6px 20px rgba(0,0,0,.22);transition:all .4s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.svc[open]{background:linear-gradient(157deg,rgba(232,122,0,.12),rgba(232,122,0,.03));border-color:rgba(232,122,0,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 14px 36px rgba(232,122,0,.16),0 0 0 1px rgba(232,122,0,.12)}
+.svc:not([open]):hover{background:linear-gradient(157deg,rgba(255,255,255,.10),rgba(232,122,0,.045));border-color:rgba(232,122,0,.24);transform:translateX(4px)}
 .svc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1.4rem;padding:1.2rem 1.5rem;user-select:none}
 .svc summary::-webkit-details-marker{display:none}
 .svc-icon{width:88px;height:88px;flex-shrink:0;object-fit:contain;transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .4s}
@@ -423,8 +423,8 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .lead-form input{flex:1 1 260px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.95rem 1.1rem;font-family:'Barlow',sans-serif;font-size:.95rem;border-radius:6px;transition:all .3s;min-width:220px}
 .lead-form input:focus{outline:none;border-color:#E87A00;box-shadow:0 0 0 3px rgba(232,122,0,.18);background:rgba(255,255,255,.06)}
 .lead-form input::placeholder{color:rgba(255,255,255,.4);letter-spacing:.5px}
-.lead-form button{background:#E87A00;color:#000;border:0;padding:.95rem 1.8rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:6px;cursor:pointer;transition:all .3s}
-.lead-form button:hover{background:#FF8C00;box-shadow:0 0 24px rgba(232,122,0,.5);transform:translateY(-1px)}
+.lead-form button{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);padding:.95rem 1.9rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:10px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.lead-form button:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px)}
 .capture-alt{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:1px}
 .capture-alt a{color:#E87A00;text-decoration:none;border-bottom:1px solid transparent;transition:border .3s}
 .capture-alt a:hover{border-bottom-color:#E87A00}
@@ -620,7 +620,7 @@ html.lenis,html.lenis body{height:auto}
     <li><a href="/vs-competitors">Compare</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/about">About</a></li>
-    <li><a href="/diagnostic" class="nav-cta">Free Diagnostic</a></li>
+    <li><a href="/discovery" class="nav-cta">Book Now</a></li>
   </ul>
 </nav>
 
@@ -633,8 +633,8 @@ html.lenis,html.lenis body{height:auto}
       <div class="bd"><strong>Phone. Email. SMS. Social messaging.</strong> Every channel a buyer uses, we answer on it in under 60 seconds. 24/7. Inside your CRM. Before your competitor even sees the lead.</div>
       <div style="font-family:monospace;font-size:14px;color:#E87A00;margin-bottom:1.2rem;min-height:1.5em;"><span id="typewriter"></span><span style="border-right:2px solid #E87A00;animation:blink .8s step-end infinite;">&nbsp;</span></div>
       <div class="btn-row">
-        <a href="/diagnostic" class="btn btn-liquid">Free Diagnostic</a>
-        <a href="/discovery" class="btn btn-ghost"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))"><defs><linearGradient id="bookCheckOrangeMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFE0B3"/><stop offset="35%" stop-color="#FF9C2A"/><stop offset="70%" stop-color="#E87A00"/><stop offset="100%" stop-color="#8C4500"/></linearGradient></defs><path d="M5 12.5 L10 17.5 L19.5 5.5" stroke="url(#bookCheckOrangeMetal)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Book Now</a>
+        <a href="/diagnostic" class="btn btn-ghost">Free Diagnostic</a>
+        <a href="/discovery" class="btn btn-liquid"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))"><defs><linearGradient id="bookCheckOrangeMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFE0B3"/><stop offset="35%" stop-color="#FF9C2A"/><stop offset="70%" stop-color="#E87A00"/><stop offset="100%" stop-color="#8C4500"/></linearGradient></defs><path d="M5 12.5 L10 17.5 L19.5 5.5" stroke="#1a0d00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Book Now</a>
       </div>
     </div>
 
@@ -822,8 +822,8 @@ html.lenis,html.lenis body{height:auto}
       <h2 class="h2">Your Team Closes.<br>We <em>Handle Everything Else.</em></h2>
       <div class="bd">You walk deals across the line on the showroom floor. We work the top of the funnel 24/7, qualifying, following up, booking, reminding, re-engaging. Zero new staff. Zero new tools. One dashboard in the CRM you already use.</div>
       <div class="btn-row">
-        <a href="#capture" class="btn btn-liquid">See Your Score</a>
-        <a href="/discovery" class="btn btn-ghost">Book a Call</a>
+        <a href="#capture" class="btn btn-ghost">See Your Score</a>
+        <a href="/discovery" class="btn btn-liquid">Book a Call</a>
       </div>
     </div>
   </div>
