@@ -98,20 +98,6 @@
       ]
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://www.driveaisales.com/#faq",
-      "mainEntity": [
-        {"@type":"Question","name":"Does Drive AI Sales work with my existing CRM like CDK, Reynolds, VinSolutions or DealerSocket?","acceptedAnswer":{"@type":"Answer","text":"Yes. We build custom integrations around your current CRM and phone system. We do not require you to switch platforms. We work alongside your existing tools so your team's workflow does not change, but leads stop falling through the cracks."}},
-        {"@type":"Question","name":"How fast can Drive AI Sales go live in my dealership?","acceptedAnswer":{"@type":"Answer","text":"Most dealerships are live within 24 hours of signing. Standard integrations with CRMs, phone systems, inventory software, and booking platforms are pre-built. Bespoke integrations may take longer and we will scope these on the discovery call."}},
-        {"@type":"Question","name":"Who owns the customer data Drive AI Sales processes?","acceptedAnswer":{"@type":"Answer","text":"The dealership owns 100 percent of its customer and lead data at all times. Drive AI Sales is the processor, not the owner. You can export your data at any time. We comply with PIPEDA, Alberta's PIPA, and other applicable Canadian privacy legislation."}},
-        {"@type":"Question","name":"What happens if the AI says something wrong to a customer?","acceptedAnswer":{"@type":"Answer","text":"Every Drive AI deployment includes human-in-the-loop oversight: your team can review, edit, or take over any AI conversation in real time. We tune the AI to your brand voice, your inventory, and your compliance constraints before going live. AMVIC and OMVIC advertising rules are configured into the system."}},
-        {"@type":"Question","name":"What does Drive AI Sales cost?","acceptedAnswer":{"@type":"Answer","text":"Pricing depends on dealership size, lead volume, and the depth of integration required. Typical deployments pay for themselves with less than one additional sold deal per month. We give you a transparent quote during the 15-minute discovery call."}},
-        {"@type":"Question","name":"Who pays for the Twilio phone and SMS charges?","acceptedAnswer":{"@type":"Answer","text":"The dealership pays for its own Twilio and messaging usage at cost. Drive AI does not mark up telephony or SMS charges. Expect roughly $50 to $200 per month in Twilio usage depending on your lead volume and call duration."}},
-        {"@type":"Question","name":"Can the AI handle bilingual leads in French, Punjabi, Mandarin or Spanish?","acceptedAnswer":{"@type":"Answer","text":"Yes. The underlying AI models support over 50 languages out of the box. We can configure a dealer-specific bilingual or trilingual response policy based on your customer base. Common deployments in Alberta include English, French, Punjabi, and Spanish."}},
-        {"@type":"Question","name":"What if my BDC team does not want to be replaced by AI?","acceptedAnswer":{"@type":"Answer","text":"Drive AI Sales is built to augment, not replace, your BDC team. The AI handles tier-1 response, qualification, and follow-up, freeing your team to focus on high-intent conversations and closing. Dealerships typically reassign BDC headcount to higher-leverage roles, not lay off."}}
-      ]
-    },
-    {
       "@type": "Service",
       "@id": "https://www.driveaisales.com/#service",
       "name": "AI Lead Response for Car Dealerships",
@@ -466,13 +452,11 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 /* FOOTER */
 .footer{border-top:1px solid rgba(255,255,255,.06);background:#000;position:relative;z-index:2;padding:4rem 2rem 2rem}
 .footer-inner{max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;align-items:center;width:100%}
-.social-row{display:flex;gap:1.4rem;align-items:stretch;width:100%;max-width:1600px}
-.social-row a{flex:1 1 0;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;max-height:320px;border-radius:28px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);transition:all .5s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden}
-.social-row a::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,122,0,.18),transparent 65%);opacity:0;transition:opacity .5s}
-.social-row a:hover{background:rgba(232,122,0,.06);border-color:rgba(232,122,0,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(232,122,0,.28),0 0 0 1px rgba(232,122,0,.2) inset}
-.social-row a:hover::before{opacity:1}
-.social-row img{width:68%;height:68%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .4s;position:relative;z-index:1}
-.social-row a:hover img{transform:scale(1.08);filter:drop-shadow(0 0 26px rgba(232,122,0,.8))}
+.social-row{display:flex;gap:1.6rem;align-items:center;justify-content:center;width:100%}
+.social-row a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:14px;transition:transform .4s cubic-bezier(.2,.8,.2,1);position:relative}
+.social-row img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(232,122,0,.38));transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .3s;position:relative;z-index:1}
+.social-row a:hover{transform:translateY(-4px)}
+.social-row a:hover img{transform:scale(1.06);filter:drop-shadow(0 0 18px rgba(232,122,0,.6))}
 .footer-bot{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;align-items:center}
 .footer-c{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.5px}
 .footer-l{display:flex;gap:1rem;flex-wrap:wrap}
@@ -523,9 +507,9 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
   .lead-form input,.lead-form button{flex:0 0 auto;width:100%}
   .footer{padding:2rem 1.2rem 1.2rem}
   .footer-bot{gap:.8rem;text-align:center}
-  .social-row{gap:.7rem}
-  .social-row a{border-radius:18px;max-height:180px}
-  .social-row img{width:70%;height:70%}
+  .social-row{gap:1.2rem}
+  .social-row a{width:54px;height:54px;border-radius:11px}
+  .social-row img{width:100%;height:100%}
   .footer{padding:3rem 1rem 1.5rem}
   .sec{min-height:90vh}
   .h1{font-size:clamp(2.2rem,9vw,3.4rem)}
@@ -616,8 +600,8 @@ html.lenis,html.lenis body{height:auto}
   </a>
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="navToggle"><span></span></button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#services">Services</a></li>
     <li><a href="#s4">Results</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="/vs-competitors">Compare</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/about">About</a></li>
@@ -1033,52 +1017,6 @@ html.lenis,html.lenis body{height:auto}
   </div>
 </section>
 
-<!-- FAQ, eight dealer-pain objections handled on-page so they do not block the discovery call -->
-<section class="faq" id="faq">
-  <div class="faq-inner">
-    <div class="faq-hd">
-      <div class="ol">Common Questions</div>
-      <h2 class="h2">What Dealer Principals<br><em>Actually Ask Us.</em></h2>
-      <div class="bd">Eight things every dealership wants to know before signing. Tap any to expand.</div>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>Does Drive AI Sales work with my existing CRM like CDK, Reynolds, VinSolutions or DealerSocket?</summary>
-        <div class="faq-body">Yes. We build <strong>custom integrations around your current CRM</strong> and phone system. We do not require you to switch platforms. We work alongside your existing tools so your team's workflow does not change, but leads stop falling through the cracks. We will scope the specific integration with you on the <a href="/discovery">discovery call</a>.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How fast can Drive AI Sales go live in my dealership?</summary>
-        <div class="faq-body">Most dealerships are live within <strong>24 hours</strong> of signing. Standard integrations with common CRMs, phone systems, inventory software, and booking platforms are pre-built. Bespoke integrations may take longer and we will give you a clear timeline on the discovery call.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Who owns the customer data Drive AI Sales processes?</summary>
-        <div class="faq-body">The dealership owns <strong>100 percent of its customer and lead data</strong> at all times. Drive AI Sales is the processor, not the owner. You can export your data at any time. We comply with PIPEDA, Alberta's PIPA, and other applicable Canadian privacy legislation. Full details in our <a href="/terms">Client Terms</a>.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What happens if the AI says something wrong to a customer?</summary>
-        <div class="faq-body">Every Drive AI deployment includes <strong>human-in-the-loop oversight</strong>. Your team can review, edit, or take over any AI conversation in real time. We tune the AI to your brand voice, your inventory, and your compliance constraints before going live. AMVIC and OMVIC advertising rules are configured into the system. If the AI is unsure, it escalates to a human.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What does Drive AI Sales cost?</summary>
-        <div class="faq-body">Pricing depends on dealership size, lead volume, and depth of integration. Typical deployments pay for themselves with <strong>less than one additional sold deal per month</strong>. We give you a transparent quote during the 15-minute <a href="/discovery">discovery call</a>. There are no hidden fees, no per-seat charges, and no surprise renewal hikes.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Who pays for the Twilio phone and SMS charges?</summary>
-        <div class="faq-body">The dealership pays for its own Twilio and messaging usage <strong>at cost</strong>. Drive AI does not mark up telephony or SMS charges. Expect roughly $50 to $200 per month in Twilio usage depending on your lead volume and call duration.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can the AI handle bilingual leads in French, Punjabi, Mandarin or Spanish?</summary>
-        <div class="faq-body">Yes. The underlying AI models support over <strong>50 languages out of the box</strong>. We configure a dealer-specific bilingual or trilingual response policy based on your customer base. Common Alberta deployments include English, French, Punjabi, and Spanish.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What if my BDC team does not want to be replaced by AI?</summary>
-        <div class="faq-body">Drive AI Sales is built to <strong>augment, not replace</strong>, your BDC team. The AI handles tier-1 response, qualification, and follow-up, freeing your team to focus on high-intent conversations and closing. Dealerships typically reassign BDC headcount to higher-leverage roles, not lay off. Want to walk through it for your specific team? <a href="/discovery">Book a call</a>.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="social-row">
@@ -1247,7 +1185,7 @@ html.lenis,html.lenis body{height:auto}
      entrance to the blocks that were static. Each group cascades via a per-item --rd delay. */
   (function(){
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var groups = [['.faq-hd'], ['.faq-list .faq-item'], ['.social-row a'], ['.footer-terms', '.footer-bot']];
+    var groups = [['.social-row a'], ['.footer-terms', '.footer-bot']];
     var all = [];
     groups.forEach(function(sel){
       document.querySelectorAll(sel.join(',')).forEach(function(el, i){
