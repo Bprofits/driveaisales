@@ -249,10 +249,10 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a.active{color:#E87A00}
 .nav-links a.active::after{transform:scaleX(1);box-shadow:0 0 8px rgba(232,122,0,.85)}
-.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;color:#1a0d00!important;font-weight:700!important;letter-spacing:2px;padding:.6rem 1.3rem!important;font-size:.72rem;border-radius:8px;border:1px solid rgba(255,201,135,.55);background:linear-gradient(180deg,#F7951F,#E1720B)!important;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)!important}
+.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;color:#1a0d00!important;font-weight:700!important;letter-spacing:2px;padding:.6rem 1.3rem!important;font-size:.72rem;border-radius:8px;border:1px solid rgba(0,0,0,.45);background:linear-gradient(180deg,#F7951F,#E1720B)!important;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)!important}
 .nav-cta::after{display:none!important}
 .nav-cta:hover svg,.btn-liquid:hover svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.75))}
-.nav-cta:hover{color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D)!important;border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
+.nav-cta:hover{color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D)!important;border-color:rgba(255,255,255,.95);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 15px rgba(255,255,255,.55),0 0 26px rgba(232,122,0,.4);transform:translateY(-1px)}
 
 /* Progress rail: thin bar under the nav showing scroll % */
 .nav-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#E87A00,#FF8C00);z-index:101;width:0%;transition:width .1s linear;box-shadow:0 0 8px rgba(232,122,0,.6)}
@@ -304,11 +304,11 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
 .btn-fill{background:#E87A00;color:#000}
 .btn-fill:hover{background:#FF8C00;box-shadow:0 0 25px rgba(232,122,0,.3)}
-.btn-ghost{position:relative;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:.8rem 2.2rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.2);transition:all .35s cubic-bezier(.2,.8,.2,1)}
-.btn-ghost:hover{border-color:rgba(232,122,0,.6);color:#FFC076;background:linear-gradient(160deg,rgba(232,122,0,.18),rgba(232,122,0,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 18px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.3);transform:translateY(-1px)}
-.btn-liquid{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(255,201,135,.55);border-radius:10px;padding:.8rem 2.2rem;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.btn-ghost{position:relative;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(0,0,0,.45);border-radius:10px;padding:.8rem 2.2rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.2);transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.9);color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:rgba(255,255,255,.10);box-shadow:0 6px 18px rgba(0,0,0,.3),0 0 15px rgba(255,255,255,.5),0 0 22px rgba(232,122,0,.25);transform:translateY(-1px)}
+.btn-liquid{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(0,0,0,.45);border-radius:10px;padding:.8rem 2.2rem;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .btn-liquid .liquid-blob{display:none}
-.btn-liquid:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
+.btn-liquid:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,255,255,.95);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 15px rgba(255,255,255,.55),0 0 26px rgba(232,122,0,.4);transform:translateY(-1px)}
 
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
 .pill{background:rgba(232,122,0,.1);border:1px solid rgba(232,122,0,.2);color:#E87A00;padding:.35rem .8rem;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
@@ -424,8 +424,8 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .lead-form input{flex:1 1 260px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.95rem 1.1rem;font-family:'Barlow',sans-serif;font-size:.95rem;border-radius:6px;transition:all .3s;min-width:220px}
 .lead-form input:focus{outline:none;border-color:#E87A00;box-shadow:0 0 0 3px rgba(232,122,0,.18);background:rgba(255,255,255,.06)}
 .lead-form input::placeholder{color:rgba(255,255,255,.4);letter-spacing:.5px}
-.lead-form button{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(255,201,135,.55);padding:.95rem 1.9rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
-.lead-form button:hover{background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
+.lead-form button{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(0,0,0,.45);padding:.95rem 1.9rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.lead-form button:hover{background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,255,255,.95);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 15px rgba(255,255,255,.55),0 0 26px rgba(232,122,0,.4);transform:translateY(-1px)}
 .capture-alt{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:1px}
 .capture-alt a{color:#E87A00;text-decoration:none;border-bottom:1px solid transparent;transition:border .3s}
 .capture-alt a:hover{border-bottom-color:#E87A00}
