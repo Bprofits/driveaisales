@@ -87,7 +87,7 @@ body{margin:0;background:var(--bg-b);font-family:Barlow,-apple-system,'Segoe UI'
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a.active{color:#E87A00}
 .nav-links a.active::after{transform:scaleX(1);box-shadow:0 0 8px rgba(232,122,0,.85)}
-.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00!important;border:1px solid rgba(255,201,135,.55);border-radius:8px;padding:.58rem 1.15rem!important;font-weight:700!important;letter-spacing:2px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00!important;border:1px solid rgba(255,201,135,.55);border-radius:8px;padding:.6rem 1.3rem!important;font-size:.72rem;font-weight:700!important;letter-spacing:2px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px);color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55)}
 .nav-cta:hover svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.75))}
@@ -112,6 +112,13 @@ body{margin:0;background:var(--bg-b);font-family:Barlow,-apple-system,'Segoe UI'
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<style>
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-scrolling iframe{pointer-events:none}
+</style>
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -231,5 +238,7 @@ body{margin:0;background:var(--bg-b);font-family:Barlow,-apple-system,'Segoe UI'
 </script>
 
 <script>(function(){var n=document.getElementById("nav"),t=document.getElementById("navToggle");if(!t)return;t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");t.setAttribute("aria-expanded",false);});});})();</script>
+<script src="/lenis.min.js"></script>
+<script src="/assets/drift.js"></script>
 </body>
 </html>
