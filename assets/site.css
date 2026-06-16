@@ -20,9 +20,10 @@ em{font-style:normal;color:#E87A00}
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a.active{color:#E87A00}
 .nav-links a.active::after{transform:scaleX(1);box-shadow:0 0 8px rgba(232,122,0,.85)}
-.nav-cta{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00!important;border:1px solid rgba(255,201,135,.55);border-radius:8px;padding:.58rem 1.2rem!important;font-weight:700!important;letter-spacing:2px;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00!important;border:1px solid rgba(255,201,135,.55);border-radius:8px;padding:.58rem 1.2rem!important;font-weight:700!important;letter-spacing:2px;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .nav-cta::after{display:none!important}
-.nav-cta:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px);color:#1a0d00!important}
+.nav-cta:hover svg,.btn-liquid:hover svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.75))}
+.nav-cta:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px);color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55)}
 .nav-toggle{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative;z-index:110}
 .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:11px;width:22px;height:1.5px;background:#fff;transition:all .3s}
 .nav-toggle span{top:21px}.nav-toggle span::before{top:-7px}.nav-toggle span::after{top:7px}
