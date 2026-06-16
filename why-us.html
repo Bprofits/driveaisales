@@ -244,6 +244,17 @@
 .ds-zone .float, .ds-zone .floorglow{display:none!important}
 @media(max-width:760px){.ds-zone .clients{grid-template-columns:1fr;max-width:420px}}
 
+
+/* live chat animation */
+.ds-zone .chat.live .bubble:not(.typing){display:none}
+.ds-zone .chat.live .bubble.show{display:block;animation:dsPop .42s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dsPop{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+.ds-zone .chat .typing{align-self:flex-start;display:inline-flex!important;align-items:center;gap:5px;padding:15px 18px;animation:dsPop .3s ease both}
+.ds-zone .chat .typing.me{align-self:flex-end}
+.ds-zone .chat .typing span{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.45;animation:dsType 1.15s infinite}
+.ds-zone .chat .typing span:nth-child(2){animation-delay:.16s}
+.ds-zone .chat .typing span:nth-child(3){animation-delay:.32s}
+@keyframes dsType{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:.95}}
 </style>
 </head>
 <body>
@@ -443,5 +454,34 @@
 
 </script>
 <script>(function(){var n=document.getElementById("nav"),t=document.getElementById("navToggle");if(!t)return;t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");t.setAttribute("aria-expanded",false);});});})();</script>
+<script>(function(){
+  var chat=document.querySelector('.ds-zone .chatsec .chat'); if(!chat) return;
+  var bubbles=[].slice.call(chat.querySelectorAll('.bubble'));
+  if(!bubbles.length) return;
+  chat.classList.add('live');
+  var timers=[],running=false;
+  function clear(){timers.forEach(clearTimeout);timers=[];}
+  function reset(){bubbles.forEach(function(b){b.classList.remove('show');});var t=chat.querySelector('.typing');if(t)t.remove();}
+  function play(){
+    reset(); var delay=500;
+    bubbles.forEach(function(b,i){
+      var len=b.textContent.length, me=b.classList.contains('me');
+      var typeDur=len>40?1100:720, readDur=(i===bubbles.length-1)?2800:(len>40?1650:820);
+      timers.push(setTimeout(function(){
+        var tp=document.createElement('div'); tp.className='bubble typing '+(me?'me':'them');
+        tp.innerHTML='<span></span><span></span><span></span>'; chat.insertBefore(tp,b);
+      },delay)); delay+=typeDur;
+      timers.push(setTimeout(function(){
+        var tp=chat.querySelector('.typing'); if(tp)tp.remove(); b.classList.add('show');
+      },delay)); delay+=readDur;
+    });
+    timers.push(setTimeout(play, delay+300));
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting&&!running){running=true;play();}
+    else if(!e.isIntersecting&&running){running=false;clear();reset();}
+  });},{threshold:.3});
+  io.observe(chat);
+})();</script>
 </body>
 </html>
