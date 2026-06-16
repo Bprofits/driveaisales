@@ -149,11 +149,11 @@ img{display:block;max-width:100%}
 .cta h2 em{font-style:normal;background:linear-gradient(116deg,#FFE6CC 10%,#fff 38%,#FF9C2A 92%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .cta p{color:rgba(255,255,255,.7);max-width:560px;margin:1rem auto 1.8rem}
 .btn-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.7rem;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:5px;transition:all .3s;cursor:pointer}
-.btn-primary{background:#E87A00;color:#0a0a0a}
-.btn-primary:hover{background:#ff9426;box-shadow:0 0 24px rgba(232,122,0,.45);transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
-.btn-ghost:hover{border-color:#E87A00;color:#E87A00;transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.7rem;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:10px;transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+.btn-primary{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34)}
+.btn-primary:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px);color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55)}
+.btn-ghost{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 14px rgba(0,0,0,.25)}
+.btn-ghost:hover{border-color:rgba(232,122,0,.6);color:#FFC076;background:linear-gradient(160deg,rgba(232,122,0,.18),rgba(232,122,0,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 18px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.3);transform:translateY(-1px)}
 
 /* ===== FOOTER ===== */
 .footer{border-top:1px solid rgba(255,255,255,.06);background:#000;padding:3.5rem 0 calc(2rem + env(safe-area-inset-bottom,0px))}
@@ -270,8 +270,8 @@ img{display:block;max-width:100%}
     <h2>Want To See It <em>Work For Your Store?</em></h2>
     <p>Get your free response-time diagnostic, or book a 15-minute discovery call with the team. No pressure, no switching CRMs.</p>
     <div class="btn-row">
-      <a href="/diagnostic" class="btn btn-primary">Free Diagnostic</a>
-      <a href="/discovery" class="btn btn-ghost">Book A Call</a>
+      <a href="/diagnostic" class="btn btn-ghost">Free Diagnostic</a>
+      <a href="/discovery" class="btn btn-primary">Book A Call</a>
     </div>
   </div>
 </section>
