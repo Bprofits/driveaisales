@@ -40,11 +40,12 @@
       "url": "https://www.driveaisales.com/",
       "logo": "https://drive-ai-sales.pages.dev/logo/logo-hires.png",
       "description": "Dealer-first AI CRM. Answers every lead in under 60 seconds across phone, SMS, email, and social. Built in Edmonton, Alberta.",
-      "founder": {
-        "@type": "Person",
-        "name": "Brandon Rose",
-        "jobTitle": "Founder and CEO"
-      },
+      "founder": [
+        {"@type":"Person","name":"Brandon Rose","jobTitle":"Co-Founder, President and CEO"},
+        {"@type":"Person","name":"Mathew Hrappstead","jobTitle":"Co-Founder, CMO and COO"},
+        {"@type":"Person","name":"David Sonshine","jobTitle":"Chief Technology Officer"},
+        {"@type":"Person","name":"Jayden Nielsen","jobTitle":"Chief Financial Officer"}
+      ],
       "foundingDate": "2025",
       "sameAs": [
         "https://www.linkedin.com/company/115034557/",
@@ -621,6 +622,7 @@ html.lenis,html.lenis body{height:auto}
     <li><a href="#s3">Response</a></li>
     <li><a href="#s4">Results</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="/about">About</a></li>
     <li><a href="/diagnostic" class="nav-cta">Free Diagnostic</a></li>
   </ul>
 </nav>
@@ -1207,7 +1209,7 @@ html.lenis,html.lenis body{height:auto}
       // Tight tracking, NOT heavy easing. On desktop Lenis already smooths the
       // scroll, so a second big ease here just stacks lag (the "laggy" feel). The
       // crossfade supplies visual smoothness; this only soaks up sub-frame jitter.
-      current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.05 : 0.03)));
+      current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.035 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
         paintIndex(current, true);                 // moving -> blended, fluid
         paintedIdx = current; idleScrub = false;
@@ -1746,7 +1748,7 @@ document.querySelectorAll('.btn-liquid').forEach(function(btn){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia && window.matchMedia('(pointer:coarse)').matches) return;   // phones/tablets keep PURE native scroll (no Lenis) = the "before" feel
   var lenis = new Lenis({
-    lerp: 0.1,             // glide weight per frame: lower = longer drift, higher = snappier
+    lerp: 0.14,            // glide weight per frame: lower = longer drift, higher = snappier
     wheelMultiplier: 1.0,
     smoothWheel: true,     // inertial easing on wheel + trackpad + keyboard
     syncTouch: false       // phones/tablets keep their own native kinetic scroll
