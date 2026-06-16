@@ -249,10 +249,10 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a.active{color:#E87A00}
 .nav-links a.active::after{transform:scaleX(1);box-shadow:0 0 8px rgba(232,122,0,.85)}
-.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;color:#1a0d00!important;font-weight:700!important;letter-spacing:2px;padding:.6rem 1.3rem!important;font-size:.72rem;border-radius:8px;border:1px solid rgba(255,201,135,.55);background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)!important}
+.nav-cta{position:relative;display:inline-flex;align-items:center;gap:.4rem;color:#1a0d00!important;font-weight:700!important;letter-spacing:2px;padding:.6rem 1.3rem!important;font-size:.72rem;border-radius:8px;border:1px solid rgba(255,201,135,.55);background:linear-gradient(180deg,#F7951F,#E1720B)!important;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)!important}
 .nav-cta::after{display:none!important}
 .nav-cta:hover svg,.btn-liquid:hover svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.75))}
-.nav-cta:hover{color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%)!important;border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px)}
+.nav-cta:hover{color:#fff!important;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D)!important;border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
 
 /* Progress rail: thin bar under the nav showing scroll % */
 .nav-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#E87A00,#FF8C00);z-index:101;width:0%;transition:width .1s linear;box-shadow:0 0 8px rgba(232,122,0,.6)}
@@ -292,9 +292,9 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .sec-center .text-block{text-align:center;max-width:600px}
 
 .ol{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E87A00;margin-bottom:.6rem}
-.h1{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5.5rem);line-height:.93;letter-spacing:2px;margin-bottom:1rem}
-.h1 em,.h2 em{font-style:normal;background:linear-gradient(116deg,#FFE6CC 10%,#fff 38%,#FF9C2A 92%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.h2{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:1px;margin-bottom:.8rem}
+.h1{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,7vw,4.7rem);line-height:.95;letter-spacing:2px;margin-bottom:1rem;text-shadow:0 0 30px rgba(255,238,214,.10)}
+.h1 em,.h2 em{font-style:normal;color:#F2860E;-webkit-text-fill-color:#F2860E;background:none;text-shadow:0 0 22px rgba(232,122,0,.32)}
+.h2{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:1px;margin-bottom:.8rem;text-shadow:0 0 26px rgba(255,238,214,.09)}
 .bd{font-size:1.05rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.84);margin-bottom:1.2rem}
 .bd strong{color:#fff;font-weight:600}
 
@@ -304,11 +304,11 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
 .btn-fill{background:#E87A00;color:#000}
 .btn-fill:hover{background:#FF8C00;box-shadow:0 0 25px rgba(232,122,0,.3)}
-.btn-ghost{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:.8rem 2.2rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 14px rgba(0,0,0,.25);transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.btn-ghost{position:relative;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:.8rem 2.2rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.2);transition:all .35s cubic-bezier(.2,.8,.2,1)}
 .btn-ghost:hover{border-color:rgba(232,122,0,.6);color:#FFC076;background:linear-gradient(160deg,rgba(232,122,0,.18),rgba(232,122,0,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 18px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.3);transform:translateY(-1px)}
-.btn-liquid{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);border-radius:10px;padding:.8rem 2.2rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.btn-liquid{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(255,201,135,.55);border-radius:10px;padding:.8rem 2.2rem;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .btn-liquid .liquid-blob{display:none}
-.btn-liquid:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px)}
+.btn-liquid:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55);background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
 
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
 .pill{background:rgba(232,122,0,.1);border:1px solid rgba(232,122,0,.2);color:#E87A00;padding:.35rem .8rem;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
@@ -327,7 +327,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 @keyframes blink{50%{border-color:transparent}}
 @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
 @keyframes fu{from{opacity:0;transform:translateY(1rem)}to{opacity:1;transform:translateY(0)}}
-.scroll-cue{position:absolute;bottom:2.6rem;left:0;right:0;margin:0 auto;width:fit-content;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.7rem;opacity:0;animation:fu .5s 1.2s forwards;pointer-events:none}
+.scroll-cue{position:absolute;bottom:1.4rem;left:0;right:0;margin:0 auto;width:fit-content;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.7rem;opacity:0;animation:fu .5s 1.2s forwards;pointer-events:none}
 .scroll-cue-text{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 0 14px rgba(232,122,0,.35)}
 .scroll-cue-mouse{width:26px;height:42px;border:2px solid rgba(255,255,255,.65);border-radius:13px;position:relative;box-shadow:0 0 18px rgba(232,122,0,.25)}
 .scroll-cue-mouse::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:8px;background:#E87A00;border-radius:2px;transform:translateX(-50%);animation:sw 1.6s ease infinite;box-shadow:0 0 8px #E87A00}
@@ -424,8 +424,8 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .lead-form input{flex:1 1 260px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.95rem 1.1rem;font-family:'Barlow',sans-serif;font-size:.95rem;border-radius:6px;transition:all .3s;min-width:220px}
 .lead-form input:focus{outline:none;border-color:#E87A00;box-shadow:0 0 0 3px rgba(232,122,0,.18);background:rgba(255,255,255,.06)}
 .lead-form input::placeholder{color:rgba(255,255,255,.4);letter-spacing:.5px}
-.lead-form button{position:relative;background:linear-gradient(157deg,#FFB44F 0%,#F2860E 42%,#D96E00 100%);color:#1a0d00;border:1px solid rgba(255,201,135,.55);padding:.95rem 1.9rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:10px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 7px rgba(120,50,0,.34),0 4px 14px rgba(0,0,0,.34);transition:all .4s cubic-bezier(.2,.8,.2,1)}
-.lead-form button:hover{background:linear-gradient(157deg,#FFC76F 0%,#FF951C 42%,#E87A00 100%);border-color:rgba(255,222,175,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 7px rgba(120,50,0,.3),0 6px 18px rgba(0,0,0,.4),0 0 22px rgba(232,122,0,.62),0 0 46px rgba(232,122,0,.32);transform:translateY(-1px)}
+.lead-form button{position:relative;background:linear-gradient(180deg,#F7951F,#E1720B);color:#1a0d00;border:1px solid rgba(255,201,135,.55);padding:.95rem 1.9rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.lead-form button:hover{background:linear-gradient(180deg,#FFA831,#ED7D0D);border-color:rgba(255,222,175,.85);box-shadow:0 4px 16px rgba(0,0,0,.3),0 0 20px rgba(232,122,0,.45);transform:translateY(-1px)}
 .capture-alt{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:1px}
 .capture-alt a{color:#E87A00;text-decoration:none;border-bottom:1px solid transparent;transition:border .3s}
 .capture-alt a:hover{border-bottom-color:#E87A00}
