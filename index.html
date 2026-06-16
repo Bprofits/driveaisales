@@ -238,7 +238,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .nav.scrolled{background:rgba(0,0,0,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-backdrop{display:none}
 .nav-mark{display:flex;align-items:center;color:#fff;text-decoration:none;margin-left:1.25rem}
-.nav-mark img{height:68px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(232,122,0,.38));transition:filter .3s,transform .3s}
+.nav-mark img{height:46px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(232,122,0,.38));transition:filter .3s,transform .3s}
 .nav-mark:hover img{filter:drop-shadow(0 0 18px rgba(232,122,0,.6));transform:scale(1.04)}
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
 .nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s,text-shadow .3s;position:relative}
@@ -453,7 +453,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .footer{border-top:1px solid rgba(255,255,255,.06);background:#000;position:relative;z-index:2;padding:4rem 2rem 2rem}
 .footer-inner{max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;align-items:center;width:100%}
 .social-row{display:flex;gap:1.6rem;align-items:center;justify-content:center;width:100%}
-.social-row a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:14px;transition:transform .4s cubic-bezier(.2,.8,.2,1);position:relative}
+.social-row a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;transition:transform .4s cubic-bezier(.2,.8,.2,1);position:relative}
 .social-row img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(232,122,0,.38));transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .3s;position:relative;z-index:1}
 .social-row a:hover{transform:translateY(-4px)}
 .social-row a:hover img{transform:scale(1.06);filter:drop-shadow(0 0 18px rgba(232,122,0,.6))}
@@ -477,7 +477,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 @media(max-width:900px){
   .nav{padding:.7rem 1.1rem}
   .nav-mark{margin-left:0}
-  .nav-mark img{height:54px}
+  .nav-mark img{height:40px}
   .nav-toggle{display:inline-flex}
   .nav-links{position:fixed;top:0;right:0;bottom:0;width:min(90vw,380px);height:100vh;min-height:100dvh;background:rgba(8,8,8,.98);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:block;padding:6rem 0 3rem;transform:translateX(100%);transition:transform .35s ease;z-index:105;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .nav-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:103}
@@ -508,7 +508,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
   .footer{padding:2rem 1.2rem 1.2rem}
   .footer-bot{gap:.8rem;text-align:center}
   .social-row{gap:1.2rem}
-  .social-row a{width:54px;height:54px;border-radius:11px}
+  .social-row a{width:42px;height:42px;border-radius:10px}
   .social-row img{width:100%;height:100%}
   .footer{padding:3rem 1rem 1.5rem}
   .sec{min-height:90vh}
@@ -596,7 +596,7 @@ html.lenis,html.lenis body{height:auto}
 <nav class="nav" id="nav">
   <div class="nav-backdrop" id="navBackdrop"></div>
   <a href="#s0" class="nav-mark" aria-label="Drive AI Sales Inc.">
-    <img src="https://drive-ai-sales.pages.dev/logo/logo-hires.png" alt="Drive AI Sales Inc.">
+    <img src="/assets/logo-nav.png" alt="Drive AI Sales Inc.">
   </a>
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="navToggle"><span></span></button>
   <ul class="nav-links" id="navLinks">
