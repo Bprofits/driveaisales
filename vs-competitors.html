@@ -74,8 +74,11 @@ body{margin:0;background:var(--bg-b);font-family:Barlow,-apple-system,'Segoe UI'
 .da-cta:hover{transform:translateY(-1px)}
 .da-cta2{display:inline-block;margin-top:11px;font-size:13px;color:#f7d4a6;text-decoration:none;border-bottom:1px dashed rgba(232,122,0,.45);padding-bottom:1px}
 .da-cta2:hover{color:#ffd2a1}
+.da-cta-stack{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.da-cta-stack .da-cta{margin-left:0}
+.da-cta-stack .da-cta2{margin-top:0}
 .da-tiny{font-size:10.5px;color:#73685a;margin:14px 6px 0}
-@media(max-width:640px){.da-h{font-size:34px}.da-root{padding:28px 16px}.da-cta{margin-left:0;width:100%;justify-content:center}}
+@media(max-width:640px){.da-h{font-size:34px}.da-root{padding:28px 16px}.da-cta{margin-left:0;width:100%;justify-content:center}.da-cta-stack{margin-left:0;width:100%;align-items:center}}
 
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;background:linear-gradient(to bottom,rgba(6,6,8,.97) 0%,rgba(6,6,8,.9) 70%,rgba(6,6,8,.45) 100%);transition:background .4s}
 .nav-mark{display:flex;align-items:center;text-decoration:none;margin-left:.4rem}
@@ -119,6 +122,7 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-stopped{overflow:hidden}
 .lenis.lenis-scrolling iframe{pointer-events:none}
 </style>
+<link rel="stylesheet" href="/assets/nav.css">
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -197,9 +201,11 @@ html.lenis,html.lenis body{height:auto}
   <div class="da-foot">
     <span class="da-pill">&#9679;&nbsp; Edmonton main office</span>
     <span class="da-pill">&#9650;&nbsp; Proudly Canadian owned</span>
-    <a class="da-cta" href="https://api.leadconnectorhq.com/widget/booking/kB4R2tT5EoFGiTdOKkjv" target="_blank" rel="noopener">BOOK A 15-MIN DISCOVERY CALL &#8594;</a>
+    <div class="da-cta-stack">
+      <a class="da-cta" href="https://api.leadconnectorhq.com/widget/booking/kB4R2tT5EoFGiTdOKkjv" target="_blank" rel="noopener">Book Discovery Call Now &#8594;</a>
+      <a class="da-cta2" href="tel:+15875257155">Or hear the AI live, call (587) 525-7155</a>
+    </div>
   </div>
-  <a class="da-cta2" href="tel:+15875257155">Or hear the AI live, call (587) 525-7155</a>
 
   <div class="da-tiny">Comparison based on publicly available product information, June 2026. All product names and trademarks belong to their respective owners.</div>
 </section>

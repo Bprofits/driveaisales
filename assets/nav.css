@@ -1,0 +1,20 @@
+/* ============================================================
+   Drive AI — canonical site navigation (single source of truth).
+   Loaded LAST on every page so the bar height, tab spacing, and
+   the Book a Call button render byte-identical site-wide.
+   Page-specific nav BACKGROUND is intentionally left untouched.
+   The <=900px hamburger drawer is left to each page; only the
+   desktop horizontal bar is normalized here.
+   .nav-cta is split out with higher specificity so the tab-link
+   rules (.nav-links a) never flatten the button. Explicit
+   line-height pins the button + bar height across pages.
+   ============================================================ */
+@media (min-width:901px){
+  .nav{padding:.85rem 1.9rem !important; align-items:center !important;}
+  .nav-mark{margin-left:0 !important;}
+  .nav-mark img{height:36px !important; width:auto !important;}
+  .nav-links{gap:1.4rem !important; align-items:center !important;}
+  .nav-links a:not(.nav-cta){font-family:'Barlow Condensed',sans-serif !important; font-size:.72rem !important; letter-spacing:2.5px !important; line-height:1.2 !important; padding:.3rem 0 !important;}
+  .nav-links a:not(.nav-cta)::after{bottom:-3px !important;}
+  .nav-links a.nav-cta{padding:.6rem 1.3rem !important; font-size:.72rem !important; letter-spacing:2px !important; line-height:1 !important; border-radius:8px !important; margin:0 !important;}
+}
