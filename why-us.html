@@ -461,6 +461,8 @@
   if(!bubbles.length) return;
   chat.classList.add('live');
   var timers=[],running=false;
+  function reserve(){var t=chat.querySelector('.typing');if(t)t.remove();bubbles.forEach(function(b){b.classList.remove('show');});var was=chat.classList.contains('live');chat.classList.remove('live');chat.style.minHeight='';var h=chat.offsetHeight;if(was)chat.classList.add('live');chat.style.minHeight=(h+6)+'px';}
+  reserve();
   function clear(){timers.forEach(clearTimeout);timers=[];}
   function reset(){bubbles.forEach(function(b){b.classList.remove('show');});var t=chat.querySelector('.typing');if(t)t.remove();}
   function play(){
@@ -483,6 +485,7 @@
     else if(!e.isIntersecting&&running){running=false;clear();reset();}
   });},{threshold:.3});
   io.observe(chat);
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){var wasRun=running;if(wasRun)clear();reserve();if(wasRun)play();},200);},{passive:true});
 })();</script>
 <script src="/lenis.min.js"></script>
 <script src="/assets/drift.js"></script>
