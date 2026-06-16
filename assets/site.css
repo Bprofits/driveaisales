@@ -5,7 +5,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;font-weight:300;
 a{color:inherit}
 img{display:block;max-width:100%}
 .wrap{width:min(1160px,92vw);margin:0 auto}
-em{font-style:normal;color:#E87A00}
+em{font-style:normal;background:linear-gradient(116deg,#FFE6CC 10%,#fff 38%,#FF9C2A 92%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 
 /* NAV (real tabs) */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
@@ -35,7 +35,7 @@ em{font-style:normal;color:#E87A00}
 .phero{position:relative;padding:10rem 0 3rem;text-align:center;
   background:radial-gradient(120% 80% at 70% 0%,rgba(232,122,0,.12),transparent 55%),radial-gradient(80% 60% at 10% 100%,rgba(40,80,200,.09),transparent 60%),#000}
 .ol{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#E87A00;margin-bottom:1rem}
-.h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:2px}
+.h1{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:2px}
 .lede{max-width:740px;margin:1.5rem auto 0;font-size:clamp(1rem,2.2vw,1.16rem);color:rgba(255,255,255,.74);font-weight:300}
 .lede strong{color:#fff;font-weight:600}
 
@@ -49,7 +49,7 @@ em{font-style:normal;color:#E87A00}
 
 /* CTA band */
 .cta{padding:4.5rem 0;text-align:center;background:radial-gradient(100% 100% at 50% 0%,rgba(232,122,0,.14),transparent 60%),#000}
-.cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:1px;line-height:.95}
+.cta h2{color:#FFE6CC;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:1px;line-height:.95}
 .cta p{color:rgba(255,255,255,.7);max-width:560px;margin:1rem auto 1.8rem}
 
 /* FOOTER */
