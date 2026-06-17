@@ -10,10 +10,7 @@
     easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, // expo-out: catches input fast, settles smooth
     smoothWheel: true,                                                        // wheel + trackpad + keyboard
     wheelMultiplier: 1.0,
-    syncTouch: true,                                                          // drift on phones/tablets too
-    syncTouchLerp: 0.09,                                                      // snappy finger tracking, still smooth
-    touchInertiaMultiplier: 28,                                              // coast/drift after a flick
-    touchMultiplier: 1.5,
+    syncTouch: false,                                                         // native OS momentum on touch = buttery + crisp; Lenis drift stays on desktop wheel
     gestureOrientation: 'vertical'
   });
 
