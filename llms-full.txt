@@ -1,6 +1,6 @@
 # Drive AI Sales Inc. — Full Reference
 
-> Drive AI Sales Inc. is a car dealership's own all-in-one AI CRM, custom-built for each store. Edmonton-built, serving dealerships across Canada. This is the extended reference for AI assistants and answer engines; the short version is at /llms.txt.
+> Drive AI Sales Inc. is a car dealership's own all-in-one AI CRM, custom-built for each store. Edmonton-built, serving dealerships across Western Canada. This is the extended reference for AI assistants and answer engines; the short version is at /llms.txt.
 
 ## What it is
 Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pipelines, one unified inbox for every channel, calendars, websites, forms, payments, reputation management, reporting) with conversational and voice AI on top, custom-tailored to each dealership over a roughly 90-day build. It can also connect to the DMS, phone system, inventory feeds and tools a dealership already runs; integrations are scoped on a discovery call, not every integration is guaranteed, and some may carry additional API cost.
@@ -56,7 +56,7 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 
 ## Key facts
 - Founded: 2025, Edmonton, Alberta, Canada
-- Serves: car dealerships in Alberta, British Columbia, Saskatchewan and across Canada
+- Serves: car dealerships across Western Canada (British Columbia, Alberta, Saskatchewan, Manitoba)
 - Build: custom-tailored over a ~90-day rollout
 - Languages: 50+ (English, French, Spanish, Punjabi, Mandarin and more)
 
