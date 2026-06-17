@@ -143,8 +143,9 @@
 <link rel="preconnect" href="https://drive-ai-sales.pages.dev" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Hero video uses <video preload="auto"> + poster attribute, browser-native priority,
-     no <link rel=preload> needed (as="video" isn't standard, was firing console warnings). -->
+<!-- Hero is a scroll-scrub JPEG sequence drawn to canvas. Preload frame 1 (the LCP
+     paint) at high priority so the canvas lights up as early as possible. -->
+<link rel="preload" as="image" href="/frames/f_0001.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -561,6 +562,10 @@ html.lenis,html.lenis body{height:auto}
 .nm-foot{font-family:'Barlow',sans-serif;font-size:.72rem;color:rgba(255,255,255,.42);margin-top:1rem;line-height:1.4}
 @media(max-width:560px){.node-modal-inner{padding:1.8rem 1.3rem 1.5rem}.nm-stats{gap:1rem}.nm-stat .num{font-size:1.7rem}}
 </style>
+<!-- Vercel Web Analytics (privacy-first, cookieless). Enable once in Vercel project -> Analytics. -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};
+function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -640,6 +645,7 @@ html.lenis,html.lenis body{height:auto}
     <li><a href="#services">What We Automate</a></li>
     <li><a href="/why-us">Why Us</a></li>
     <li><a href="/vs-competitors">Compare</a></li>
+    <li><a href="/blog">Blog</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
@@ -1103,14 +1109,20 @@ html.lenis,html.lenis body{height:auto}
   for(var pi=0; pi<PARTICLE_COUNT; pi++){ var d=document.createElement('div'); d.className='lparticle'; lparticles.appendChild(d); particleEls.push(d); }
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
-  var FRAME_COUNT = 600;
+  var SRC_FRAMES = 600;
+  // Touch devices load every-other source frame (300 vs 600) to ~halve the hero
+  // payload (~63MB→~31MB) on cellular. The whole index space below is relative to
+  // FRAME_COUNT, so only the count + URL mapping change here; scrub, frontier,
+  // loader % and draw logic stay identical. Desktop is unchanged (STRIDE=1).
+  var STRIDE = IS_TOUCH ? 2 : 1;
+  var FRAME_COUNT = Math.ceil(SRC_FRAMES / STRIDE);
   var frames = new Array(FRAME_COUNT), loaded = new Array(FRAME_COUNT);
   var loadedTotal = 0, frontier = -1, ready = false;
   var lastFrameT = 0, current = 0;            // current = float frame index
   var frameW = 1152, frameH = 648;
 
   function pad4(n){ n=String(n); while(n.length<4) n='0'+n; return n; }
-  function frameUrl(i){ return '/frames/f_'+pad4(i+1)+'.jpg'; }
+  function frameUrl(i){ return '/frames/f_'+pad4(i*STRIDE+1)+'.jpg'; }
   function advanceFrontier(){ while(frontier < FRAME_COUNT-1 && loaded[frontier+1]) frontier++; }
   function onLoaded(i){
     if(loaded[i]) return;
@@ -1718,5 +1730,14 @@ document.querySelectorAll('.btn-liquid').forEach(function(btn){
 <!-- Unified inertial scroll DRIFT (Lenis) -- desktop + mobile. See /assets/drift.js -->
 <script src="/assets/drift.js"></script>
 <script src="/assets/core-cards.js"></script>
+<!-- One delegated handler tracks every discovery/diagnostic CTA click (any link, anywhere on the page). -->
+<script>
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href*="/discovery"], a[href*="/diagnostic"]');
+  if (!a || typeof track !== 'function') return;
+  var to = a.getAttribute('href').indexOf('diagnostic') > -1 ? 'diagnostic' : 'discovery';
+  track('cta_click', { to: to, label: (a.textContent || '').trim().slice(0, 40), source: 'home' });
+});
+</script>
 </body>
 </html>

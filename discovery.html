@@ -65,15 +65,20 @@
 
   @media (max-width:480px) {
     .card { padding:28px 20px; }
+    .logo img { height:120px; }
     h1 { font-size:22px; }
   }
 </style>
+<!-- Vercel Web Analytics (privacy-first, cookieless). Enable once in Vercel project -> Analytics. -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};
+function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="page-wrap">
 <div class="card">
   <div class="logo">
-    <img src="logo/logo-hires.png" alt="Drive AI Sales">
+    <a href="https://www.driveaisales.com/" aria-label="Drive AI Sales home"><img src="logo/logo-hires.png" alt="Drive AI Sales"></a>
     <div class="tagline">Sales Intelligence for Dealerships</div>
   </div>
 
@@ -103,23 +108,21 @@
 </div>
 </div>
 <script>
-// Pass URL parameters to the GHL calendar iframe so fields pre-fill
+// Pass URL parameters to the GHL calendar iframe so fields pre-fill.
+// Build the query from whichever params are present (order-independent, no
+// malformed-separator edge case when an earlier field is missing).
 (function(){
+  track('discovery_view');
   var params = new URLSearchParams(window.location.search);
-  var fn = params.get('first_name') || '';
-  var ln = params.get('last_name') || '';
-  var em = params.get('email') || '';
-  var ph = params.get('phone') || '';
-  if (fn || em) {
+  var parts = [];
+  ['first_name','last_name','email','phone'].forEach(function(k){
+    var v = params.get(k);
+    if (v) parts.push(k + '=' + encodeURIComponent(v));
+  });
+  if (parts.length) {
     var iframe = document.querySelector('iframe');
     if (iframe) {
-      var src = iframe.src;
-      var sep = src.indexOf('?') > -1 ? '&' : '?';
-      if (fn) src += sep + 'first_name=' + encodeURIComponent(fn); sep = '&';
-      if (ln) src += sep + 'last_name=' + encodeURIComponent(ln);
-      if (em) src += sep + 'email=' + encodeURIComponent(em);
-      if (ph) src += sep + 'phone=' + encodeURIComponent(ph);
-      iframe.src = src;
+      iframe.src += (iframe.src.indexOf('?') > -1 ? '&' : '?') + parts.join('&');
     }
   }
 })();

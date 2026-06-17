@@ -33,6 +33,13 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 - [FAQ](https://www.driveaisales.com/faq): Detailed answers on CRM, integrations, pricing, data ownership and the build process
 - [About](https://www.driveaisales.com/about): The founding team and why Drive AI was built
 - [Contact](https://www.driveaisales.com/contact): Phone, AI line, email, hours and office location
+- [Blog](https://www.driveaisales.com/blog): Plain-spoken guides, playbooks and comparisons for dealers
+
+## Blog articles
+- [What Is an AI CRM for Car Dealerships?](https://www.driveaisales.com/blog/what-is-an-ai-crm-for-car-dealerships): Plain-English guide to the category; CRM vs AI CRM, all-in-one vs bolt-on, Voice AI, custom build, data ownership and Canadian compliance
+- [Lead Response Time: Why Speed Wins the Car Sale](https://www.driveaisales.com/blog/lead-response-time-car-sales): The verified speed-to-lead data and why answering in under 60 seconds, 24/7, decides who wins the deal
+- [AI CRM vs DriveCentric, VinSolutions, DealerSocket](https://www.driveaisales.com/blog/ai-crm-vs-drivecentric-vinsolutions-dealersocket): A fair, criteria-by-criteria comparison for Western Canadian dealers
+- [AI and Compliance for Canadian Dealers: PIPEDA & AMVIC](https://www.driveaisales.com/blog/ai-compliance-canadian-dealers-pipeda-amvic): How to use AI and automation without breaking PIPEDA, Alberta PIPA, CASL or AMVIC/OMVIC rules
 
 ## Contact
 - Direct line: (250) 986-8636 (Mon-Fri 9am-6pm MT, Sat 10am-4pm MT)

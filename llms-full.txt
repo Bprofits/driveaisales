@@ -80,3 +80,10 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 - FAQ: https://www.driveaisales.com/faq
 - About: https://www.driveaisales.com/about
 - Contact: https://www.driveaisales.com/contact
+- Blog: https://www.driveaisales.com/blog
+
+## Blog articles
+- What Is an AI CRM for Car Dealerships?: https://www.driveaisales.com/blog/what-is-an-ai-crm-for-car-dealerships (plain-English category guide: CRM vs AI CRM, all-in-one vs bolt-on, Voice AI, custom build, data ownership, Canadian compliance)
+- Lead Response Time: Why Speed Wins the Car Sale: https://www.driveaisales.com/blog/lead-response-time-car-sales (verified speed-to-lead data; why sub-60-second, 24/7 response decides the deal)
+- AI CRM vs DriveCentric, VinSolutions, DealerSocket: https://www.driveaisales.com/blog/ai-crm-vs-drivecentric-vinsolutions-dealersocket (fair criteria-by-criteria comparison for Western Canadian dealers)
+- AI and Compliance for Canadian Dealers, PIPEDA and AMVIC: https://www.driveaisales.com/blog/ai-compliance-canadian-dealers-pipeda-amvic (using AI and automation within PIPEDA, Alberta PIPA, CASL and AMVIC/OMVIC rules)

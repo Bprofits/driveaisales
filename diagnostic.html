@@ -122,16 +122,21 @@
 
   @media (max-width:480px) {
     .card { padding:28px 20px; }
+    .logo img { height:120px; }
     .form-row { flex-direction:column; gap:0; }
     h1 { font-size:20px; }
   }
 </style>
+<!-- Vercel Web Analytics (privacy-first, cookieless). Enable once in Vercel project -> Analytics. -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};
+function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="page-wrap">
 <div class="card">
   <div class="logo">
-    <img src="logo/logo-hires.png" alt="Drive AI Sales">
+    <a href="https://www.driveaisales.com/" aria-label="Drive AI Sales home"><img src="logo/logo-hires.png" alt="Drive AI Sales"></a>
     <div class="tagline">Sales Intelligence for Dealerships</div>
   </div>
 
@@ -265,6 +270,7 @@
       <button class="btn btn-back" id="btnContactBack">&larr; Back</button>
       <button class="btn btn-next" id="btnSubmit">Get My Results &rarr;</button>
     </div>
+    <p style="color:#5A5550; font-size:11px; text-align:center; margin:14px 0 0; line-height:1.5;">Your results, not spam. We email your breakdown once and never sell your info.</p>
   </div>
 
   <div class="results" id="resultsSection">
@@ -373,8 +379,9 @@
     });
   });
 
-  document.getElementById('btnStart').addEventListener('click', function() { goTo(1); });
+  document.getElementById('btnStart').addEventListener('click', function() { track('diagnostic_start'); goTo(1); });
   document.getElementById('btnContactBack').addEventListener('click', function() { goTo(7); });
+  document.getElementById('bookCTA').addEventListener('click', function() { track('cta_click', { from: 'diagnostic_results' }); });
 
   document.getElementById('btnSubmit').addEventListener('click', function() {
     if (document.getElementById('company').value) return;
@@ -453,8 +460,10 @@
     document.getElementById('revAmount').textContent = '$' + revLow.toLocaleString() + ' - $' + revHigh.toLocaleString() + '/mo';
     renderLeaks(leaks);
 
-    // Build discovery URL with contact info so calendar pre-fills
-    var discoveryURL = 'discovery.html?first_name=' + encodeURIComponent(firstName)
+    track('diagnostic_submit', { tier: tier.name, score: totalScore, rev_high: revHigh });
+
+    // Build discovery URL with contact info so calendar pre-fills (canonical /discovery, no redirect hop)
+    var discoveryURL = '/discovery?first_name=' + encodeURIComponent(firstName)
       + '&last_name=' + encodeURIComponent(document.getElementById('lastName').value.trim())
       + '&email=' + encodeURIComponent(email)
       + '&phone=' + encodeURIComponent(document.getElementById('phone').value.trim());
