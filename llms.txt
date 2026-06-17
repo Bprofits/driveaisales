@@ -1,0 +1,45 @@
+# Drive AI Sales Inc.
+
+> Drive AI Sales Inc. is a car dealership's own all-in-one AI CRM, custom-built for each store. It answers every lead in under 60 seconds across phone, SMS, email and social, 24/7, using Voice AI and automation, then qualifies, books and follows up. Built in Edmonton, Alberta, for dealerships across Canada.
+
+Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pipelines, one unified inbox, calendars, websites, forms, payments, reporting) with conversational and voice AI layered on top, custom-tailored to each dealership over a roughly 90-day build. It can also connect to the DMS, phone system, inventory feeds and tools a dealership already runs. Integrations are scoped on a discovery call, not every integration is guaranteed, and some may carry additional API cost.
+
+## What Drive AI does
+- Answers inbound leads in under 60 seconds on phone, SMS, email, Facebook, Instagram, WhatsApp and Google
+- Voice AI ("Wanda") picks up inbound and overflow calls 24/7, qualifies callers, books appointments, and speaks 50+ languages, most callers can't tell it's AI
+- Lead qualification and routing, appointment booking with auto confirmations and reminders, follow-up and re-engagement cadences
+- Full all-in-one CRM: visual pipelines, unified inbox, calendars, websites and funnels, forms, payments and invoicing, reputation management, and source-to-close reporting
+- Custom automations built around each dealership's exact process (equity mining, service-to-sales, trade-in follow-up, win-backs)
+
+## Key facts
+- Category: All-in-one AI CRM for car dealerships (your dealership's own CRM, not a bolt-on)
+- Response time: under 60 seconds, every channel, 24/7
+- Build: custom-tailored over roughly a 90-day rollout, working closely with the dealer
+- Integrations: connects to existing DMS/CRM/phone/inventory where the platform's API allows; scoped on the discovery call; some require custom work or additional cost
+- Data ownership: the dealership owns 100% of its customer and lead data; compliant with PIPEDA and Alberta's PIPA
+- Oversight: human-in-the-loop, every AI conversation can be reviewed, edited or taken over in real time; AMVIC/OMVIC advertising rules configured in
+- Founded: 2025, Edmonton, Alberta, Canada
+- Serves: Canadian car dealerships (Alberta, British Columbia, Saskatchewan and across Canada)
+- Languages: 50+ (English, French, Spanish, Punjabi, Mandarin and more)
+
+## Pages
+- [Home](https://www.driveaisales.com/): Overview, the AI core, the platform and results
+- [What We Automate](https://www.driveaisales.com/#services): The full list of automations and 24/7 workflows
+- [Why Us](https://www.driveaisales.com/why-us): The platform explained, the house, the guts and the engine
+- [Compare](https://www.driveaisales.com/vs-competitors): Drive AI vs DriveCentric, DealerSocket, VinSolutions, Reynolds, CDK, Matador, Activix and Unleashd
+- [FAQ](https://www.driveaisales.com/faq): Detailed answers on CRM, integrations, pricing, data ownership and the build process
+- [About](https://www.driveaisales.com/about): The founding team and why Drive AI was built
+- [Contact](https://www.driveaisales.com/contact): Phone, AI line, email, hours and office location
+
+## Contact
+- Direct line: (250) 986-8636 (Mon-Fri 9am-6pm MT, Sat 10am-4pm MT)
+- AI line (Wanda, available 24/7): (587) 525-7155
+- Email: info@driveaisales.ca
+- Office: 10650 113 Street, Edmonton, AB, Canada
+- Book a 15-minute discovery call: https://www.driveaisales.com/discovery
+
+## Founders
+- Brandon Rose, Co-Founder, President & CEO
+- Mathew Hrappstead, Co-Founder, CMO & COO
+- David Sonshine, Chief Technology Officer
+- Jayden Nielsen, Chief Financial Officer
