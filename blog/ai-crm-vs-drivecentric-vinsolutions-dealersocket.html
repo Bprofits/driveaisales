@@ -95,6 +95,13 @@ h1.title em{font-style:normal;color:#F2860E;text-shadow:0 0 16px rgba(232,122,0,
 .btn-primary:hover{color:#fff;border-color:rgba(255,255,255,.9);text-shadow:0 0 10px rgba(255,255,255,.85);box-shadow:0 0 15px rgba(255,255,255,.4),0 0 24px rgba(232,122,0,.45);transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(246,216,186,.28)}
 .btn-ghost:hover{border-color:var(--gold);color:#fff}
+/* CTA buttons live inside .article, whose anchor rules (gold + underline) outrank .btn by specificity. Re-assert button styling with higher-specificity scoped selectors so the primary button shows dark text + checkmark at rest and glows white on hover. */
+.cta-card .btn{text-decoration:none}
+.cta-card .btn-primary{color:#1a0d00}
+.cta-card .btn-primary:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.55)}
+.cta-card .btn-primary:hover svg{filter:drop-shadow(0 0 5px rgba(255,255,255,.75))}
+.cta-card .btn-ghost{color:var(--cream)}
+.cta-card .btn-ghost:hover{color:#fff}
 /* sources + related + footer */
 .sources{margin:36px 0 0;padding-top:18px;border-top:1px solid rgba(246,216,186,.1)}
 .sources h2{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-3);margin:0 0 10px}
