@@ -25,7 +25,8 @@
 
 .ds-zone .hge{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
 .ds-zone .hge-card{position:relative;padding:24px 22px;border-radius:18px;background:linear-gradient(157deg,rgba(255,255,255,.07),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.28)}
-.ds-zone .hge-ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(157deg,#FFB44F,#E87A00);color:#1a0d00;margin-bottom:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 4px 12px rgba(232,122,0,.35)}
+.ds-zone .hge-ico{width:64px;height:64px;object-fit:contain;display:block;margin-bottom:14px;filter:drop-shadow(0 0 9px rgba(232,122,0,.4));transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .4s}
+.hge-card:hover .hge-ico{transform:scale(1.07);filter:drop-shadow(0 0 16px rgba(232,122,0,.6))}
 .ds-zone .hge-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:1.5px;margin:0 0 8px;color:#fff;line-height:1}
 .ds-zone .hge-card p{margin:0;color:rgba(255,255,255,.74);font-size:.93rem;line-height:1.6}
 .ds-zone .hge-note{margin-top:22px;font-size:.84rem;color:rgba(255,255,255,.52);max-width:780px;line-height:1.6;border-left:2px solid rgba(232,122,0,.45);padding-left:14px}
@@ -293,17 +294,17 @@
   <p class="lead-copy">Drive AI isn't a plugin bolted onto someone else's software. We hand your dealership the whole system, built and tuned for the way you sell.</p>
   <div class="hge">
     <div class="hge-card">
-      <div class="hge-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></div>
+      <img class="hge-ico" src="https://drive-ai-sales.pages.dev/icons/funnel-icon.png" alt="" loading="lazy" decoding="async">
       <h3>The House</h3>
       <p>Your own all-in-one CRM. Visual pipelines, one unified inbox for SMS, email, calls, Facebook, Instagram, WhatsApp and Google, plus calendars, websites, funnels, forms, payments and invoicing. One login, one source of truth.</p>
     </div>
     <div class="hge-card">
-      <div class="hge-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+      <img class="hge-ico" src="https://drive-ai-sales.pages.dev/icons/settings-icon.png" alt="" loading="lazy" decoding="async">
       <h3>The Guts</h3>
       <p>Automation that never clocks out. Instant follow-up, no-show win-backs, service and trade-in reminders, review requests, pipeline clean-up and source-to-close reporting, all running while your team sells.</p>
     </div>
     <div class="hge-card">
-      <div class="hge-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div>
+      <img class="hge-ico" src="https://drive-ai-sales.pages.dev/icons/live-chat.png" alt="" loading="lazy" decoding="async">
       <h3>The Engine</h3>
       <p>Conversation and Voice AI that answer every lead in under 60 seconds, 24/7, on the channel they came in on. It qualifies, books the appointment and even picks up the phone, in 50+ languages, sounding human enough that most callers never know.</p>
     </div>
