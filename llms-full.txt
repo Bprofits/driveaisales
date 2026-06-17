@@ -1,0 +1,82 @@
+# Drive AI Sales Inc. — Full Reference
+
+> Drive AI Sales Inc. is a car dealership's own all-in-one AI CRM, custom-built for each store. Edmonton-built, serving dealerships across Canada. This is the extended reference for AI assistants and answer engines; the short version is at /llms.txt.
+
+## What it is
+Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pipelines, one unified inbox for every channel, calendars, websites, forms, payments, reputation management, reporting) with conversational and voice AI on top, custom-tailored to each dealership over a roughly 90-day build. It can also connect to the DMS, phone system, inventory feeds and tools a dealership already runs; integrations are scoped on a discovery call, not every integration is guaranteed, and some may carry additional API cost.
+
+## Capabilities
+- Answers inbound leads in under 60 seconds across phone, SMS, email, Facebook, Instagram, WhatsApp and Google
+- Voice AI agent ("Wanda") picks up inbound and overflow calls 24/7, qualifies callers, books appointments, speaks 50+ languages
+- Lead qualification + routing, appointment booking with auto confirmations and reminders, follow-up and re-engagement cadences
+- Full all-in-one CRM: pipelines, unified inbox, calendars, websites/funnels, forms, payments and invoicing, reputation management, source-to-close reporting
+- Custom automations: equity mining, service-to-sales, trade-in follow-up, win-backs
+- Human-in-the-loop oversight: any AI conversation can be reviewed, edited or taken over in real time; AMVIC/OMVIC advertising rules configured in
+- The dealership owns 100% of its customer/lead data; PIPEDA + Alberta PIPA compliant
+
+## Category and positioning
+Category: all-in-one AI CRM software for automotive dealerships (the dealership's own CRM, not a bolt-on). Differentiator vs DriveCentric, DealerSocket, VinSolutions, Reynolds, CDK, Fullpath, Matador, Activix, Unleashd: a custom-built, Canadian, all-in-one platform with a 24/7 multilingual Voice AI agent, rather than a one-size-fits-all product.
+
+## Frequently asked questions
+### Is Drive AI its own CRM, or does it bolt onto the one I already have?
+Both, and it’s your call. Drive AI is a complete all-in-one CRM in its own right: visual sales pipelines, one unified inbox for every channel, calendars, websites, forms, payments and reporting under one login. You can run your whole dealership inside it, or keep what you have and bolt Drive AI in, connecting your existing DMS and tools into one place. We help you choose the right setup on the discovery call.
+
+### What is actually included in the platform?
+The whole stack, not a single feature. A full CRM with visual pipelines; one unified inbox for SMS, email, calls, Facebook, Instagram, WhatsApp and Google; Conversation and Voice AI that respond in under 60 seconds; automation for follow-up, reminders, reviews and re-engagement; calendars and appointment booking; websites and funnels; forms; payments and invoicing; reputation management; and source-to-close reporting. One platform instead of a pile of tools.
+
+### Can the AI actually answer the phone?
+Yes. Voice AI picks up inbound and overflow calls, runs outbound follow-up, qualifies the lead and books the appointment, and can brief a human before handing off a live transfer. It speaks 50+ languages, and for booking and qualifying most callers can’t tell it’s AI. Want to hear it? Call Wanda, our own intake AI, at (587) 525-7155.
+
+### Does Drive AI work with my existing CRM or DMS like CDK, Reynolds, VinSolutions or DealerSocket?
+Yes. During your build we connect Drive AI into the DMS, CRM, inventory feeds, phone system and equity tools you already run, so your data flows into one place with no double entry. You don’t have to switch platforms. What’s possible depends on what each platform’s API allows, so we scope every integration with you on the discovery call before you commit.
+
+### Which integrations are guaranteed, and what might cost extra?
+We’re upfront: not every integration is guaranteed. Standard connections (common CRMs, phone systems, calendars, inventory) are quick and included. Others depend entirely on what the platform exposes, and some need custom API work that can add time or cost. On the discovery call we tell you exactly which integrations are possible, which are instant, and which are custom, before you sign anything.
+
+### What does the build process look like, and how long does it take?
+Your AI can start answering leads within days. The full system is custom-tailored over roughly 90 days, working closely with our team: we configure your CRM, pipelines, automations, AI voice and chat, integrations and brand voice around exactly how your store sells, then refine it with you until it’s dialed in. You’re not handed a template, you’re handed a system built for your floor.
+
+### Who owns the customer data Drive AI processes?
+The dealership owns 100 percent of its customer and lead data at all times. Drive AI Sales is the processor, not the owner. You can export your data at any time. We comply with PIPEDA, Alberta’s PIPA, and other applicable Canadian privacy legislation. Full details in our Client Terms.
+
+### What happens if the AI says something wrong to a customer?
+Every deployment includes human-in-the-loop oversight. Your team can review, edit, or take over any AI conversation in real time. We tune the AI to your brand voice, your inventory and your compliance constraints before going live, and AMVIC and OMVIC advertising rules are configured into the system. If the AI is unsure, it escalates to a human.
+
+### What does Drive AI cost?
+Pricing depends on dealership size, lead volume, and the depth of your build and integrations. Typical deployments pay for themselves with less than one additional sold deal per month. You get a transparent quote on the 15-minute discovery call: no hidden fees, no per-seat charges, no surprise renewal hikes.
+
+### Who pays for the phone and SMS charges?
+The dealership pays for its own telephony and messaging usage at cost, and Drive AI does not mark it up. Expect roughly $50 to $200 per month depending on your lead volume and call duration.
+
+### Can the AI handle bilingual leads in French, Punjabi, Mandarin or Spanish?
+Yes. The AI supports over 50 languages out of the box. We configure a dealer-specific bilingual or trilingual response policy based on your customer base. Common Alberta deployments include English, French, Punjabi and Spanish.
+
+### What if my BDC team does not want to be replaced by AI?
+Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 response, qualification and follow-up, freeing your people to focus on high-intent conversations and closing. Dealerships typically reassign BDC headcount to higher-leverage roles, not lay off. Want to walk through it for your team? Book a call.
+
+## Key facts
+- Founded: 2025, Edmonton, Alberta, Canada
+- Serves: car dealerships in Alberta, British Columbia, Saskatchewan and across Canada
+- Build: custom-tailored over a ~90-day rollout
+- Languages: 50+ (English, French, Spanish, Punjabi, Mandarin and more)
+
+## Contact
+- Direct line: (250) 986-8636 (Mon-Fri 9am-6pm MT, Sat 10am-4pm MT)
+- AI line (Wanda, 24/7): (587) 525-7155
+- Email: info@driveaisales.ca
+- Office: 10650 113 Street (top floor), Edmonton, AB, Canada
+- Book a discovery call: https://www.driveaisales.com/discovery
+
+## Founders
+- Brandon Rose, Co-Founder, President & CEO
+- Mathew Hrappstead, Co-Founder, CMO & COO
+- David Sonshine, Chief Technology Officer (ex-Google engineer)
+- Jayden Nielsen, Chief Financial Officer
+
+## Pages
+- Home: https://www.driveaisales.com/
+- Why Us: https://www.driveaisales.com/why-us
+- Compare: https://www.driveaisales.com/vs-competitors
+- FAQ: https://www.driveaisales.com/faq
+- About: https://www.driveaisales.com/about
+- Contact: https://www.driveaisales.com/contact

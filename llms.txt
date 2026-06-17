@@ -22,6 +22,9 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 - Serves: Canadian car dealerships (Alberta, British Columbia, Saskatchewan and across Canada)
 - Languages: 50+ (English, French, Spanish, Punjabi, Mandarin and more)
 
+## Full reference
+- [Extended reference for AI assistants](https://www.driveaisales.com/llms-full.txt)
+
 ## Pages
 - [Home](https://www.driveaisales.com/): Overview, the AI core, the platform and results
 - [What We Automate](https://www.driveaisales.com/#services): The full list of automations and 24/7 workflows
