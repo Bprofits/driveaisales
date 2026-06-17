@@ -1110,11 +1110,13 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
   var SRC_FRAMES = 600;
-  // Touch devices load every-other source frame (300 vs 600) to ~halve the hero
-  // payload (~63MB→~31MB) on cellular. The whole index space below is relative to
-  // FRAME_COUNT, so only the count + URL mapping change here; scrub, frontier,
-  // loader % and draw logic stay identical. Desktop is unchanged (STRIDE=1).
-  var STRIDE = IS_TOUCH ? 2 : 1;
+  // STRIDE stays 1 on every device. A mobile stride of 2 (every-other frame) halved
+  // the payload but made the crossfade blend source frames TWO apart (1<->3, 3<->5),
+  // which doubled the interpolation gap and ghosted/juddered during motion, most
+  // visibly at the start of the scroll. Bond prioritizes hero feel over the mobile
+  // data saving, so load all 600 frames everywhere. The immutable /frames cache
+  // header is the real perf win and is unaffected.
+  var STRIDE = 1;
   var FRAME_COUNT = Math.ceil(SRC_FRAMES / STRIDE);
   var frames = new Array(FRAME_COUNT), loaded = new Array(FRAME_COUNT);
   var loadedTotal = 0, frontier = -1, ready = false;
