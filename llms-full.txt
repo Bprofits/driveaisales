@@ -43,7 +43,7 @@ The dealership owns 100 percent of its customer and lead data at all times. Driv
 Every deployment includes human-in-the-loop oversight. Your team can review, edit, or take over any AI conversation in real time. We tune the AI to your brand voice, your inventory and your compliance constraints before going live, and AMVIC and OMVIC advertising rules are configured into the system. If the AI is unsure, it escalates to a human.
 
 ### What does Drive AI cost?
-Pricing depends on dealership size, lead volume, and the depth of your build and integrations. Typical deployments pay for themselves with less than one additional sold deal per month. You get a transparent quote on the 15-minute discovery call: no hidden fees, no per-seat charges, no surprise renewal hikes.
+Pricing depends on dealership size, lead volume, and the depth of your build and integrations. Typical deployments pay for themselves with less than one additional sold deal per month. You get a transparent quote on the 30-minute discovery call: no hidden fees, no per-seat charges, no surprise renewal hikes.
 
 ### Who pays for the phone and SMS charges?
 The dealership pays for its own telephony and messaging usage at cost, and Drive AI does not mark it up. Expect roughly $50 to $200 per month depending on your lead volume and call duration.
