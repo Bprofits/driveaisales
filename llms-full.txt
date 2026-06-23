@@ -70,8 +70,8 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 ## Founders
 - Brandon Rose, Co-Founder, President & CEO
 - Mathew Hrappstead, Co-Founder, CMO & COO
-- David Sonshine, Chief Technology Officer (ex-Google engineer)
-- Jayden Nielsen, Chief Financial Officer
+- David Sonshine, Co-Founder, Chief Technology Officer (ex-Google engineer)
+- Jayden Nielsen, Co-Founder, Chief Financial Officer
 
 ## Pages
 - Home: https://www.driveaisales.com/

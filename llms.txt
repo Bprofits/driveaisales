@@ -51,5 +51,5 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 ## Founders
 - Brandon Rose, Co-Founder, President & CEO
 - Mathew Hrappstead, Co-Founder, CMO & COO
-- David Sonshine, Chief Technology Officer
-- Jayden Nielsen, Chief Financial Officer
+- David Sonshine, Co-Founder, Chief Technology Officer
+- Jayden Nielsen, Co-Founder, Chief Financial Officer
