@@ -1202,7 +1202,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       // crossfade supplies visual smoothness; this only soaks up sub-frame jitter.
       current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.035 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
-        paintIndex(current, true);                 // moving -> blended, fluid
+        paintIndex(current, !IS_TOUCH);            // desktop: crossfade. mobile: 1 crisp frame, NO blend = no "clipping between frames" (672 precise frames keep it smooth)
         paintedIdx = current; idleScrub = false;
       } else if(!idleScrub){
         paintIndex(current, false);                // just settled -> one crisp frame
