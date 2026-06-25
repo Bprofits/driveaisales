@@ -145,7 +145,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Hero is a scroll-scrub JPEG sequence drawn to canvas. Preload frame 1 (the LCP
      paint) at high priority so the canvas lights up as early as possible. -->
-<link rel="preload" as="image" href="/frames/f_0001.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/frames/f_0001.jpg?v=20260625" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -1128,7 +1128,12 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   var frameW = 1152, frameH = 648;
 
   function pad4(n){ n=String(n); while(n.length<4) n='0'+n; return n; }
-  function frameUrl(i){ return '/frames/f_'+pad4(i*STRIDE+1)+'.jpg'; }
+  // ?v= busts the immutable /frames cache. Frame paths f_0001..f_0672 are REUSED
+  // across video swaps; without a version, browsers (and the CDN edge) keep the old
+  // bytes for the low-numbered frames and fetch only the new high ones = a scrambled
+  // mix. Bump this whenever the frame CONTENT changes (new/re-extracted video).
+  var FRAMES_V = '20260625';
+  function frameUrl(i){ return '/frames/f_'+pad4(i*STRIDE+1)+'.jpg?v='+FRAMES_V; }
   function advanceFrontier(){ while(frontier < FRAME_COUNT-1 && loaded[frontier+1]) frontier++; }
   function onLoaded(i){
     if(loaded[i]) return;
