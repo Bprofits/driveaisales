@@ -1111,7 +1111,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   for(var pi=0; pi<PARTICLE_COUNT; pi++){ var d=document.createElement('div'); d.className='lparticle'; lparticles.appendChild(d); particleEls.push(d); }
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
-  var SRC_FRAMES = 600;
+  var SRC_FRAMES = 672;
   // STRIDE stays 1 on every device. A mobile stride of 2 (every-other frame) halved
   // the payload but made the crossfade blend source frames TWO apart (1<->3, 3<->5),
   // which doubled the interpolation gap and ghosted/juddered during motion, most
