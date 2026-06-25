@@ -130,8 +130,8 @@
       "name": "Drive AI Sales hero: lead response from inbox to appointment",
       "description": "Cinematic walkthrough of the Drive AI Sales nervous system: one AI core routing phone, SMS, email, and social-DM leads into qualified appointments for car dealerships.",
       "thumbnailUrl": "https://www.driveaisales.com/og-image.jpg",
-      "uploadDate": "2026-05-01T09:00:00-06:00",
-      "duration": "PT2M46S",
+      "uploadDate": "2026-06-25T09:00:00-06:00",
+      "duration": "PT1M12S",
       "contentUrl": "https://www.driveaisales.com/video/hero.mp4",
       "embedUrl": "https://www.driveaisales.com/",
       "publisher": {"@id": "https://www.driveaisales.com/#organization"}
@@ -1098,8 +1098,10 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
    cost up or down at any speed. 600 frames (~0.28s apart) keeps motion fluid. */
 (function(){
   var SENSITIVITY = 1.0, EASING = 'smoothstep';
-  // Phones/tablets render one crisp frame per scroll position (the build Bond liked),
-  // no crossfade blend and no Lenis. Desktop keeps the smooth interpolation + drift.
+  // Mobile and desktop now render the SAME way (crossfade while moving, one crisp
+  // frame at rest). IS_TOUCH only tunes the scroll-tracking time-constant (desktop
+  // has Lenis smoothing the input; mobile uses native scroll) -- it does NOT change
+  // the look anymore. Earlier the two diverged, which is why mobile never matched.
   var IS_TOUCH = !!(window.matchMedia && window.matchMedia('(pointer:coarse)').matches);
   var c = document.getElementById('c');
   var ctx = c.getContext('2d', { alpha:false });
@@ -1111,7 +1113,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   for(var pi=0; pi<PARTICLE_COUNT; pi++){ var d=document.createElement('div'); d.className='lparticle'; lparticles.appendChild(d); particleEls.push(d); }
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
-  var SRC_FRAMES = 672;
+  var SRC_FRAMES = 861;
   // STRIDE stays 1 on every device. A mobile stride of 2 (every-other frame) halved
   // the payload but made the crossfade blend source frames TWO apart (1<->3, 3<->5),
   // which doubled the interpolation gap and ghosted/juddered during motion, most
@@ -1153,27 +1155,43 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
     var raw=Math.max(0,Math.min(1,((window.pageYOffset||0)/scrollMax)*SENSITIVITY));
     return shape(raw)*(FRAME_COUNT-1);
   }
+  // Reassigning canvas.width/height CLEARS the backing store (a black flash, since the
+  // context is alpha:false). On iOS the URL bar collapsing mid-scroll fires 'resize' on
+  // EVERY animation step (height changes, width doesn't) -> a storm of clears = the
+  // mobile-only flicker desktop never sees. Fix: only re-fit the backing store on a
+  // REAL width/orientation change; debounce height-only churn until scrolling settles.
+  // The canvas is CSS width/height:100% over a position:fixed stage, so it keeps
+  // covering the viewport as the URL bar moves without touching the backing store.
+  var lastFitW = 0;
   function fitCanvas(){
     // Full device-pixel-ratio (up to 3) so high-DPR phones get a crisp backing store
-    // instead of a 2x canvas upscaled onto a 3x screen (that upscale is the on-scroll
-    // blur). Desktop (dpr 1-2) is unchanged. ctx state resets on resize, so re-assert
-    // high-quality smoothing here after the width/height assignment.
+    // instead of a 2x canvas upscaled onto a 3x screen. ctx state resets on resize, so
+    // re-assert high-quality smoothing after the width/height assignment.
     var dpr=Math.min(window.devicePixelRatio||1,3);
     var W=window.innerWidth,H=window.innerHeight;
     c.width=Math.round(W*dpr); c.height=Math.round(H*dpr); c.style.width=W+'px'; c.style.height=H+'px';
+    lastFitW=Math.round(W*dpr);
     ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
     refreshScrollMax();
-    paintIndex(current, false); paintedIdx=-999; idleScrub=false;
+    paintedIdx=-999; idleScrub=false; paintIndex(current, false);
+  }
+  var resizeT;
+  function onResize(){
+    refreshScrollMax();   // cheap; never clears the canvas
+    var nW=Math.round(window.innerWidth*Math.min(window.devicePixelRatio||1,3));
+    if(nW!==lastFitW){ fitCanvas(); return; }                    // orientation / real width change -> now
+    clearTimeout(resizeT); resizeT=setTimeout(fitCanvas, 250);   // URL-bar height churn -> after it settles
   }
   // Draw one frame (cover-fit) at a given opacity. Falls back to the nearest
   // already-loaded frame if the requested one has not arrived yet.
   function drawFrame(i, alpha){
     if(i<0)i=0; if(i>FRAME_COUNT-1)i=FRAME_COUNT-1;
-    if(!loaded[i]){ var j=i; while(j>0 && !loaded[j]) j--; i=j; if(!loaded[i]) return; }
-    var img=frames[i]; if(!img) return;
+    if(!loaded[i]){ var j=i; while(j>0 && !loaded[j]) j--; if(!loaded[j]) return false; i=j; }
+    var img=frames[i]; if(!img) return false;
     var cw=c.width,ch=c.height,iw=frameW,ih=frameH, s=Math.max(cw/iw,ch/ih), dw=iw*s, dh=ih*s;
     ctx.globalAlpha=alpha;
-    try{ ctx.drawImage(img,(cw-dw)/2,(ch-dh)/2,dw,dh); }catch(e){}
+    try{ ctx.drawImage(img,(cw-dw)/2,(ch-dh)/2,dw,dh); }catch(e){ return false; }
+    return true;
   }
   // Crossfade interpolation: blend the two frames straddling the fractional
   // index. With f = idx - floor(idx): pixel = (1-f)*frame[i0] + f*frame[i1].
@@ -1181,14 +1199,24 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   // thousands of frames, with none of the file-size cost (2000 frames = 122MB).
   // Crossfade WHILE MOVING (fluid motion, desktop + mobile alike); snap to ONE
   // crisp frame WHEN SETTLED (max sharpness at rest). blend=true only during scroll.
+  // No black pre-fill: a cover-fit frame always fills the WHOLE canvas, so a frame
+  // that can't draw this instant (mid-decode / evicted) just leaves the PREVIOUS frame
+  // on screen -- a held frame, never a black flash. That's the other half of the fix.
   function paintIndex(idx, blend){
     if(idx<0)idx=0; if(idx>FRAME_COUNT-1)idx=FRAME_COUNT-1;
-    ctx.globalAlpha=1; ctx.fillStyle='#000'; ctx.fillRect(0,0,c.width,c.height);
     if(!blend){ drawFrame(Math.round(idx), 1); ctx.globalAlpha=1; return; }
     var i0=Math.floor(idx), f=idx-i0, i1=(i0+1<FRAME_COUNT)?i0+1:i0;
-    drawFrame(i0, 1);
-    if(f>0.012 && loaded[i1]) drawFrame(i1, f);
+    if(drawFrame(i0, 1) && f>0.012 && loaded[i1]) drawFrame(i1, f);
     ctx.globalAlpha=1;
+  }
+  // Keep the bitmaps around `current` decoded/resident so a fast mobile fling never
+  // outruns the decoder. decode() is ~free when already resident; it re-decodes if iOS
+  // evicted the bitmap under memory pressure. Only fires when the rounded center moves.
+  var decodeCenter = -1;
+  function ensureResident(centerIdx){
+    var ci=Math.round(centerIdx); if(ci===decodeCenter) return; decodeCenter=ci;
+    for(var k=-2;k<=8;k++){ var idx=ci+k; if(idx<0||idx>=FRAME_COUNT) continue;
+      var im=frames[idx]; if(im && loaded[idx] && im.decode){ try{ im.decode().catch(function(){}); }catch(e){} } }
   }
   var paintedIdx = -999, idleScrub = false;
   function tick(now){
@@ -1202,10 +1230,11 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       // crossfade supplies visual smoothness; this only soaks up sub-frame jitter.
       current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.035 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
-        paintIndex(current, !IS_TOUCH);            // desktop: crossfade. mobile: 1 crisp frame, NO blend = no "clipping between frames" (672 precise frames keep it smooth)
+        ensureResident(current);
+        paintIndex(current, true);                 // crossfade while moving -- IDENTICAL on mobile + desktop
         paintedIdx = current; idleScrub = false;
       } else if(!idleScrub){
-        paintIndex(current, false);                // just settled -> one crisp frame
+        paintIndex(current, false);                // settled -> one crisp frame (both platforms)
         paintedIdx = current; idleScrub = true;
       }
       // idle (not scrolling): no draw at all -> GPU goes quiet = lightweight
@@ -1217,7 +1246,8 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
     loader.classList.add('gone'); setTimeout(function(){ loader.style.display='none'; },700);
   }
   setTimeout(function(){ if(!ready) readyUp(); }, 8000);
-  window.addEventListener('resize', fitCanvas, { passive:true });
+  window.addEventListener('resize', onResize, { passive:true });
+  window.addEventListener('orientationchange', fitCanvas, { passive:true });
   setTimeout(refreshScrollMax, 1500); setTimeout(refreshScrollMax, 4000);   // recache after fonts/sections settle
   requestAnimationFrame(tick);
 
