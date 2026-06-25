@@ -221,6 +221,8 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 #stage{position:fixed;inset:0;z-index:0;pointer-events:none;background:#000}
 #stage canvas{display:block;width:100%;height:100%}
 #stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,.55) 100%);pointer-events:none}
+/* Mobile: the landscape hero video is zoomed ~3.5x into a busy/bright blur on a tall phone. Flatten it to a calm dark backdrop so content reads clean. */
+@media (max-width:900px){#stage::after{background:rgba(0,0,0,.5)}}
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;transition:opacity .6s ease}
@@ -1202,7 +1204,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       // crossfade supplies visual smoothness; this only soaks up sub-frame jitter.
       current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.035 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
-        paintIndex(current, !IS_TOUCH);            // desktop: crossfade. mobile: 1 crisp frame (no cache thrash)
+        paintIndex(current, true);                 // crossfade on both = smooth (mobile stays light via STRIDE=2, no choppy stepping)
         paintedIdx = current; idleScrub = false;
       } else if(!idleScrub){
         paintIndex(current, false);                // just settled -> one crisp frame
