@@ -130,8 +130,8 @@
       "name": "Drive AI Sales hero: lead response from inbox to appointment",
       "description": "Cinematic walkthrough of the Drive AI Sales nervous system: one AI core routing phone, SMS, email, and social-DM leads into qualified appointments for car dealerships.",
       "thumbnailUrl": "https://www.driveaisales.com/og-image.jpg",
-      "uploadDate": "2026-06-24T09:00:00-06:00",
-      "duration": "PT1M12S",
+      "uploadDate": "2026-05-01T09:00:00-06:00",
+      "duration": "PT2M46S",
       "contentUrl": "https://www.driveaisales.com/video/hero.mp4",
       "embedUrl": "https://www.driveaisales.com/",
       "publisher": {"@id": "https://www.driveaisales.com/#organization"}
@@ -221,8 +221,6 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 #stage{position:fixed;inset:0;z-index:0;pointer-events:none;background:#000}
 #stage canvas{display:block;width:100%;height:100%}
 #stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,.55) 100%);pointer-events:none}
-/* Mobile: the landscape hero video is zoomed ~3.5x into a busy/bright blur on a tall phone. Flatten it to a calm dark backdrop so content reads clean. */
-@media (max-width:900px){#stage::after{background:rgba(0,0,0,.5)}}
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;transition:opacity .6s ease}
@@ -1113,14 +1111,14 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   for(var pi=0; pi<PARTICLE_COUNT; pi++){ var d=document.createElement('div'); d.className='lparticle'; lparticles.appendChild(d); particleEls.push(d); }
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
-  var SRC_FRAMES = 1200;
-  // Desktop loads all 1200 frames + crossfade (smoothest). Mobile loads every-OTHER
-  // frame (600) AND draws a single crisp frame, no crossfade (see tick). At 1200 the
-  // full set thrashed mobile Safari's decoded-image cache (evict + re-decode mid scroll
-  // = the flicker/jank). Stride-2 alone used to ghost because the crossfade blended
-  // frames 2 apart; dropping the crossfade on touch removes that ghost, so the stride
-  // is safe now and halves the working set. Engine stays count-agnostic.
-  var STRIDE = IS_TOUCH ? 2 : 1;
+  var SRC_FRAMES = 600;
+  // STRIDE stays 1 on every device. A mobile stride of 2 (every-other frame) halved
+  // the payload but made the crossfade blend source frames TWO apart (1<->3, 3<->5),
+  // which doubled the interpolation gap and ghosted/juddered during motion, most
+  // visibly at the start of the scroll. Bond prioritizes hero feel over the mobile
+  // data saving, so load all 600 frames everywhere. The immutable /frames cache
+  // header is the real perf win and is unaffected.
+  var STRIDE = 1;
   var FRAME_COUNT = Math.ceil(SRC_FRAMES / STRIDE);
   var frames = new Array(FRAME_COUNT), loaded = new Array(FRAME_COUNT);
   var loadedTotal = 0, frontier = -1, ready = false;
@@ -1204,7 +1202,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       // crossfade supplies visual smoothness; this only soaks up sub-frame jitter.
       current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.035 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
-        paintIndex(current, true);                 // crossfade on both = smooth (mobile stays light via STRIDE=2, no choppy stepping)
+        paintIndex(current, true);                 // moving -> blended, fluid
         paintedIdx = current; idleScrub = false;
       } else if(!idleScrub){
         paintIndex(current, false);                // just settled -> one crisp frame
