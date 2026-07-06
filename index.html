@@ -130,7 +130,7 @@
       "name": "Drive AI Sales hero: lead response from inbox to appointment",
       "description": "Cinematic walkthrough of the Drive AI Sales nervous system: one AI core routing phone, SMS, email, and social-DM leads into qualified appointments for car dealerships.",
       "thumbnailUrl": "https://www.driveaisales.com/og-image.jpg",
-      "uploadDate": "2026-06-25T09:00:00-06:00",
+      "uploadDate": "2026-07-06T09:00:00-06:00",
       "duration": "PT1M12S",
       "contentUrl": "https://www.driveaisales.com/video/hero.mp4",
       "embedUrl": "https://www.driveaisales.com/",
@@ -145,8 +145,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Hero is a scroll-scrub JPEG sequence drawn to canvas. Preload frame 1 (the LCP
      paint) at high priority so the canvas lights up as early as possible. -->
-<link rel="preload" as="image" href="/frames/f_0001.jpg?v=20260625" media="(pointer:fine)" fetchpriority="high">
-<link rel="preload" as="image" href="/frames-m/f_0001.jpg?v=20260625" media="(pointer:coarse)" fetchpriority="high">
+<link rel="preload" as="image" href="/frames/f_0001.jpg?v=20260706" media="(pointer:fine)" fetchpriority="high">
+<link rel="preload" as="image" href="/frames-m/f_0001.jpg?v=20260706" media="(pointer:coarse)" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -1137,7 +1137,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   // across video swaps; without a version, browsers (and the CDN edge) keep the old
   // bytes for the low-numbered frames and fetch only the new high ones = a scrambled
   // mix. Bump this whenever the frame CONTENT changes (new/re-extracted video).
-  var FRAMES_V = '20260625';
+  var FRAMES_V = '20260706';
   function frameUrl(i){ return FRAMES_DIR+'/f_'+pad4(i*STRIDE+1)+'.jpg?v='+FRAMES_V; }
   function advanceFrontier(){ while(frontier < FRAME_COUNT-1 && loaded[frontier+1]) frontier++; }
   function onLoaded(i){
@@ -1257,6 +1257,16 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   function readyUp(){
     if(ready) return; ready=true; fitCanvas(); paintIndex(current, false);
     loader.classList.add('gone'); setTimeout(function(){ loader.style.display='none'; },700);
+    // Warm the OPENING frames during idle right after load, so the very first drag is
+    // never cold (a fresh load otherwise shows a one-time decode hitch on the first
+    // scroll while the JPEG decoder + GPU-upload path spin up). Decode-ahead keeps
+    // warming forward from there as the user scrolls down.
+    var idle = window.requestIdleCallback || function(f){ return setTimeout(f, 1); };
+    setTimeout(function(){ var i=0, N=Math.min(FRAME_COUNT, 40);
+      (function warm(){ if(i>=N) return; var im=frames[i];
+        if(im && loaded[i] && im.decode){ try{ im.decode().catch(function(){}); }catch(e){} }
+        i++; idle(warm); })();
+    }, 900);
   }
   setTimeout(function(){ if(!ready) readyUp(); }, 8000);
   window.addEventListener('resize', onResize, { passive:true });
