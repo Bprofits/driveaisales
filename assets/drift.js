@@ -8,8 +8,8 @@
   if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;  // touch devices: 100% native scroll, no Lenis at all
 
   var lenis = new Lenis({
-    duration: 1.0,                                                            // total glide window
-    easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, // expo-out: catches input fast, settles smooth
+    duration: 1.25,                                                           // total glide window: longer tail = silkier glide-out
+    easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, // expo-out: catches input fast (no added lag), settles smooth
     smoothWheel: true,                                                        // wheel + trackpad + keyboard
     wheelMultiplier: 1.0,
     gestureOrientation: 'vertical'
