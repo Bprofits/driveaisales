@@ -1236,13 +1236,13 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
     if(ready){
       var targetIdx=computeTargetIndex();
       if(frontier>=0 && targetIdx>frontier) targetIdx=frontier;   // gate to loaded frames
-      // Desktop: Lenis already smooths the scroll input, so the scrub ease stays near-tight
-      // (0.028) -- just enough sub-frame interpolation to silk out the crossfade steps;
-      // anything >=0.05 here stacks visible lag on top of Lenis (the old "laggy" feel).
+      // Desktop: Lenis already smooths the scroll input, so keep the scrub ease TIGHT
+      // (0.02) -- tracks the scroll 1:1 with no added lag, so it never feels "heavy".
+      // (0.028 was tried and read heavier; >=0.05 stacks real lag on top of Lenis.)
       // Mobile: no Lenis (pure native scroll), so a gentler glide (0.06) here is what
       // makes the background animation feel SMOOTH -- it soaks up touch-scroll jitter
       // and glides across frames instead of snapping to every finger micro-movement.
-      current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.06 : 0.028)));
+      current += (targetIdx - current) * (1 - Math.exp(-dt / (IS_TOUCH ? 0.06 : 0.02)));
       if(Math.abs(current - paintedIdx) > 0.004){
         ensureResident(current);
         paintIndex(current, true);                 // crossfade while moving -- IDENTICAL on mobile + desktop

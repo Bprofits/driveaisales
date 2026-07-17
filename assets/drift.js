@@ -8,10 +8,10 @@
   if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;  // touch devices: 100% native scroll, no Lenis at all
 
   var lenis = new Lenis({
-    duration: 1.25,                                                           // total glide window: longer tail = silkier glide-out
+    duration: 0.85,                                                          // SHORT glide = light + snappy (1.0/1.25 felt heavy/floaty on desktop)
     easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, // expo-out: catches input fast (no added lag), settles smooth
     smoothWheel: true,                                                        // wheel + trackpad + keyboard
-    wheelMultiplier: 1.0,
+    wheelMultiplier: 1.35,                                                    // more travel per wheel notch = lighter, covers ground faster
     gestureOrientation: 'vertical'
   });
 
