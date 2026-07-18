@@ -145,8 +145,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Hero is a scroll-scrub JPEG sequence drawn to canvas. Preload frame 1 (the LCP
      paint) at high priority so the canvas lights up as early as possible. -->
-<link rel="preload" as="image" href="/frames/f_0001.jpg?v=20260706" media="(pointer:fine)" fetchpriority="high">
-<link rel="preload" as="image" href="/frames-m/f_0001.jpg?v=20260706" media="(pointer:coarse)" fetchpriority="high">
+<link rel="preload" as="image" href="/frames/f_0001.jpg?v=20260706" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -1114,11 +1113,13 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   for(var pi=0; pi<PARTICLE_COUNT; pi++){ var d=document.createElement('div'); d.className='lparticle'; lparticles.appendChild(d); particleEls.push(d); }
   function updateParticleBar(pct){ var lit=Math.round((pct/100)*PARTICLE_COUNT); for(var i=0;i<PARTICLE_COUNT;i++){ var el=particleEls[i]; el.classList.remove('on','tip'); if(i===lit-1 && lit<PARTICLE_COUNT) el.classList.add('tip'); else if(i<lit) el.classList.add('on'); } }
 
-  // Mobile gets a LIGHTER set (fewer + smaller frames) so a fast fling never outruns the
-  // JPEG decode pipeline = consistent + smooth at ANY scroll speed. Desktop has the
-  // headroom (and Lenis caps scroll velocity), so it keeps the full-res set.
-  var SRC_FRAMES = IS_TOUCH ? 431 : 861;
-  var FRAMES_DIR = IS_TOUCH ? '/frames-m' : '/frames';
+  // ONE set for every device: mobile gets the exact same video + sharpness as desktop.
+  // (A lighter mobile set -- 431 frames @1024x576 -- was tried to protect fast flings,
+  // but it read visibly softer/coarser than desktop. Bond's standing call is hero
+  // quality over mobile data saving, so both now load the full-res 861-frame set;
+  // smoothness is handled by the bidirectional decode-ahead below, not by downgrading.)
+  var SRC_FRAMES = 861;
+  var FRAMES_DIR = '/frames';
   // STRIDE stays 1 on every device. A mobile stride of 2 (every-other frame) halved
   // the payload but made the crossfade blend source frames TWO apart (1<->3, 3<->5),
   // which doubled the interpolation gap and ghosted/juddered during motion, most
@@ -1225,9 +1226,17 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   var decodeCenter = -1;
   function ensureResident(centerIdx){
     var ci=Math.round(centerIdx); if(ci===decodeCenter) return;
-    var dir = ci>=decodeCenter ? 1 : -1; decodeCenter=ci;     // prefetch in the direction of travel
-    for(var k=-4;k<=22;k++){ var idx=ci + dir*k; if(idx<0||idx>=FRAME_COUNT) continue;  // wide forward window so a fast fling stays ahead of the decoder
-      var im=frames[idx]; if(im && loaded[idx] && im.decode){ try{ im.decode().catch(function(){}); }catch(e){} } }
+    var dir = ci>=decodeCenter ? 1 : -1; decodeCenter=ci;
+    // Warm BOTH directions. The old window only prefetched the direction of TRAVEL
+    // (-4..+22 ahead), which left the frames behind you cold -- so every scroll
+    // REVERSAL landed on undecoded frames and stalled. That was the up/down glitch.
+    // Bias ahead, but always keep a real runway behind so flipping direction is
+    // instant. decode() is ~free when the bitmap is already resident.
+    var AHEAD = 20, BEHIND = 14;
+    for(var k=-BEHIND;k<=AHEAD;k++){
+      var idx = ci + dir*k; if(idx<0||idx>=FRAME_COUNT) continue;
+      var im=frames[idx]; if(im && loaded[idx] && im.decode){ try{ im.decode().catch(function(){}); }catch(e){} }
+    }
   }
   var paintedIdx = -999, idleScrub = false;
   function tick(now){
