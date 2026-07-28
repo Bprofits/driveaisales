@@ -18,3 +18,21 @@
   .nav-links a:not(.nav-cta)::after{bottom:-3px !important;}
   .nav-links a.nav-cta{padding:.6rem 1.3rem !important; font-size:.72rem !important; letter-spacing:2px !important; line-height:1 !important; border-radius:8px !important; margin:0 !important;}
 }
+
+/* Small-laptop / tablet-landscape band: from 901px, where the mobile drawer hands
+   off, up to 1120px. Tightens tab gap and tracking so the full tab set stays on ONE
+   line. Measured intrinsically (flex-shrink:0, flex-wrap:nowrap): with the default
+   tracking above, 10 tabs + the CTA need a 1070px viewport, so 901-1069px wrapped to
+   two rows and collided with the logo. That was ALREADY true before the Voice AI tab
+   (9 tabs needed ~1010px); the new tab widened the dead zone rather than creating it.
+   Band ends at 1120 to leave headroom over the 1070 handoff. Compact metrics give
+   86px of slack at 901px, so this holds if another tab is ever added.
+   NOTE: these selectors must mirror the .nav-links a:not(.nav-cta) shape used above,
+   or that higher-specificity rule wins even against !important here. */
+@media (min-width:901px) and (max-width:1120px){
+  .nav{padding:.85rem 1.2rem !important}
+  .nav-links{gap:.75rem !important}
+  /* selectors must mirror the shapes above, or the :not() rule outranks these */
+  .nav-links a:not(.nav-cta){font-size:.66rem !important; letter-spacing:1.4px !important}
+  .nav-links a.nav-cta{padding:.5rem .9rem !important; font-size:.66rem !important; letter-spacing:1.3px !important}
+}
