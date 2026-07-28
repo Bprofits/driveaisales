@@ -111,6 +111,77 @@
 .proj-note{max-width:1200px;margin:2.3rem auto 0;text-align:center;font-size:.9rem;color:rgba(255,255,255,.42)}
 .proj-note a{color:#E87A00;text-decoration:none;border-bottom:1px solid rgba(232,122,0,.4)}
 
+/* ==== LIVE SHOWROOM: facade -> lightbox ====
+   The viewer pulls ~10MB of 360-degree turntable frames and needs real height to
+   reflow (it breaks under ~200px tall). So the card shows a poster with a "spin
+   it" control and NOTHING loads until asked; the real viewer then opens in a
+   lightbox with room to work, and the iframe is destroyed on close. */
+.sr-fac{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;position:relative;font:inherit;color:inherit}
+.sr-pill{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;display:inline-flex;align-items:center;gap:.5rem;
+  padding:.6rem 1.05rem;border-radius:999px;background:rgba(8,8,12,.62);border:1px solid rgba(255,230,204,.34);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  font-family:'Barlow Condensed',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:2.1px;text-transform:uppercase;color:#FFE6CC;
+  box-shadow:0 6px 20px rgba(0,0,0,.5);transition:all .32s ease;white-space:nowrap}
+.sr-pill svg{width:14px;height:14px;flex-shrink:0}
+.sr-fac:hover .sr-pill,.sr-fac:focus-visible .sr-pill{border-color:rgba(232,122,0,.85);color:#fff;
+  background:rgba(20,10,0,.72);box-shadow:0 0 22px rgba(232,122,0,.5),0 6px 20px rgba(0,0,0,.5)}
+.sr-fac:focus-visible{outline:2px solid #FFE6CC;outline-offset:3px}
+.sr-fac:hover .sr-pill svg{animation:sr-spin 1.5s linear infinite}
+@keyframes sr-spin{to{transform:rotate(360deg)}}
+
+.sr-modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:clamp(.6rem,2vw,1.6rem)}
+.sr-modal.open{display:flex}
+.sr-back{position:absolute;inset:0;background:rgba(3,3,6,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+/* same machined-plate language as the cards */
+.sr-panel{--notch:36px;position:relative;padding:1px;width:min(1140px,96vw);height:min(720px,88vh);
+  background:linear-gradient(158deg,rgba(232,122,0,.5),rgba(255,230,204,.1) 42%,rgba(255,230,204,.03) 72%);
+  clip-path:polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%)}
+.sr-in{position:relative;height:100%;display:flex;flex-direction:column;overflow:hidden;background:#08080C;
+  clip-path:polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%)}
+.sr-rail{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;border-bottom:1px solid rgba(255,230,204,.1);flex-shrink:0}
+.sr-ttl{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:2.3px;text-transform:uppercase;color:#E87A00}
+.sr-hint{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:.65rem;color:rgba(255,230,204,.36);margin-left:auto;
+  opacity:0;transition:opacity .5s ease}
+.sr-hint.on{opacity:1}
+.sr-x{flex-shrink:0;width:30px;height:30px;margin-right:34px;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:6px;border:1px solid rgba(255,230,204,.2);background:rgba(255,255,255,.04);color:#FFE6CC;cursor:pointer;transition:all .28s}
+.sr-x:hover{border-color:rgba(232,122,0,.7);color:#fff;background:rgba(232,122,0,.15)}
+.sr-x:focus-visible{outline:2px solid #FFE6CC;outline-offset:2px}
+.sr-x svg{width:13px;height:13px}
+.sr-stage{position:relative;flex:1;min-height:0;background:#08080C}
+.sr-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .5s ease}
+.sr-stage iframe.on{opacity:1}
+/* loading screen: the poster, dimmed, with an indeterminate amber sweep */
+.sr-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;
+  text-align:center;padding:1.5rem;transition:opacity .45s ease}
+.sr-load.gone{opacity:0;pointer-events:none}
+.sr-load::before{content:"";position:absolute;inset:0;background:url('/proj/showroom.jpg') center/cover no-repeat;
+  filter:blur(11px) brightness(.32) saturate(.7);transform:scale(1.06)}
+.sr-load>*{position:relative}
+.sr-lbar{width:min(240px,60%);height:2px;background:rgba(255,230,204,.14);overflow:hidden;border-radius:2px}
+.sr-lbar i{display:block;height:100%;width:38%;border-radius:2px;background:linear-gradient(90deg,transparent,#E87A00,#FFB44F,transparent);
+  animation:sr-sweep 1.35s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes sr-sweep{0%{transform:translateX(-110%)}100%{transform:translateX(320%)}}
+.sr-ltxt{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3.4vw,26px);letter-spacing:1px;color:#FFE6CC;margin:0}
+.sr-lsub{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:.68rem;line-height:1.6;
+  color:rgba(255,230,204,.44);margin:0;max-width:34ch}
+.sr-slow{font-size:.8rem;color:rgba(255,255,255,.6);margin:0;opacity:0;pointer-events:none;transition:opacity .4s}
+.sr-slow.on{opacity:1;pointer-events:auto}
+.sr-slow a{color:#E87A00;text-decoration:none;border-bottom:1px solid rgba(232,122,0,.45)}
+@media(prefers-reduced-motion:reduce){
+  .sr-lbar i{animation:none;width:100%}
+  .sr-fac:hover .sr-pill svg{animation:none}
+  .sr-stage iframe,.sr-load{transition:none}
+}
+/* phones: keep the rail on one line and give the viewer every pixel of height */
+@media(max-width:560px){
+  .sr-hint{display:none}
+  .sr-ttl{font-size:.68rem;white-space:nowrap}
+  .sr-rail{padding:.6rem .5rem .6rem .85rem}
+  .sr-x{margin-right:30px}
+  .sr-panel{height:min(760px,92vh)}
+}
+
 /* one orchestrated entrance, staggered down the row */
 .plate{opacity:0;transform:translateY(22px)}
 .plate.pl-in{opacity:1;transform:none;transition:opacity .62s cubic-bezier(.215,.61,.355,1) var(--d,0s),transform .62s cubic-bezier(.215,.61,.355,1) var(--d,0s)}
@@ -157,7 +228,12 @@
       <article class="plate" style="--d:0s">
         <div class="plate-in">
           <div class="pl-rail"><span class="pl-lamp" aria-hidden="true"></span><span class="pl-state">Live demo</span></div>
-          <div class="pl-view"><img src="/proj/showroom.jpg" width="912" height="480" alt="A 2026 Lincoln Navigator in the Drive AI 3D showroom, beside its price and spec panel" loading="lazy" decoding="async"></div>
+          <div class="pl-view">
+            <button type="button" class="sr-fac" id="srOpen" aria-label="Open the live 3D showroom and spin the vehicle">
+              <img src="/proj/showroom.jpg" width="912" height="480" alt="A 2026 Lincoln Navigator in the Drive AI 3D showroom, beside its price and spec panel" loading="lazy" decoding="async">
+              <span class="sr-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v4h-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Spin it live</span>
+            </button>
+          </div>
           <div class="pl-body">
             <h2 class="pl-name">3D Showroom</h2>
             <p class="pl-desc">Your lot, in 3D, on your own website. Shoppers <strong>spin the vehicle, read the specs, and book the test drive</strong> without leaving the page.</p>
@@ -224,6 +300,29 @@
   </div>
 </section>
 
+<div class="sr-modal" id="srModal" role="dialog" aria-modal="true" aria-label="Drive AI 3D Showroom, live demo" hidden>
+  <div class="sr-back" data-sr-close></div>
+  <div class="sr-panel">
+    <div class="sr-in">
+      <div class="sr-rail">
+        <span class="sr-ttl">3D Showroom &middot; live</span>
+        <span class="sr-hint" id="srHint">drag the vehicle to spin</span>
+        <button type="button" class="sr-x" id="srClose" aria-label="Close the showroom">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 L19 19 M19 5 L5 19" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+        </button>
+      </div>
+      <div class="sr-stage" id="srStage">
+        <div class="sr-load" id="srLoad">
+          <p class="sr-ltxt">Warming up the showroom</p>
+          <div class="sr-lbar"><i></i></div>
+          <p class="sr-lsub">Pulling the 360&deg; frames for this vehicle. One moment.</p>
+          <p class="sr-slow" id="srSlow">Still going. You can also <a href="https://dai-3d-showroom.pages.dev/" target="_blank" rel="noopener">open the full showroom</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="footer"><div class="wrap">
   <div class="social-row">
     <a href="https://instagram.com/driveai.sales" target="_blank" rel="noopener" aria-label="Instagram"><img src="/icons/instagram-icon.png" alt="Drive AI Sales Inc. on Instagram" loading="lazy"></a>
@@ -260,6 +359,86 @@ addEventListener('scroll',function(){n.classList.toggle('solid',pageYOffset>20);
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('pl-in'); io.unobserve(e.target); } });
   },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
   plates.forEach(function(p){io.observe(p);});
+})();
+</script>
+<script>
+/* Live 3D showroom: facade -> lightbox.
+   Nothing is requested until the visitor asks for it, so this page costs the
+   same to load as before. On a metered or slow connection we hand off to the
+   full showroom in a new tab instead of quietly pulling ~10MB of spin frames. */
+(function(){
+  var EMBED='https://dai-3d-showroom.pages.dev/?key=pk_dai_56f66124fff83345b703d4f0f9a11fd7&embed=1';
+  var FULL='https://dai-3d-showroom.pages.dev/';
+  var ORIGINS=['https://dai-3d-showroom.pages.dev','https://dai-showroom-api.brandon-c64.workers.dev'];
+  var fac=document.getElementById('srOpen'), modal=document.getElementById('srModal');
+  var stage=document.getElementById('srStage'), load=document.getElementById('srLoad');
+  var slow=document.getElementById('srSlow'), hint=document.getElementById('srHint');
+  var closeBtn=document.getElementById('srClose');
+  if(!fac||!modal) return;
+  var frame=null, slowT=null, lastFocus=null, warmed=false;
+
+  function warm(){                                        // free: TLS handshakes before the click
+    if(warmed) return; warmed=true;
+    ORIGINS.forEach(function(o){
+      var l=document.createElement('link'); l.rel='preconnect'; l.href=o; l.crossOrigin='';
+      document.head.appendChild(l);
+    });
+  }
+  fac.addEventListener('pointerenter',warm,{passive:true});
+  fac.addEventListener('focus',warm);
+
+  function metered(){
+    var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    if(!c) return false;
+    if(c.saveData) return true;
+    return ['slow-2g','2g','3g'].indexOf(c.effectiveType)!==-1;
+  }
+  function focusables(){
+    return [].slice.call(modal.querySelectorAll('button,a[href],iframe')).filter(function(e){return e.offsetParent!==null;});
+  }
+  function onKey(e){
+    if(e.key==='Escape'){ e.preventDefault(); close(); return; }
+    if(e.key!=='Tab') return;
+    var f=focusables(); if(!f.length) return;
+    var first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+
+  function open(){
+    if(metered()){ window.open(FULL,'_blank','noopener'); return; }   // don't surprise a metered connection
+    lastFocus=document.activeElement;
+    modal.removeAttribute('hidden'); modal.classList.add('open');
+    document.documentElement.style.overflow='hidden';
+    if(window.__lenis && window.__lenis.stop) window.__lenis.stop();
+    load.classList.remove('gone'); slow.classList.remove('on'); hint.classList.remove('on');
+    frame=document.createElement('iframe');
+    frame.title='Drive AI 3D Showroom, live interactive demo';
+    frame.setAttribute('allow','fullscreen');
+    frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    frame.addEventListener('load',function(){
+      load.classList.add('gone'); frame.classList.add('on'); hint.classList.add('on');
+      clearTimeout(slowT);
+    });
+    frame.src=EMBED;
+    stage.appendChild(frame);
+    slowT=setTimeout(function(){ slow.classList.add('on'); },14000);
+    document.addEventListener('keydown',onKey);
+    closeBtn.focus();
+  }
+  function close(){
+    modal.classList.remove('open'); modal.setAttribute('hidden','');
+    document.documentElement.style.overflow='';
+    if(window.__lenis && window.__lenis.start) window.__lenis.start();
+    clearTimeout(slowT);
+    if(frame && frame.parentNode){ frame.src='about:blank'; frame.parentNode.removeChild(frame); }  // free the frames
+    frame=null;
+    document.removeEventListener('keydown',onKey);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  fac.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  modal.querySelector('[data-sr-close]').addEventListener('click',close);
 })();
 </script>
 <script src="/lenis.min.js"></script>
