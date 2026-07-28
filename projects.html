@@ -44,25 +44,82 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
+/* ==== PROJECT PLATES ====
+   Each project reads as a machined instrument plate: hairline frame, a notched
+   corner that lights amber, the real product in a viewport, and window-sticker
+   spec rows. Dealers have read ten thousand window stickers; the spec rows are
+   the vernacular. System mono is the data voice (no extra font request). */
 .projwrap{padding:1rem 0 4.5rem}
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1180px;margin:0 auto}
-.proj-card{position:relative;display:flex;flex-direction:column;background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:1.9rem 1.7rem 1.6rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 14px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);transition:all .38s cubic-bezier(.2,.8,.2,1)}
-.proj-card:hover{transform:translateY(-4px);border-color:rgba(232,122,0,.38);box-shadow:0 22px 54px rgba(232,122,0,.13),inset 0 1px 0 rgba(255,255,255,.08)}
-.proj-status{display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:#E87A00;border:1px solid rgba(232,122,0,.35);border-radius:999px;padding:.32rem .8rem;margin-bottom:1.15rem;background:rgba(232,122,0,.07)}
-.proj-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#2EE380;box-shadow:0 0 8px rgba(46,227,128,.95),0 0 16px rgba(46,227,128,.45);animation:projpulse 2.2s ease-in-out infinite}
-@keyframes projpulse{0%,100%{opacity:1}50%{opacity:.35}}
-.proj-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3vw,32px);letter-spacing:.8px;line-height:1.04;color:#FFE6CC;margin:0 0 .55rem}
-.proj-sub{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin:0 0 .9rem}
-.proj-desc{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.76);margin:0 0 1.15rem;flex:1}
-.proj-desc strong{color:#fff}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.35rem}
-.proj-tag{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,230,204,.72);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:.28rem .55rem;background:rgba(255,255,255,.03)}
-.proj-go{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.85rem 1rem;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;text-decoration:none;color:#1a0d00;background:linear-gradient(157deg,#FFB44F,#F2860E 55%,#D96E00);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(0,0,0,.35);transition:all .3s}
-.proj-go:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 22px rgba(232,122,0,.55),0 8px 24px rgba(0,0,0,.4);transform:translateY(-1px)}
-.proj-go svg{width:13px;height:13px;flex-shrink:0}
-.proj-note{max-width:1180px;margin:2.2rem auto 0;text-align:center;font-size:.9rem;color:rgba(255,255,255,.42)}
+.plates{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;max-width:1200px;margin:0 auto;align-items:stretch}
+
+/* outer = the 1px machined frame; inner = the plate face. Same notch on both. */
+.plate{--notch:36px;position:relative;padding:1px;border-radius:3px;
+  background:linear-gradient(158deg,rgba(255,230,204,.32),rgba(255,230,204,.08) 38%,rgba(255,230,204,.025) 70%);
+  clip-path:polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),background .4s ease,filter .4s ease}
+.plate-in{position:relative;height:100%;display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(168deg,#16161E 0%,#0C0C11 46%,#08080C 100%);
+  clip-path:polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%)}
+/* the notch light: dark at rest, ignites amber on hover */
+.plate-in::before{content:"";position:absolute;top:0;right:0;width:150px;height:150px;pointer-events:none;z-index:3;
+  background:radial-gradient(120px 120px at 100% 0%,rgba(232,122,0,.30),rgba(232,122,0,0) 70%);
+  opacity:0;transition:opacity .45s ease}
+.plate:hover{transform:translateY(-5px);background:linear-gradient(158deg,rgba(232,122,0,.55),rgba(255,230,204,.10) 42%,rgba(255,230,204,.03) 72%)}
+.plate:hover .plate-in::before{opacity:1}
+
+/* top rail: status lamp + state */
+.pl-rail{display:flex;align-items:center;gap:.55rem;padding:.85rem 1.15rem;border-bottom:1px solid rgba(255,230,204,.10)}
+.pl-lamp{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:#2EE380;
+  box-shadow:0 0 8px rgba(46,227,128,.95),0 0 17px rgba(46,227,128,.45);animation:pl-pulse 2.4s ease-in-out infinite}
+@keyframes pl-pulse{0%,100%{opacity:1}50%{opacity:.32}}
+.pl-state{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:#E87A00}
+
+/* viewport: the real product, dissolving into the plate face */
+.pl-view{position:relative;overflow:hidden;background:#08080C}
+.pl-view img{display:block;width:100%;height:auto;aspect-ratio:912/480;object-fit:cover;
+  filter:saturate(.94) brightness(.9);transform:scale(1.005);
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .45s ease}
+.plate:hover .pl-view img{transform:scale(1.035);filter:saturate(1.04) brightness(1)}
+.pl-view::after{content:"";position:absolute;inset:auto 0 -1px 0;height:30%;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(8,8,12,0),rgba(10,10,15,.55) 66%,rgba(11,11,16,.96))}
+
+/* body */
+.pl-body{display:flex;flex-direction:column;flex:1;padding:1.15rem 1.3rem 1.35rem}
+.pl-name{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(27px,3vw,33px);letter-spacing:.9px;line-height:1;color:#FFE6CC;margin:0 0 .5rem}
+.pl-desc{font-size:.93rem;line-height:1.66;color:rgba(255,255,255,.72);margin:0 0 1.15rem}
+.pl-desc strong{color:#fff;font-weight:600}
+
+/* window-sticker spec rows: label, dotted leader, value */
+.pl-specs{margin:0 0 1.2rem;padding:.9rem 0 0;border-top:1px solid rgba(255,230,204,.09);display:flex;flex-direction:column;gap:.5rem;flex:1}
+.pl-spec{display:flex;align-items:baseline;gap:.45rem;
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:.715rem;letter-spacing:.2px}
+.pl-spec dt{color:rgba(255,230,204,.46);text-transform:uppercase;letter-spacing:1.1px;white-space:nowrap}
+.pl-spec .lead{flex:1;min-width:14px;border-bottom:1px dotted rgba(255,230,204,.2);transform:translateY(-3px)}
+.pl-spec dd{margin:0;color:#FFE6CC;white-space:nowrap}
+
+.pl-stamp{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:.66rem;letter-spacing:.4px;
+  color:rgba(255,230,204,.3);text-align:right;margin:0 0 .55rem}
+.pl-cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.82rem 1rem;border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;text-decoration:none;
+  color:#1a0d00;background:linear-gradient(157deg,#FFB44F,#F2860E 55%,#D96E00);border:1px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(0,0,0,.35);transition:all .3s}
+.pl-cta:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.75);transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 22px rgba(232,122,0,.55),0 8px 24px rgba(0,0,0,.4)}
+.pl-cta:focus-visible{outline:2px solid #FFE6CC;outline-offset:3px}
+.pl-cta svg{width:13px;height:13px;flex-shrink:0}
+
+.proj-note{max-width:1200px;margin:2.3rem auto 0;text-align:center;font-size:.9rem;color:rgba(255,255,255,.42)}
 .proj-note a{color:#E87A00;text-decoration:none;border-bottom:1px solid rgba(232,122,0,.4)}
-@media(max-width:980px){.proj-grid{grid-template-columns:1fr;max-width:560px}}
+
+/* one orchestrated entrance, staggered down the row */
+.plate{opacity:0;transform:translateY(22px)}
+.plate.pl-in{opacity:1;transform:none;transition:opacity .62s cubic-bezier(.215,.61,.355,1) var(--d,0s),transform .62s cubic-bezier(.215,.61,.355,1) var(--d,0s)}
+@media(prefers-reduced-motion:reduce){
+  .plate{opacity:1;transform:none;transition:none}
+  .pl-lamp{animation:none}
+  .pl-view img,.plate,.pl-cta{transition:none}
+}
+@media(max-width:980px){.plates{grid-template-columns:1fr;max-width:540px}}
 </style>
 <link rel="stylesheet" href="/assets/nav.css">
 </head>
@@ -89,43 +146,70 @@
   <div class="wrap">
     <div class="ol">Inside The Workshop</div>
     <h1 class="h1">What We're <em>Building.</em></h1>
-    <p class="lede">New projects, live experiments, and the tools we're shipping next for dealerships. Three you can look at today.</p>
+    <p class="lede">New projects, live experiments, and the tools we're shipping next for dealerships. Three you can open right now.</p>
   </div>
 </header>
 
 <section class="projwrap">
   <div class="wrap">
-    <div class="proj-grid">
+    <div class="plates">
 
-      <article class="proj-card">
-        <span class="proj-status">Live Demo</span>
-        <h2 class="proj-title">3D Showroom</h2>
-        <p class="proj-sub">Your inventory, walk-around</p>
-        <p class="proj-desc">Interactive 3D vehicle showrooms that drop straight into any dealership website. Shoppers <strong>spin the car, study every angle,</strong> and book the test drive from the same screen, no app, no plugin.</p>
-        <div class="proj-tags"><span class="proj-tag">Interactive 3D</span><span class="proj-tag">360&deg; Vehicle Spins</span><span class="proj-tag">Embeds On Your Site</span></div>
-        <a class="proj-go" href="https://dai-3d-showroom.pages.dev/" target="_blank" rel="noopener">Open The Showroom<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <article class="plate" style="--d:0s">
+        <div class="plate-in">
+          <div class="pl-rail"><span class="pl-lamp" aria-hidden="true"></span><span class="pl-state">Live demo</span></div>
+          <div class="pl-view"><img src="/proj/showroom.jpg" width="912" height="480" alt="A 2026 Lincoln Navigator in the Drive AI 3D showroom, beside its price and spec panel" loading="lazy" decoding="async"></div>
+          <div class="pl-body">
+            <h2 class="pl-name">3D Showroom</h2>
+            <p class="pl-desc">Your lot, in 3D, on your own website. Shoppers <strong>spin the vehicle, read the specs, and book the test drive</strong> without leaving the page.</p>
+            <dl class="pl-specs">
+              <div class="pl-spec"><dt>Runs on</dt><span class="lead"></span><dd>Your website</dd></div>
+              <div class="pl-spec"><dt>Shopper does</dt><span class="lead"></span><dd>Spin, zoom, book</dd></div>
+              <div class="pl-spec"><dt>Install</dt><span class="lead"></span><dd>No app, no plugin</dd></div>
+            </dl>
+            <p class="pl-stamp">dai-3d-showroom.pages.dev</p>
+            <a class="pl-cta" href="https://dai-3d-showroom.pages.dev/" target="_blank" rel="noopener">Open the showroom<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+          </div>
+        </div>
       </article>
 
-      <article class="proj-card">
-        <span class="proj-status">Live</span>
-        <h2 class="proj-title">Chief + Pit Crew</h2>
-        <p class="proj-sub">Ops layer, maximum security</p>
-        <p class="proj-desc">Chief, your dealership command AI, working alongside <strong>Pit Crew</strong>, the ops add-on for our most secure CRM platform. Every pipeline move audited, instant safety-recall lookups, encrypted and multi-tenant from the ground up.</p>
-        <div class="proj-tags"><span class="proj-tag">Command AI</span><span class="proj-tag">Audited Ops</span><span class="proj-tag">Recall Lookup</span><span class="proj-tag">Encrypted</span></div>
-        <a class="proj-go" href="https://www.driveaisales.net/" target="_blank" rel="noopener">Meet Chief &amp; Pit Crew<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <article class="plate" style="--d:.09s">
+        <div class="plate-in">
+          <div class="pl-rail"><span class="pl-lamp" aria-hidden="true"></span><span class="pl-state">Live</span></div>
+          <div class="pl-view"><img src="/proj/chief.jpg" width="912" height="480" alt="The Chief live demo page, showing edge deployment, tool-planning AI and audit-by-default panels" loading="lazy" decoding="async"></div>
+          <div class="pl-body">
+            <h2 class="pl-name">Chief + Pit Crew</h2>
+            <p class="pl-desc">Chief watches every contact, surfaces stuck deals and drafts the reply. <strong>Nothing fires without your confirm,</strong> and every action lands in the audit log.</p>
+            <dl class="pl-specs">
+              <div class="pl-spec"><dt>Setup</dt><span class="lead"></span><dd>Three steps</dd></div>
+              <div class="pl-spec"><dt>Every action</dt><span class="lead"></span><dd>Audited</dd></div>
+              <div class="pl-spec"><dt>Data</dt><span class="lead"></span><dd>Encrypted, per store</dd></div>
+            </dl>
+            <p class="pl-stamp">driveaisales.net</p>
+            <a class="pl-cta" href="https://www.driveaisales.net/" target="_blank" rel="noopener">Talk to Chief<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+          </div>
+        </div>
       </article>
 
-      <article class="proj-card">
-        <span class="proj-status">Invite Only</span>
-        <h2 class="proj-title">APEX Club</h2>
-        <p class="proj-sub">The inner circle</p>
-        <p class="proj-desc">Our exclusive club for top-tier dealers. Members compare what's actually working, <strong>unlock VIP features first,</strong> and get a direct line into where Drive AI goes next.</p>
-        <div class="proj-tags"><span class="proj-tag">Members Only</span><span class="proj-tag">VIP Features</span><span class="proj-tag">First Access</span></div>
-        <a class="proj-go" href="https://www.driveaisales.club/" target="_blank" rel="noopener">Visit APEX Club<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <article class="plate" style="--d:.18s">
+        <div class="plate-in">
+          <div class="pl-rail"><span class="pl-lamp" aria-hidden="true"></span><span class="pl-state">Invite only</span></div>
+          <div class="pl-view"><img src="/proj/apex.jpg" width="912" height="480" alt="The APEX Club homepage headline: where the few who get it compare notes" loading="lazy" decoding="async"></div>
+          <div class="pl-body">
+            <h2 class="pl-name">APEX Club</h2>
+            <p class="pl-desc">A private room for operators who don't compete on yesterday's playbook. <strong>Trade what's working,</strong> and get new features before they ship.</p>
+            <dl class="pl-specs">
+              <div class="pl-spec"><dt>Access</dt><span class="lead"></span><dd>By invitation</dd></div>
+              <div class="pl-spec"><dt>Tiers</dt><span class="lead"></span><dd>APEX &amp; APEX GOLD</dd></div>
+              <div class="pl-spec"><dt>Members get</dt><span class="lead"></span><dd>Features first</dd></div>
+            </dl>
+            <p class="pl-stamp">driveaisales.club</p>
+            <a class="pl-cta" href="https://www.driveaisales.club/" target="_blank" rel="noopener">See the club<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 h8 v8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+          </div>
+        </div>
       </article>
 
     </div>
-    <p class="proj-note">More in the shop. Want one of these working for your store? <a href="/discovery">Book a call</a> and we'll walk you through it.</p>
+    <p class="proj-note">More on the bench. Want one of these running at your store? <a href="/discovery">Book a call</a> and we'll walk you through it.</p>
   </div>
 </section>
 
@@ -163,6 +247,20 @@
 t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});
 document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');});});
 addEventListener('scroll',function(){n.classList.toggle('solid',pageYOffset>20);},{passive:true});})();
+</script>
+<script>
+/* Plates rise in once, staggered. Reduced-motion users get them already visible. */
+(function(){
+  var plates=[].slice.call(document.querySelectorAll('.plate'));
+  if(!plates.length) return;
+  if(!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    plates.forEach(function(p){p.classList.add('pl-in');}); return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('pl-in'); io.unobserve(e.target); } });
+  },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+  plates.forEach(function(p){io.observe(p);});
+})();
 </script>
 <script src="/lenis.min.js"></script>
 <script src="/assets/drift.js"></script>
