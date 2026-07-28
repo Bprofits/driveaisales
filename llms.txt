@@ -32,6 +32,7 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 - [Compare](https://www.driveaisales.com/vs-competitors): Drive AI vs DriveCentric, DealerSocket, VinSolutions, Reynolds, CDK, Matador, Activix and Unleashd
 - [FAQ](https://www.driveaisales.com/faq): Detailed answers on CRM, integrations, pricing, data ownership and the build process
 - [Projects](https://www.driveaisales.com/projects): What we are building now, the 3D vehicle showroom, Chief + Pit Crew on our most secure CRM platform, and the invite-only APEX Club
+- [AI Receptionist (Wanda)](https://www.driveaisales.com/wanda): Voice AI that answers dealership calls 24/7 in under 10 seconds, qualifies the caller and books the appointment. Live demo line: (587) 525-7155
 - [About](https://www.driveaisales.com/about): The founding team and why Drive AI was built
 - [Contact](https://www.driveaisales.com/contact): Phone, AI line, email, hours and office location
 - [Blog](https://www.driveaisales.com/blog): Plain-spoken guides, playbooks and comparisons for dealers
