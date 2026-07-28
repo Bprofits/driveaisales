@@ -77,6 +77,7 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 - Home: https://www.driveaisales.com/
 - Why Us: https://www.driveaisales.com/why-us
 - Compare: https://www.driveaisales.com/vs-competitors
+- Projects: https://www.driveaisales.com/projects
 - FAQ: https://www.driveaisales.com/faq
 - About: https://www.driveaisales.com/about
 - Contact: https://www.driveaisales.com/contact
