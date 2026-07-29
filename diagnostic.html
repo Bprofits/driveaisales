@@ -7,8 +7,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Dealership Diagnostic | How Much Revenue Are You Losing? | Drive AI Sales Inc.</title>
-<meta name="description" content="Answer 7 quick questions and get a personalized revenue-leak estimate for your dealership, plus a plan to plug the leaks. Takes under 2 minutes. Built for Canadian dealers. Free, no obligation.">
+<title>Free Dealership Revenue-Leak Diagnostic | Drive AI</title>
+<meta name="description" content="Answer 7 quick questions for a personalized revenue-leak estimate for your store, plus a plan to plug the leaks. Under 2 minutes, free.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.driveaisales.com/diagnostic">
 <meta property="og:type" content="website">
@@ -278,7 +278,10 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       <div class="score-num" id="scoreNum">0</div>
       <div class="score-of">out of 21</div>
     </div>
-    <h1 class="tier-name" id="tierName"></h1>
+    <!-- h2, not h1: the page already has its real h1 above. This is the JS-filled
+         result tier. Styling is on .tier-name and the JS uses getElementById, so
+         the tag change is cosmetically and functionally inert. -->
+    <h2 class="tier-name" id="tierName"></h2>
     <p class="tier-desc" id="tierDesc"></p>
     <div class="revenue-box">
       <div class="rev-label">Estimated Monthly Revenue Left on the Table</div>
