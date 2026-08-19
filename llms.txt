@@ -28,6 +28,9 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 ## Pages
 - [Home](https://www.driveaisales.com/): Overview, the AI core, the platform and results
 - [What We Automate](https://www.driveaisales.com/#services): The full list of automations and 24/7 workflows
+- [Automation Library](https://www.driveaisales.com/services): Hub for the 14 automations, each with a full page: lead response, appointments, voice AI, email, live chat, pipeline, test drives, de-duplication, templates, marketing, forecasting, reporting, source-to-close analytics and custom integrations
+- [AI CRM for Edmonton Dealerships](https://www.driveaisales.com/edmonton): Edmonton HQ page: local team, AMVIC and Alberta PIPA configured, same-city support
+- [AI CRM for Calgary Dealerships](https://www.driveaisales.com/calgary): Calgary service-area page: Alberta company, same AMVIC/PIPA rules, remote 90-day build
 - [Why Us](https://www.driveaisales.com/why-us): The platform explained, the house, the guts and the engine
 - [Compare](https://www.driveaisales.com/vs-competitors): Drive AI vs DriveCentric, DealerSocket, VinSolutions, Reynolds, CDK, Matador, Activix and Unleashd
 - [FAQ](https://www.driveaisales.com/faq): Detailed answers on CRM, integrations, pricing, data ownership and the build process

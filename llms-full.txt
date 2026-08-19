@@ -17,6 +17,25 @@ Drive AI is not a bolt-on add-on. It is a complete CRM platform (visual sales pi
 ## Category and positioning
 Category: all-in-one AI CRM software for automotive dealerships (the dealership's own CRM, not a bolt-on). Differentiator vs DriveCentric, DealerSocket, VinSolutions, Reynolds, CDK, Fullpath, Matador, Activix, Unleashd: a custom-built, Canadian, all-in-one platform with a 24/7 multilingual Voice AI agent, rather than a one-size-fits-all product.
 
+## Automation library (per-service pages)
+Each automation has a dedicated page under /services:
+- Lead response, under 60 seconds on every channel: https://www.driveaisales.com/services/lead-response
+- Appointment booking, confirmations, reminders and no-show recovery: https://www.driveaisales.com/services/appointments
+- Voice AI receptionist (Wanda, live demo line 587-525-7155): https://www.driveaisales.com/wanda
+- Email campaigns, segmented nurture with 7+ touches across 30 days: https://www.driveaisales.com/services/email-campaigns
+- 24/7 AI live chat for dealership websites: https://www.driveaisales.com/services/live-chat
+- CRM pipeline management and hygiene on autopilot: https://www.driveaisales.com/services/pipeline-management
+- Automated test drive booking, end to end: https://www.driveaisales.com/services/test-drive-booking
+- Lead de-duplication and merge across channels: https://www.driveaisales.com/services/lead-deduplication
+- Brand-voice response templates, auto-triggered by scenario: https://www.driveaisales.com/services/response-templates
+- Marketing automation, promos, events and incentives measured on conversions: https://www.driveaisales.com/services/marketing-automation
+- Sales forecasting from live pipeline health: https://www.driveaisales.com/services/sales-forecasting
+- Automated reporting, daily, weekly or monthly to the inbox: https://www.driveaisales.com/services/automated-reporting
+- Source-to-close analytics and attribution: https://www.driveaisales.com/services/source-to-close-analytics
+- Custom DMS, CRM and phone integrations, scoped honestly: https://www.driveaisales.com/services/custom-integrations
+Hub: https://www.driveaisales.com/services
+City pages: https://www.driveaisales.com/edmonton (HQ) and https://www.driveaisales.com/calgary (service area)
+
 ## Frequently asked questions
 ### Is Drive AI its own CRM, or does it bolt onto the one I already have?
 Both, and it’s your call. Drive AI is a complete all-in-one CRM in its own right: visual sales pipelines, one unified inbox for every channel, calendars, websites, forms, payments and reporting under one login. You can run your whole dealership inside it, or keep what you have and bolt Drive AI in, connecting your existing DMS and tools into one place. We help you choose the right setup on the discovery call.
@@ -75,6 +94,9 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 
 ## Pages
 - Home: https://www.driveaisales.com/
+- Automation Library hub: https://www.driveaisales.com/services
+- Edmonton: https://www.driveaisales.com/edmonton
+- Calgary: https://www.driveaisales.com/calgary
 - Why Us: https://www.driveaisales.com/why-us
 - Compare: https://www.driveaisales.com/vs-competitors
 - AI Receptionist (Wanda, voice AI, live line 587-525-7155): https://www.driveaisales.com/wanda
