@@ -148,6 +148,18 @@
 .w-a strong{color:#fff}
 .w-a a{color:#E87A00;text-decoration:none;border-bottom:1px solid rgba(232,122,0,.4)}
 
+/* voiceprint background: her voice, running under the whole page */
+#wv{position:fixed;inset:0;z-index:-1;display:block;pointer-events:none}
+/* site.css ends .phero/.cta backgrounds in an opaque #000 base which would hide the
+   canvas; re-declare the tints only, page stays black via the body background. */
+.phero{background:radial-gradient(120% 80% at 70% 0%,rgba(232,122,0,.12),transparent 55%),radial-gradient(80% 60% at 10% 100%,rgba(40,80,200,.09),transparent 60%)}
+.cta{background:radial-gradient(100% 100% at 50% 0%,rgba(232,122,0,.14),transparent 60%)}
+/* cards sit ON the waves, so their translucent white tints become opaque paint
+   (same rendered color over black) and text inside them never fights the canvas */
+.w-item{background:linear-gradient(165deg,#0B0B0B,#030303)}
+.w-q{background:#060606}
+.w-q[open]{background:#0C0600}
+
 @media(prefers-reduced-motion:reduce){.w-lamp{animation:none}.w-item,.w-num{transition:none}}
 @media(max-width:900px){
   .w-grid{grid-template-columns:1fr;max-width:540px}
@@ -161,6 +173,8 @@
 <link rel="stylesheet" href="/assets/nav.css">
 </head>
 <body>
+
+<canvas id="wv" aria-hidden="true"></canvas>
 
 <nav class="nav" id="nav">
   <a href="/" class="nav-mark" aria-label="Drive AI Sales Inc."><img src="/assets/logo-nav.png" alt="Drive AI Sales Inc."></a>
@@ -333,6 +347,49 @@
   </div>
 </div></footer>
 
+<script>
+/* voiceprint: three speech-cadence ribbons + soft mirrored reflections, additive glow.
+   Amplitude breathes (~7s) and swells with scroll velocity (energy capped at 1.6). */
+(function(){
+var cv=document.getElementById('wv');if(!cv||!cv.getContext)return;
+var cx=cv.getContext('2d'),W,H,mask,TAU=Math.PI*2,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function size(){var dpr=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cx.setTransform(dpr,0,0,dpr,0,0);
+  mask=cx.createLinearGradient(0,0,W,0);
+  mask.addColorStop(0,'rgba(0,0,0,0)');mask.addColorStop(.28,'rgba(0,0,0,0)');
+  mask.addColorStop(.44,'rgba(0,0,0,.45)');mask.addColorStop(.56,'rgba(0,0,0,.45)');
+  mask.addColorStop(.72,'rgba(0,0,0,0)');mask.addColorStop(1,'rgba(0,0,0,0)');
+  if(RM)draw(3);}
+/* phrases with silences: slow interference envelope x cubed burst gate */
+function env(u,t,p){var e=.55+.45*Math.sin(u*2.1+t*.9+p)*Math.sin(u*5.3-t*.7+p*2.7);
+  return e*Math.pow(.5+.5*Math.sin(u*1.3+t*.23+p*1.9),3);}
+function wav(u,t,p){return Math.sin(u*3.1+t*1.7+p)*.55+Math.sin(u*7.3-t*2.3+p*3.1)*.3+Math.sin(u*16+t*3.7+p*5)*.15;}
+var R=[{col:'232,122,0',al:.5,amp:.30,lw:1.6,ph:0},
+       {col:'232,122,0',al:.26,amp:.44,lw:1.2,ph:2.1},
+       {col:'255,230,204',al:.34,amp:.20,lw:1.1,ph:4.4}];
+var energy=1,lastY=pageYOffset,t=3,lt=0;
+function stroke(r,tt,mirror){
+  var mid=H*.52,A=H*r.amp*.5*energy*(1+.18*Math.sin(tt*TAU/7+r.ph)),step=Math.max(4,W/280);
+  cx.beginPath();
+  for(var x=0;x<=W+step;x+=step){var u=x/1200*TAU,y=wav(u,tt,r.ph)*env(u,tt,r.ph)*A;
+    if(mirror)y=-y*.45;y+=mid;x?cx.lineTo(x,y):cx.moveTo(x,y);}
+  cx.strokeStyle='rgba('+r.col+','+(mirror?r.al*.4:r.al)+')';cx.lineWidth=r.lw;
+  cx.shadowColor='rgba('+r.col+',.8)';cx.shadowBlur=mirror?8:16;cx.stroke();}
+function draw(tt){cx.clearRect(0,0,W,H);cx.globalCompositeOperation='lighter';cx.lineJoin='round';
+  for(var i=0;i<R.length;i++){stroke(R[i],tt,false);stroke(R[i],tt,true);}
+  /* calm the center column so copy stays comfortable over the waves */
+  cx.globalCompositeOperation='destination-out';cx.shadowBlur=0;cx.fillStyle=mask;cx.fillRect(0,0,W,H);}
+function frame(ts){
+  var dt=Math.min((ts-lt)/1000,.05)||.016;lt=ts;
+  var v=Math.abs(pageYOffset-lastY)/dt;lastY=pageYOffset;
+  var target=1+Math.min(v*.0012,.6);
+  energy+=(target-energy)*(target>energy?.08:.025);
+  t+=dt*.5*(.6+.4*energy);
+  draw(t);requestAnimationFrame(frame);}
+size();addEventListener('resize',size);
+if(RM)draw(3);else requestAnimationFrame(frame);
+})();
+</script>
 <script>
 (function(){var n=document.getElementById('nav'),t=document.getElementById('navToggle');
 t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});
