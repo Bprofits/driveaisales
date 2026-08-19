@@ -355,9 +355,12 @@ var cv=document.getElementById('wv');if(!cv||!cv.getContext)return;
 var cx=cv.getContext('2d'),W,H,mask,TAU=Math.PI*2,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function size(){var dpr=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
   cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cx.setTransform(dpr,0,0,dpr,0,0);
+  /* phones: cards cover most of the width already, so the center dim can relax
+     and let the waves read louder in the gaps */
+  var dim=W<700?'.24':'.45';
   mask=cx.createLinearGradient(0,0,W,0);
   mask.addColorStop(0,'rgba(0,0,0,0)');mask.addColorStop(.28,'rgba(0,0,0,0)');
-  mask.addColorStop(.44,'rgba(0,0,0,.45)');mask.addColorStop(.56,'rgba(0,0,0,.45)');
+  mask.addColorStop(.44,'rgba(0,0,0,'+dim+')');mask.addColorStop(.56,'rgba(0,0,0,'+dim+')');
   mask.addColorStop(.72,'rgba(0,0,0,0)');mask.addColorStop(1,'rgba(0,0,0,0)');
   if(RM)draw(3);}
 /* phrases with silences: slow interference envelope x cubed burst gate */
