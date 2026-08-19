@@ -391,7 +391,13 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 }
 
 /* SERVICES ACCORDION, single-column list, click each to expand */
-.services{background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin-top:-1px;border-bottom:1px solid rgba(255,255,255,.05);padding:6rem 2rem;position:relative;z-index:2}
+/* The glass (bg + blur + outer edge borders) lives on .glass-run, ONE surface
+   wrapping .preview + .services: adjacent backdrop-filter elements cannot blur
+   across each other's edge, so a shared joint between two of them always renders
+   a visible blur-discontinuity seam no matter what borders do. One element = one
+   continuous blur = no seam. The sections themselves are transparent. */
+.glass-run{background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);position:relative;z-index:2}
+.services{padding:6rem 2rem;position:relative;z-index:2}
 .services-inner{max-width:880px;margin:0 auto;text-align:center}
 .services-hd .ol{margin-bottom:.8rem}
 .services-hd .h2{margin-bottom:.6rem}
@@ -419,10 +425,8 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 
 
 /* LIVE PREVIEW: real CRM walkthrough video + screenshot gallery */
-/* border-bottom intentionally absent: .services sits flush below and overlaps 1px
-   (margin-top:-1px) so the two glass bands read as one surface -- a border here
-   stacked with services' edge rendered as a visible hairline seam at the joint. */
-.preview{background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.05);padding:6rem 2rem;position:relative;z-index:2}
+/* Transparent: the glass surface is painted by .glass-run (see the .services block). */
+.preview{padding:6rem 2rem;position:relative;z-index:2}
 .preview-inner{max-width:1100px;margin:0 auto;text-align:center}
 .preview-hd .ol{margin-bottom:.8rem}
 .preview-hd .h2{margin-bottom:.6rem}
@@ -908,6 +912,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
      Band section (like .services) so the media gets full width; sits after
      The Close as the closing proof beat. Assets under /video + /shots are
      immutable-cached, hence the -v1 suffixes: bump on re-capture. -->
+<div class="glass-run">
 <section class="preview" id="preview">
   <div class="preview-inner">
     <div class="preview-hd">
@@ -1128,6 +1133,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
     </div>
   </div>
 </section>
+</div>
 
 
 <!-- LEAD CAPTURE -->
