@@ -417,6 +417,39 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .svc-body ul{list-style:none;padding:0;margin:.8rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
 .svc-body li{background:rgba(232,122,0,.12);border:1px solid rgba(232,122,0,.22);color:#E87A00;padding:.3rem .7rem;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;border-radius:4px}
 
+
+/* LIVE PREVIEW: real CRM walkthrough video + screenshot gallery */
+.preview{background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:6rem 2rem;position:relative;z-index:2}
+.preview-inner{max-width:1100px;margin:0 auto;text-align:center}
+.preview-hd .ol{margin-bottom:.8rem}
+.preview-hd .h2{margin-bottom:.6rem}
+.preview-hd .bd{max-width:640px;margin:0 auto 3rem;color:rgba(255,255,255,.72)}
+.pv-frame{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(157deg,rgba(255,255,255,.075),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 18px 48px rgba(0,0,0,.45),0 0 60px rgba(232,122,0,.07);padding:.6rem}
+.pv-frame video{display:block;width:100%;height:auto;aspect-ratio:8/5;border-radius:14px;background:#0b0b0b}
+.pv-live{position:absolute;top:1.25rem;left:1.25rem;z-index:3;pointer-events:none;display:inline-flex;align-items:center;gap:.45rem;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,122,0,.35);border-radius:999px;padding:.4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#fff}
+.pv-live i{width:7px;height:7px;border-radius:50%;background:#E87A00;box-shadow:0 0 10px rgba(232,122,0,.9);animation:pvblink 1.6s ease-in-out infinite}
+@keyframes pvblink{0%,100%{opacity:1}50%{opacity:.35}}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.1rem;text-align:left}
+.pv-card{display:block;text-decoration:none;border-radius:16px;overflow:hidden;background:linear-gradient(157deg,rgba(255,255,255,.075),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 26px rgba(0,0,0,.3);padding:.45rem;cursor:zoom-in;transition:all .4s cubic-bezier(.2,.8,.2,1)}
+.pv-card:hover{border-color:rgba(232,122,0,.34);transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 16px 38px rgba(232,122,0,.14)}
+.pv-card img{display:block;width:100%;height:auto;border-radius:11px;background:#0b0b0b}
+.pv-cap{display:flex;align-items:baseline;gap:.6rem;padding:.65rem .5rem .35rem;flex-wrap:wrap}
+.pv-cap b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.15rem;letter-spacing:2.5px;color:#FFE6CC}
+.pv-cap span{font-family:'Barlow Condensed',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.pv-note{margin-top:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.pv-note em{font-style:normal;color:#E87A00}
+.pv-dlg{border:none;padding:0;background:transparent;max-width:min(94vw,1500px);width:100%}
+.pv-dlg::backdrop{background:rgba(0,0,0,.88);backdrop-filter:blur(6px)}
+.pv-dlg img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 90px rgba(0,0,0,.6);cursor:zoom-out}
+.pv-dlg-cap{text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);padding:.9rem 0 0}
+@media(max-width:760px){
+  .preview{padding:4rem 1rem}
+  .pv-grid{grid-template-columns:1fr;gap:.9rem}
+  .preview-hd .bd{margin-bottom:2rem}
+  .pv-live{top:.85rem;left:.85rem;padding:.28rem .6rem;font-size:.54rem;letter-spacing:1.8px;gap:.35rem}
+  .pv-live i{width:5px;height:5px}
+}
+
 /* LEAD CAPTURE */
 .capture{position:relative;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.85) 100%);padding:6rem 3rem}
 .capture-inner{max-width:700px;margin:0 auto;text-align:center}
@@ -648,6 +681,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   </a>
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="navToggle"><span></span></button>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#preview">Live Demo</a></li>
     <li><a href="#services">What We Automate</a></li>
     <li><a href="/wanda">Voice AI</a></li>
     <li><a href="/why-us">Why Us</a></li>
@@ -849,6 +883,50 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       <div class="bd" style="margin-top:1rem;font-style:italic;color:rgba(255,255,255,.6)">"I stopped checking the CRM every hour because I finally trusted something was handling it."</div>
     </div>
   </div>
+</section>
+
+
+<!-- LIVE PREVIEW: real walkthrough of the Drive AI CRM (video + stills).
+     Band section (like .services) so the media gets full width; sits between
+     Results and The Close as the proof beat. Assets under /video + /shots are
+     immutable-cached, hence the -v1 suffixes: bump on re-capture. -->
+<section class="preview" id="preview">
+  <div class="preview-inner">
+    <div class="preview-hd">
+      <div class="ol">Live Preview</div>
+      <h2 class="h2">No Mockups.<br><em>This Is The Platform.</em></h2>
+      <div class="bd">A real click-through of the CRM your team logs into: dashboard, pipeline, social planner, AI agents. <strong>Uncut, under a minute.</strong></div>
+    </div>
+    <div class="pv-frame">
+      <div class="pv-live"><i></i>Real Platform Footage</div>
+      <video id="pvVideo" autoplay muted loop playsinline preload="metadata" poster="/video/ghl-walkthrough-poster-v1.jpg" aria-label="Screen recording clicking through the Drive AI CRM: dashboard, pipeline, social planner and AI agents">
+        <source src="/video/ghl-walkthrough-v1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="pv-grid">
+      <a class="pv-card" href="/shots/ghl-dash_metrics-v1.webp" data-cap="The Dashboard — conversion, revenue, stage distribution">
+        <img src="/shots/ghl-dash_metrics-v1.webp" alt="Drive AI CRM dashboard: conversion rate donut, opportunity value and stage distribution" loading="lazy" decoding="async" width="3200" height="2000">
+        <div class="pv-cap"><b>The Dashboard.</b><span>Conversion &middot; Revenue &middot; Stages</span></div>
+      </a>
+      <a class="pv-card" href="/shots/ghl-dash_funnel-v1.webp" data-cap="The Funnel — stage-by-stage conversion across the pipeline">
+        <img src="/shots/ghl-dash_funnel-v1.webp" alt="Drive AI CRM funnel report: value by stage with cumulative and next-step conversion" loading="lazy" decoding="async" width="3200" height="2000">
+        <div class="pv-cap"><b>The Funnel.</b><span>Stage-By-Stage Conversion</span></div>
+      </a>
+      <a class="pv-card" href="/shots/ghl-pipeline-v1.webp" data-cap="The Pipeline — every deal on one board">
+        <img src="/shots/ghl-pipeline-v1.webp" alt="Drive AI CRM sales pipeline board with opportunity cards moving through stages" loading="lazy" decoding="async" width="3200" height="2000">
+        <div class="pv-cap"><b>The Pipeline.</b><span>Every Deal On One Board</span></div>
+      </a>
+      <a class="pv-card" href="/shots/ghl-social-v1.webp" data-cap="Every Channel — one social planner, Facebook to YouTube">
+        <img src="/shots/ghl-social-v1.webp" alt="Drive AI CRM social planner: connect Facebook, Instagram, LinkedIn, TikTok, YouTube and more" loading="lazy" decoding="async" width="3200" height="2000">
+        <div class="pv-cap"><b>Every Channel.</b><span>One Social Planner</span></div>
+      </a>
+    </div>
+    <div class="pv-note">Captured live in the Drive AI demo store &middot; <em>demo data, real product</em></div>
+  </div>
+  <dialog class="pv-dlg" id="pvDlg">
+    <img src="" alt="">
+    <div class="pv-dlg-cap"></div>
+  </dialog>
 </section>
 
 <!-- SCENE 7: THE CLOSE (frames 4284-4992) -->
@@ -1309,7 +1387,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
      entrance to the blocks that were static. Each group cascades via a per-item --rd delay. */
   (function(){
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var groups = [['.social-row a'], ['.footer-terms', '.footer-bot']];
+    var groups = [['.pv-frame', '.pv-card'], ['.social-row a'], ['.footer-terms', '.footer-bot']];
     var all = [];
     groups.forEach(function(sel){
       document.querySelectorAll(sel.join(',')).forEach(function(el, i){
@@ -1332,6 +1410,35 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
       });
     }, { threshold: 0.08, rootMargin: '0px' });   // bottom margin 0 so the very last footer block still triggers
     all.forEach(function(el){ io.observe(el); });
+  })();
+
+
+  /* ==== LIVE PREVIEW: pause the walkthrough offscreen + screenshot lightbox ==== */
+  (function(){
+    var v = document.getElementById('pvVideo');
+    if (v){
+      var vio = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if (e.isIntersecting){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+          else v.pause();
+        });
+      }, { threshold: 0.25 });
+      vio.observe(v);
+    }
+    var dlg = document.getElementById('pvDlg');
+    if (dlg && dlg.showModal){
+      var dImg = dlg.querySelector('img'), dCap = dlg.querySelector('.pv-dlg-cap');
+      document.querySelectorAll('.pv-card').forEach(function(a){
+        a.addEventListener('click', function(ev){
+          ev.preventDefault();
+          dImg.src = a.getAttribute('href');
+          dImg.alt = a.querySelector('img').alt;
+          dCap.textContent = a.getAttribute('data-cap') || '';
+          dlg.showModal();
+        });
+      });
+      dlg.addEventListener('click', function(){ dlg.close(); });
+    }
   })();
 
   /* ==== SCROLL-SPY NAV + PROGRESS RAIL ==== */
