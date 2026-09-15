@@ -37,6 +37,18 @@
       "has": [{ "type": "host", "value": "driveaisales.com" }],
       "destination": "https://www.driveaisales.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/sign/:path*",
+      "has": [{ "type": "host", "value": "driveaisales.xyz" }],
+      "destination": "https://www.driveaisales.xyz/sign/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "driveaisales.xyz" }],
+      "destination": "https://www.driveaisales.com/$1",
+      "permanent": true
     }
   ],
   "rewrites": [
