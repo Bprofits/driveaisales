@@ -3,10 +3,57 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/diagnose",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://www.driveaisales.com/diagnostic",
+      "permanent": true
+    },
+    {
+      "source": "/:first(book|chat)/:rest*",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://www.driveaisales.com/discovery",
+      "permanent": true
+    },
+    {
+      "source": "/:first(login|signup|master|invite|docs|build|proposal|embed)/:rest*",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://www.driveaisales.com/",
+      "permanent": true
+    },
+    {
+      "source": "/unsubscribed",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://drive-ai-crm.vercel.app/unsubscribed",
+      "permanent": false
+    },
+    {
+      "source": "/((?!api/unsubscribe|api/webhooks/|api/voice/).*)",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://www.driveaisales.com/$1",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "driveaisales.com" }],
       "destination": "https://www.driveaisales.com/$1",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/unsubscribe",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://drive-ai-crm.vercel.app/api/unsubscribe"
+    },
+    {
+      "source": "/api/webhooks/:path*",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://drive-ai-crm.vercel.app/api/webhooks/:path*"
+    },
+    {
+      "source": "/api/voice/:path*",
+      "has": [{ "type": "host", "value": "(?:www\\.)?driveaisales\\.ca" }],
+      "destination": "https://drive-ai-crm.vercel.app/api/voice/:path*"
     }
   ],
   "headers": [
