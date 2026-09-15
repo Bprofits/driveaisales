@@ -105,6 +105,7 @@ Drive AI is built to augment, not replace, your BDC team. The AI handles tier-1 
 - About: https://www.driveaisales.com/about
 - Contact: https://www.driveaisales.com/contact
 - Blog: https://www.driveaisales.com/blog
+- Privacy Policy: https://www.driveaisales.com/privacy
 
 ## Blog articles
 - What Is an AI CRM for Car Dealerships?: https://www.driveaisales.com/blog/what-is-an-ai-crm-for-car-dealerships (plain-English category guide: CRM vs AI CRM, all-in-one vs bolt-on, Voice AI, custom build, data ownership, Canadian compliance)
