@@ -37,6 +37,7 @@
     --navy: #0F2D5C;
     --navy-deep: #0A1F44;
     --orange: #F37021;
+    --orange-text: #C2410C; /* small text on white: 5.2:1; --orange stays for bars + borders */
     --orange-soft: #F5871F;
     --ink: #1A1A1A;
     --muted: #4A4A4A;
@@ -124,7 +125,7 @@
   }
 
   .subtitle {
-    color: var(--orange);
+    color: var(--orange-text);
     font-weight: 700;
     font-size: 10pt;
     text-transform: uppercase;
@@ -144,6 +145,7 @@
     border-left: 4px solid var(--orange);
     letter-spacing: 0.3px;
   }
+  h2.section-bar { margin-bottom: 0; }
 
   .section-bar .num {
     color: var(--orange-soft);
@@ -167,7 +169,7 @@
   }
 
   h3 {
-    color: var(--orange);
+    color: var(--orange-text);
     font-size: 10.5pt;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -212,6 +214,26 @@
     font-weight: 700;
     letter-spacing: 0.3px;
     font-size: 10.5pt;
+  }
+
+  table.keytable caption {
+
+    caption-side: top;
+
+    text-align: left;
+
+    background: var(--navy);
+
+    color: #fff;
+
+    padding: 11px 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    font-size: 10.5pt;
+
   }
 
   table.keytable th.accent {
@@ -320,7 +342,7 @@ body { background:#000; padding-top:72px; }
 .dai-footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem 1.6rem; margin-bottom:1.2rem; }
 .dai-footer-links a { color:rgba(255,255,255,.55); text-decoration:none; font-size:.7rem; letter-spacing:2.5px; text-transform:uppercase; font-weight:600; transition:color .3s; }
 .dai-footer-links a:hover { color:#E87A00; }
-.dai-footer-c { font-size:.62rem; color:rgba(255,255,255,.32); letter-spacing:1px; }
+.dai-footer-c { font-size:.62rem; color:rgba(255,255,255,.55); letter-spacing:1px; }
 @media (max-width: 720px) {
   .dai-nav { padding:.6rem 1rem; }
   .dai-nav-mark img { height:34px; }
@@ -420,9 +442,7 @@ html.lenis,html.lenis body{height:auto}
 
   <!-- KEY FACTS -->
   <table class="keytable">
-    <tr>
-      <th colspan="2">Key Commercial Terms (Summary; Full Terms Govern)</th>
-    </tr>
+    <caption>Key Commercial Terms (Summary; Full Terms Govern)</caption>
     <tr>
       <td style="width:34%;"><strong>Initial Setup &amp; Build</strong></td>
       <td>As set out in the executed proposal (deposit on signing; balance on completion). Build period up to three (3) months.</td>
@@ -446,7 +466,7 @@ html.lenis,html.lenis body{height:auto}
   </table>
 
   <!-- ====== 1. DEFINITIONS ====== -->
-  <div class="section-bar"><span class="num">1.</span> Definitions</div>
+  <h2 class="section-bar"><span class="num">1.</span> Definitions</h2>
   <div class="section-body">
     <p>In this Agreement:</p>
     <ul>
@@ -460,7 +480,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 2. SERVICES ====== -->
-  <div class="section-bar"><span class="num">2.</span> Services Provided</div>
+  <h2 class="section-bar"><span class="num">2.</span> Services Provided</h2>
   <div class="section-body">
     <p>During the Onboarding Period and continuing under the monthly subscription thereafter, Drive AI will provide the Services described in the executed proposal, which may include some or all of the following:</p>
     <ul>
@@ -477,7 +497,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 3. THIRD-PARTY PLATFORMS ====== -->
-  <div class="section-bar"><span class="num">3.</span> Third-Party Platforms &amp; Underlying Technologies</div>
+  <h2 class="section-bar"><span class="num">3.</span> Third-Party Platforms &amp; Underlying Technologies</h2>
   <div class="section-body">
     <div class="callout">
       <strong>Important Disclosure.</strong> The Drive AI Platform is delivered on top of third-party infrastructure. Drive AI's value lies in the orchestration, configuration, conversational design, voice training, automation logic, and ongoing optimization layered over these underlying technologies. By signing this Agreement, the Client expressly acknowledges and accepts the dependencies described below.
@@ -502,7 +522,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 4. ONBOARDING ====== -->
-  <div class="section-bar"><span class="num">4.</span> Onboarding &amp; Implementation Timeline</div>
+  <h2 class="section-bar"><span class="num">4.</span> Onboarding &amp; Implementation Timeline</h2>
   <div class="section-body">
     <p>The Onboarding Period is up to <strong>three (3) months</strong> from the Effective Date, during which Drive AI will deliver a Platform fully customized to the Client's stated business processes, brand voice, lead types, and integrations. Onboarding milestones generally include:</p>
     <ol>
@@ -516,7 +536,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 5. FEES ====== -->
-  <div class="section-bar"><span class="num">5.</span> Fees, Payment &amp; Taxes</div>
+  <h2 class="section-bar"><span class="num">5.</span> Fees, Payment &amp; Taxes</h2>
   <div class="section-body">
     <h3>5.1 Setup Fee</h3>
     <p>The one-time CRM Migration and Setup Fee is the amount set out in the executed proposal. Unless the proposal states otherwise, it is payable in two equal installments: a deposit due upon signing this Agreement, and the balance due upon Drive AI's notice of completion and the Client's reasonable approval, which approval shall not be unreasonably withheld.</p>
@@ -541,7 +561,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 6. COMMS / TWILIO ====== -->
-  <div class="section-bar"><span class="num">6.</span> Communications Charges &amp; Usage</div>
+  <h2 class="section-bar"><span class="num">6.</span> Communications Charges &amp; Usage</h2>
   <div class="section-body">
     <p>The monthly subscription includes the telephony and messaging usage allowance described in the executed proposal. Unless the proposal states otherwise, the allowance comprises approximately:</p>
     <ul>
@@ -556,7 +576,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 7. TERM, RENEWAL, TERMINATION ====== -->
-  <div class="section-bar"><span class="num">7.</span> Term, Renewal &amp; Termination</div>
+  <h2 class="section-bar"><span class="num">7.</span> Term, Renewal &amp; Termination</h2>
   <div class="section-body">
     <h3>7.1 Term</h3>
     <p>This Agreement commences on the Effective Date and continues for an initial term of <strong>twelve (12) months</strong> from the date the monthly subscription commences (the <strong>“Initial Term”</strong>). Thereafter the Agreement automatically renews on a month-to-month basis (each a <strong>“Renewal Term”</strong>) unless either party gives written notice of non-renewal at least thirty (30) days before the next renewal date.</p>
@@ -578,13 +598,13 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 8. REFUND POLICY ====== -->
-  <div class="section-bar"><span class="num">8.</span> Refund Policy</div>
+  <h2 class="section-bar"><span class="num">8.</span> Refund Policy</h2>
   <div class="section-body">
     <p>Except as expressly stated in Section 7.3, all fees paid to Drive AI are <strong>non-refundable</strong>. Monthly subscription fees are billed in advance and are not refundable in whole or in part if the Client cancels mid-cycle, reduces usage, or chooses not to use the Services during a given month. The Client acknowledges that Drive AI commits resources, third-party licenses, and labor in advance, and the non-refund policy is a fundamental commercial condition of the pricing offered.</p>
   </div>
 
   <!-- ====== 9. CLIENT RESPONSIBILITIES ====== -->
-  <div class="section-bar"><span class="num">9.</span> Client Responsibilities</div>
+  <h2 class="section-bar"><span class="num">9.</span> Client Responsibilities</h2>
   <div class="section-body">
     <p>To enable Drive AI to deliver the Services on schedule, the Client agrees to:</p>
     <ul>
@@ -598,7 +618,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 10. AI DISCLAIMERS ====== -->
-  <div class="section-bar"><span class="num">10.</span> Artificial Intelligence: Capabilities and Limitations</div>
+  <h2 class="section-bar"><span class="num">10.</span> Artificial Intelligence: Capabilities and Limitations</h2>
   <div class="section-body">
     <p>The Client acknowledges that conversational AI and voice AI are probabilistic technologies and that, despite Drive AI's careful prompt engineering, training, and ongoing refinement:</p>
     <ul>
@@ -611,7 +631,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 11. TELECOM / CASL ====== -->
-  <div class="section-bar"><span class="num">11.</span> Telecommunications, Anti-Spam &amp; Do-Not-Call Compliance</div>
+  <h2 class="section-bar"><span class="num">11.</span> Telecommunications, Anti-Spam &amp; Do-Not-Call Compliance</h2>
   <div class="section-body">
     <div class="callout">
       <strong>Client Compliance Obligation.</strong> The Client is the sender, caller, and controller of all outbound communications sent through the Platform. The Client (not Drive AI) bears legal responsibility for compliance with all telecommunications and anti-spam laws applicable to those communications.
@@ -628,7 +648,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 12. DEALER & AUTOMOTIVE COMPLIANCE ====== -->
-  <div class="section-bar"><span class="num">12.</span> Dealer &amp; Automotive Industry Regulatory Compliance</div>
+  <h2 class="section-bar"><span class="num">12.</span> Dealer &amp; Automotive Industry Regulatory Compliance</h2>
   <div class="section-body">
     <div class="callout">
       <strong>You Are the Regulated Dealer.</strong> Drive AI provides software. The Client is the licensed motor-vehicle dealer, salesperson, or industry participant. Every duty owed under provincial dealer-regulator rules, including AMVIC in Alberta, is owed by the Client, not Drive AI. The Client expressly assumes the burden of any misuse, regulatory breach, or non-compliance arising from its operation of the Platform.
@@ -668,7 +688,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 13. VOICE AI DISCLOSURE ====== -->
-  <div class="section-bar"><span class="num">13.</span> Voice AI &amp; Recording Disclosure</div>
+  <h2 class="section-bar"><span class="num">13.</span> Voice AI &amp; Recording Disclosure</h2>
   <div class="section-body">
     <p>Where required by law, the Client must disclose to End Users that they are interacting with an artificial intelligence agent, and that calls may be recorded and transcribed. Disclosure requirements include but are not limited to:</p>
     <ul>
@@ -680,7 +700,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 14. DATA & PRIVACY ====== -->
-  <div class="section-bar"><span class="num">14.</span> Data Ownership, Privacy &amp; Security</div>
+  <h2 class="section-bar"><span class="num">14.</span> Data Ownership, Privacy &amp; Security</h2>
   <div class="section-body">
     <h3>14.1 Client Data</h3>
     <p>As between the parties, all <strong>Client Data is and remains the property of the Client</strong>. Drive AI claims no ownership over the Client's lead lists, customer contact information, conversation transcripts, or business data.</p>
@@ -702,13 +722,13 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 15. CONFIDENTIALITY ====== -->
-  <div class="section-bar"><span class="num">15.</span> Confidentiality</div>
+  <h2 class="section-bar"><span class="num">15.</span> Confidentiality</h2>
   <div class="section-body">
     <p>Each party may receive non-public information from the other (<strong>“Confidential Information”</strong>), including business plans, customer data, pricing, prompts, configurations, and financial information. The receiving party will (a) use Confidential Information solely to perform under this Agreement; (b) protect it with at least the same degree of care it uses for its own confidential information (and no less than a reasonable standard); and (c) not disclose it to third parties except to employees, contractors, and Third-Party Platforms with a need to know who are bound by equivalent obligations. Confidentiality obligations survive termination of this Agreement for three (3) years; trade-secret information remains protected for so long as it qualifies as a trade secret under applicable law.</p>
   </div>
 
   <!-- ====== 16. INTELLECTUAL PROPERTY ====== -->
-  <div class="section-bar"><span class="num">16.</span> Intellectual Property</div>
+  <h2 class="section-bar"><span class="num">16.</span> Intellectual Property</h2>
   <div class="section-body">
     <h3>16.1 Drive AI IP</h3>
     <p>Drive AI retains all right, title, and interest in and to Drive AI IP, including all prompts, scripts, workflow templates, automation logic, voice training methodologies, dashboards, and any improvements, derivatives, or work product created during the engagement, whether or not specifically commissioned for the Client. The Client receives a non-exclusive, non-transferable, revocable license to use Drive AI IP solely as embedded in the Platform during the Term.</p>
@@ -724,7 +744,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 17. WARRANTIES ====== -->
-  <div class="section-bar"><span class="num">17.</span> Warranties &amp; Disclaimers</div>
+  <h2 class="section-bar"><span class="num">17.</span> Warranties &amp; Disclaimers</h2>
   <div class="section-body">
     <h3>17.1 Mutual Warranties</h3>
     <p>Each party warrants that it has the authority to enter into this Agreement and that doing so will not violate any other agreement to which it is bound.</p>
@@ -738,7 +758,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 18. LIMITATION OF LIABILITY ====== -->
-  <div class="section-bar"><span class="num">18.</span> Limitation of Liability</div>
+  <h2 class="section-bar"><span class="num">18.</span> Limitation of Liability</h2>
   <div class="section-body">
     <p style="text-transform:uppercase; font-size:10pt; letter-spacing:0.3px;"><strong>To the maximum extent permitted by law:</strong></p>
     <ul>
@@ -749,7 +769,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 19. INDEMNIFICATION ====== -->
-  <div class="section-bar"><span class="num">19.</span> Indemnification</div>
+  <h2 class="section-bar"><span class="num">19.</span> Indemnification</h2>
   <div class="section-body">
     <h3>19.1 By the Client</h3>
     <p>The Client will defend, indemnify, and hold harmless Drive AI, its officers, directors, employees, contractors, and affiliates from and against any and all third-party claims, demands, damages, fines, penalties, and reasonable legal fees arising out of or related to (a) the Client's breach of Sections 9 (Client Responsibilities), 11 (Anti-Spam), 12 (Dealer &amp; Automotive Industry Regulatory Compliance), 13 (Voice AI Disclosure), or 21 (Acceptable Use); (b) the content or character of any message, call, or campaign sent through the Platform; (c) the Client's lead list, including any claim that contacts were imported without proper consent; (d) the Client's use of AI outputs without appropriate human oversight; or (e) any allegation that the Client's products, services, financing terms, or advertising are misleading, fraudulent, or non-compliant with consumer protection law.</p>
@@ -759,13 +779,13 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 20. SERVICE AVAILABILITY ====== -->
-  <div class="section-bar"><span class="num">20.</span> Service Availability</div>
+  <h2 class="section-bar"><span class="num">20.</span> Service Availability</h2>
   <div class="section-body">
     <p>Drive AI will use commercially reasonable efforts to keep the Platform available during ordinary business hours. The Client acknowledges that uptime depends substantially on Third-Party Platforms and that Drive AI cannot guarantee any specific uptime level. Scheduled maintenance, third-party outages, model provider degradation, telecom carrier issues, and force majeure events may interrupt Service availability. Drive AI's failure to meet any uptime expectation is not a material breach of this Agreement and does not entitle the Client to a refund except as expressly provided in Section 7.4.</p>
   </div>
 
   <!-- ====== 21. ACCEPTABLE USE ====== -->
-  <div class="section-bar"><span class="num">21.</span> Acceptable Use</div>
+  <h2 class="section-bar"><span class="num">21.</span> Acceptable Use</h2>
   <div class="section-body">
     <p>The Client will not, and will not permit any third party to, use the Platform to:</p>
     <ul>
@@ -780,20 +800,20 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 22. CHANGES ====== -->
-  <div class="section-bar"><span class="num">22.</span> Changes to the Services or These Terms</div>
+  <h2 class="section-bar"><span class="num">22.</span> Changes to the Services or These Terms</h2>
   <div class="section-body">
     <p>Drive AI may update these Terms from time to time. Material changes will be communicated to the Client at least <strong>thirty (30) days</strong> before they take effect, by email to the billing contact on file or via Platform notice. If the Client does not accept the changes, the Client's sole remedy is to terminate the monthly subscription effective the date the changes take effect, without penalty. Continued use of the Platform after the effective date constitutes acceptance of the updated Terms.</p>
     <p>Drive AI may also modify, add to, or remove features of the Platform at any time, provided that no such modification will materially diminish the core functionality contracted for without the Client's reasonable opportunity to terminate.</p>
   </div>
 
   <!-- ====== 23. FORCE MAJEURE ====== -->
-  <div class="section-bar"><span class="num">23.</span> Force Majeure</div>
+  <h2 class="section-bar"><span class="num">23.</span> Force Majeure</h2>
   <div class="section-body">
     <p>Neither party is liable for any failure or delay in performance (other than payment obligations) caused by events beyond its reasonable control, including acts of God, natural disasters, war, terrorism, civil unrest, government action, epidemics or pandemics, internet or carrier outages, denial-of-service attacks, or failures of Third-Party Platforms. The affected party will notify the other and use reasonable efforts to mitigate the impact.</p>
   </div>
 
   <!-- ====== 24. GOVERNING LAW ====== -->
-  <div class="section-bar"><span class="num">24.</span> Governing Law &amp; Dispute Resolution</div>
+  <h2 class="section-bar"><span class="num">24.</span> Governing Law &amp; Dispute Resolution</h2>
   <div class="section-body">
     <p>This Agreement is governed by the laws of the <strong>Province of Alberta</strong> and the federal laws of Canada applicable in that province, without regard to conflict-of-law rules.</p>
     <p>The parties will first attempt to resolve any dispute by good-faith negotiation between senior representatives. If unresolved after thirty (30) days, the dispute will be submitted to confidential mediation in Edmonton, Alberta, with a mutually agreed mediator. If mediation fails, the parties submit to the exclusive jurisdiction of the courts of the Province of Alberta sitting in Edmonton, Alberta, except that either party may seek injunctive or equitable relief in any court of competent jurisdiction to protect its intellectual property, confidential information, or to enforce payment obligations.</p>
@@ -801,7 +821,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 25. MISC ====== -->
-  <div class="section-bar"><span class="num">25.</span> Miscellaneous</div>
+  <h2 class="section-bar"><span class="num">25.</span> Miscellaneous</h2>
   <div class="section-body">
     <h3>25.1 Entire Agreement</h3>
     <p>This Agreement, together with the executed proposal or statement of work and any addenda referencing these Terms, constitutes the entire agreement between the parties and supersedes all prior agreements, communications, and understandings, written or oral, relating to its subject matter.</p>
@@ -835,7 +855,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== SIGNATURE ====== -->
-  <div class="section-bar"><span class="num">26.</span> Acceptance</div>
+  <h2 class="section-bar"><span class="num">26.</span> Acceptance</h2>
   <div class="section-body">
     <p>By signing below (or by signing the proposal that references these Terms, or by instructing Drive AI to commence work after receiving these Terms), each party acknowledges that it has read, understood, and agrees to be bound by this Agreement.</p>
 

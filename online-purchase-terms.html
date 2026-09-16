@@ -37,6 +37,7 @@
     --navy: #0F2D5C;
     --navy-deep: #0A1F44;
     --orange: #F37021;
+    --orange-text: #C2410C; /* small text on white: 5.2:1; --orange stays for bars + borders */
     --orange-soft: #F5871F;
     --ink: #1A1A1A;
     --muted: #4A4A4A;
@@ -124,7 +125,7 @@
   }
 
   .subtitle {
-    color: var(--orange);
+    color: var(--orange-text);
     font-weight: 700;
     font-size: 10pt;
     text-transform: uppercase;
@@ -144,6 +145,7 @@
     border-left: 4px solid var(--orange);
     letter-spacing: 0.3px;
   }
+  h2.section-bar { margin-bottom: 0; }
 
   .section-bar .num {
     color: var(--orange-soft);
@@ -167,7 +169,7 @@
   }
 
   h3 {
-    color: var(--orange);
+    color: var(--orange-text);
     font-size: 10.5pt;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -320,7 +322,7 @@ body { background:#000; padding-top:72px; }
 .dai-footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem 1.6rem; margin-bottom:1.2rem; }
 .dai-footer-links a { color:rgba(255,255,255,.55); text-decoration:none; font-size:.7rem; letter-spacing:2.5px; text-transform:uppercase; font-weight:600; transition:color .3s; }
 .dai-footer-links a:hover { color:#E87A00; }
-.dai-footer-c { font-size:.62rem; color:rgba(255,255,255,.32); letter-spacing:1px; }
+.dai-footer-c { font-size:.62rem; color:rgba(255,255,255,.55); letter-spacing:1px; }
 @media (max-width: 720px) {
   .dai-nav { padding:.6rem 1rem; }
   .dai-nav-mark img { height:34px; }
@@ -429,7 +431,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 1. DEFINITIONS ====== -->
-  <div class="section-bar"><span class="num">1.</span> Definitions</div>
+  <h2 class="section-bar"><span class="num">1.</span> Definitions</h2>
   <div class="section-body">
     <ul>
       <li><strong>"Product"</strong> or <strong>"Products"</strong> means any digital good, software, AI prompt pack, prompt library, conversational template, workflow snapshot, automation, course, voice script, integration kit, or other digital deliverable sold by Drive AI through its online storefront.</li>
@@ -440,7 +442,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 2. PURCHASE & DELIVERY ====== -->
-  <div class="section-bar"><span class="num">2.</span> Purchase &amp; Delivery</div>
+  <h2 class="section-bar"><span class="num">2.</span> Purchase &amp; Delivery</h2>
   <div class="section-body">
     <p>All purchases are completed online at the listed price for the Product, plus applicable taxes. Products are delivered electronically, typically within minutes of payment confirmation, by one or more of: download link, email attachment, login credentials, account access provisioned to the Buyer's email, or import to a Drive AI customer dashboard.</p>
     <p>The Buyer is solely responsible for downloading, accessing, or activating the Product promptly. Drive AI is not responsible for delivery failures caused by the Buyer's email provider, spam filters, incorrect email entry at checkout, account-creation errors, browser settings, or outages at any Third-Party Tool through which the Product is delivered.</p>
@@ -448,7 +450,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 3. PAYMENT, PRICING & TAXES ====== -->
-  <div class="section-bar"><span class="num">3.</span> Payment, Pricing &amp; Taxes</div>
+  <h2 class="section-bar"><span class="num">3.</span> Payment, Pricing &amp; Taxes</h2>
   <div class="section-body">
     <p>All Product prices are listed in Canadian dollars (CAD) unless otherwise specified at checkout. Applicable goods and services tax (GST), harmonized sales tax (HST), provincial sales tax, or other transactional taxes will be calculated and added at checkout based on the Buyer's billing address.</p>
     <p>Payments are processed by third-party payment processors (such as Stripe, PayPal, or similar). Drive AI does not store full credit-card numbers. By completing checkout, the Buyer authorizes Drive AI and its payment processor to charge the payment method provided for the total amount, including any applicable taxes and recurring charges if the Product is sold on a subscription basis.</p>
@@ -456,7 +458,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 4. NO REFUNDS ====== -->
-  <div class="section-bar"><span class="num">4.</span> No Refunds, No Returns, All Sales Final</div>
+  <h2 class="section-bar"><span class="num">4.</span> No Refunds, No Returns, All Sales Final</h2>
   <div class="section-body">
     <div class="callout">
       <strong>ALL SALES ARE FINAL.</strong> No refunds, partial refunds, credits, exchanges, returns, or chargebacks will be issued by Drive AI under any circumstances, except where required by applicable law that cannot be lawfully excluded.
@@ -478,7 +480,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 5. LICENSE GRANT ====== -->
-  <div class="section-bar"><span class="num">5.</span> License Grant</div>
+  <h2 class="section-bar"><span class="num">5.</span> License Grant</h2>
   <div class="section-body">
     <p>Subject to these Terms and the Buyer's continued compliance, Drive AI grants the Buyer a <strong>non-exclusive, non-transferable, non-sublicensable, revocable</strong> license to use the Product solely for the Buyer's own internal business purposes.</p>
     <p>The Buyer will <strong>not</strong>, and will not permit any third party to:</p>
@@ -494,7 +496,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 6. INTELLECTUAL PROPERTY ====== -->
-  <div class="section-bar"><span class="num">6.</span> Intellectual Property</div>
+  <h2 class="section-bar"><span class="num">6.</span> Intellectual Property</h2>
   <div class="section-body">
     <p>The Products, including all prompts, scripts, templates, code, design files, dashboards, workflows, voice models, training methodologies, documentation, and any improvements, derivatives, or work product, are and remain the <strong>exclusive property of Drive AI</strong>. The Buyer receives only the limited license set out in Section 5. No title, ownership, or intellectual-property rights pass to the Buyer.</p>
     <p>The Buyer retains ownership of any content, data, lead lists, or business information the Buyer inputs into or processes through the Product. Drive AI claims no ownership over the Buyer's own data.</p>
@@ -502,7 +504,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 7. PROPER USE & PROMPTING ====== -->
-  <div class="section-bar"><span class="num">7.</span> Proper Use, Prompting &amp; Operation are the Buyer's Responsibility</div>
+  <h2 class="section-bar"><span class="num">7.</span> Proper Use, Prompting &amp; Operation are the Buyer's Responsibility</h2>
   <div class="section-body">
     <div class="callout">
       <strong>You operate the product, not us.</strong> The Products are AI-powered or AI-adjacent tools. Effective use requires reading the documentation, learning the basics of prompt engineering, configuring the Product to your specific business, testing before deploying, and supervising AI outputs. Drive AI does not provide one-on-one coaching, custom prompt engineering, or guaranteed support unless separately purchased.
@@ -521,7 +523,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 8. RISK ACKNOWLEDGMENT ====== -->
-  <div class="section-bar"><span class="num">8.</span> Risk Acknowledgment</div>
+  <h2 class="section-bar"><span class="num">8.</span> Risk Acknowledgment</h2>
   <div class="section-body">
     <div class="callout">
       <strong>You accept all risks.</strong> AI is probabilistic, third-party platforms change, regulatory environments shift, and business outcomes vary. By purchasing, you accept the entire risk of using the Product, and Drive AI's liability is strictly limited as described in Section 11.
@@ -541,21 +543,21 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 9. AI DISCLAIMERS ====== -->
-  <div class="section-bar"><span class="num">9.</span> Artificial Intelligence Disclaimers</div>
+  <h2 class="section-bar"><span class="num">9.</span> Artificial Intelligence Disclaimers</h2>
   <div class="section-body">
     <p>The Buyer acknowledges that the Products may include or rely on large language models, voice synthesis models, and other artificial-intelligence technologies that are probabilistic by nature. Drive AI makes <strong>no representation or warranty</strong> that AI outputs will be accurate, complete, current, lawful, on-brand, or fit for any particular purpose. The Buyer must independently verify any AI output before relying on it for a customer, marketing, financial, legal, or compliance decision.</p>
     <p>Drive AI may, at any time and without notice, change the underlying AI model, provider, or version powering a Product to maintain quality, manage cost, or respond to provider availability. The Buyer's sole remedy for any such change is to discontinue use of the Product; the no-refund policy in Section 4 continues to apply.</p>
   </div>
 
   <!-- ====== 10. NO WARRANTIES (AS-IS) ====== -->
-  <div class="section-bar"><span class="num">10.</span> No Warranties (AS-IS)</div>
+  <h2 class="section-bar"><span class="num">10.</span> No Warranties (AS-IS)</h2>
   <div class="section-body">
     <p style="text-transform:uppercase; font-size:10pt; letter-spacing:0.3px;"><strong>The Products are provided "AS IS" and "AS AVAILABLE." Drive AI disclaims all warranties, whether express, implied, statutory, or otherwise, including warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, reliability, uninterrupted operation, and quiet enjoyment.</strong></p>
     <p>Without limiting the foregoing, Drive AI does <strong>not</strong> warrant or guarantee any specific number of leads, appointments, conversions, sales, search-engine rankings, customer responses, or any other business outcome arising from use of the Product.</p>
   </div>
 
   <!-- ====== 11. LIMITATION OF LIABILITY ====== -->
-  <div class="section-bar"><span class="num">11.</span> Limitation of Liability</div>
+  <h2 class="section-bar"><span class="num">11.</span> Limitation of Liability</h2>
   <div class="section-body">
     <p style="text-transform:uppercase; font-size:10pt; letter-spacing:0.3px;"><strong>To the maximum extent permitted by law:</strong></p>
     <ul>
@@ -566,7 +568,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 12. ACCEPTABLE USE ====== -->
-  <div class="section-bar"><span class="num">12.</span> Acceptable Use</div>
+  <h2 class="section-bar"><span class="num">12.</span> Acceptable Use</h2>
   <div class="section-body">
     <p>The Buyer will not, and will not permit any third party to, use the Product to:</p>
     <ul>
@@ -581,44 +583,44 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 13. INDEMNIFICATION ====== -->
-  <div class="section-bar"><span class="num">13.</span> Indemnification</div>
+  <h2 class="section-bar"><span class="num">13.</span> Indemnification</h2>
   <div class="section-body">
     <p>The Buyer will defend, indemnify, and hold harmless Drive AI, its officers, directors, employees, contractors, and affiliates from any third-party claim, demand, regulatory action, fine, penalty, or reasonable legal fee arising out of or related to: (a) the Buyer's use, misuse, configuration, prompting, deployment, or integration of any Product; (b) the Buyer's content, messages, calls, or campaigns generated through use of the Product; (c) the Buyer's breach of Section 5 (License), Section 12 (Acceptable Use), or any other provision of these Terms; (d) the Buyer's failure to comply with applicable law, including CASL, TCPA, AMVIC, the Competition Act, and consumer-protection statutes; and (e) any unauthorized resale, sharing, or redistribution of the Product.</p>
   </div>
 
   <!-- ====== 14. ACCOUNT & CREDENTIALS ====== -->
-  <div class="section-bar"><span class="num">14.</span> Account &amp; Credentials</div>
+  <h2 class="section-bar"><span class="num">14.</span> Account &amp; Credentials</h2>
   <div class="section-body">
     <p>Where a Product is delivered or accessed via login, the Buyer is responsible for keeping its credentials confidential, using a strong password, and immediately notifying Drive AI of any suspected unauthorized access. Drive AI is not liable for losses caused by the Buyer's failure to safeguard credentials. The Buyer is responsible for all activity occurring under its account.</p>
   </div>
 
   <!-- ====== 15. UPDATES, MODIFICATIONS & DISCONTINUATION ====== -->
-  <div class="section-bar"><span class="num">15.</span> Updates, Modifications &amp; Discontinuation</div>
+  <h2 class="section-bar"><span class="num">15.</span> Updates, Modifications &amp; Discontinuation</h2>
   <div class="section-body">
     <p>Drive AI may, at any time and at its sole discretion, update, modify, replace, restrict, or discontinue any Product, feature, integration, or service. Drive AI will use commercially reasonable efforts to provide reasonable notice of material changes to active subscription Products, but is under no obligation to do so for one-time-purchase digital goods. Discontinuation of a Product does not entitle the Buyer to a refund.</p>
     <p>Drive AI may update these Terms from time to time. Updated Terms will be posted at driveaisales.com or the storefront where the Product is sold and take effect on the date posted. The Buyer's continued use of any Product after the effective date constitutes acceptance of the updated Terms. Material changes to recurring subscriptions will be communicated to active subscribers at least thirty (30) days before they take effect.</p>
   </div>
 
   <!-- ====== 16. TERMINATION ====== -->
-  <div class="section-bar"><span class="num">16.</span> Termination</div>
+  <h2 class="section-bar"><span class="num">16.</span> Termination</h2>
   <div class="section-body">
     <p>Drive AI may suspend or terminate the Buyer's access to any Product immediately, without notice or refund, if the Buyer (a) breaches these Terms; (b) initiates an unjustified chargeback; (c) engages in fraudulent, abusive, or unlawful conduct; or (d) violates the Acceptable Use restrictions in Section 12. On termination, the license granted in Section 5 ends, and the Buyer must immediately cease all use of the Product, destroy any local copies, and surrender any unauthorized derivatives. Sections that by their nature should survive termination (including Definitions, No Refunds, License restrictions, Intellectual Property, Risk Acknowledgment, Warranty Disclaimers, Limitation of Liability, Indemnification, Governing Law, and Miscellaneous) survive termination of these Terms.</p>
   </div>
 
   <!-- ====== 17. PRIVACY ====== -->
-  <div class="section-bar"><span class="num">17.</span> Privacy</div>
+  <h2 class="section-bar"><span class="num">17.</span> Privacy</h2>
   <div class="section-body">
     <p>Drive AI handles personal information in accordance with the Personal Information Protection and Electronic Documents Act (PIPEDA), Alberta's Personal Information Protection Act (PIPA), and Drive AI's posted <a href="/privacy">Privacy Policy</a>. To the extent the Buyer interacts with end users in jurisdictions subject to other privacy regimes (e.g. GDPR, CCPA/CPRA, Quebec Law 25), the Buyer is responsible for its own compliance.</p>
   </div>
 
   <!-- ====== 18. GOVERNING LAW & DISPUTE RESOLUTION ====== -->
-  <div class="section-bar"><span class="num">18.</span> Governing Law &amp; Dispute Resolution</div>
+  <h2 class="section-bar"><span class="num">18.</span> Governing Law &amp; Dispute Resolution</h2>
   <div class="section-body">
     <p>These Terms are governed by the laws of the <strong>Province of Alberta</strong> and the federal laws of Canada applicable in that province, without regard to conflict-of-law rules. The parties first agree to attempt to resolve any dispute by good-faith written communication. If unresolved within thirty (30) days, the parties submit to the exclusive jurisdiction of the courts of the Province of Alberta sitting in Edmonton, except that Drive AI may seek injunctive or equitable relief in any court of competent jurisdiction to protect its intellectual property, confidential information, or to enforce payment obligations. The United Nations Convention on Contracts for the International Sale of Goods does not apply.</p>
   </div>
 
   <!-- ====== 19. MISCELLANEOUS ====== -->
-  <div class="section-bar"><span class="num">19.</span> Miscellaneous</div>
+  <h2 class="section-bar"><span class="num">19.</span> Miscellaneous</h2>
   <div class="section-body">
     <h3>19.1 Entire Agreement</h3>
     <p>These Terms, together with the order confirmation for the Product and any addenda or product-specific terms referenced on the storefront, constitute the entire agreement between the Buyer and Drive AI relating to the Product and supersede all prior agreements, communications, and understandings.</p>
@@ -643,7 +645,7 @@ html.lenis,html.lenis body{height:auto}
   </div>
 
   <!-- ====== 20. ACCEPTANCE ====== -->
-  <div class="section-bar"><span class="num">20.</span> Acceptance</div>
+  <h2 class="section-bar"><span class="num">20.</span> Acceptance</h2>
   <div class="section-body">
     <div class="callout">
       <strong>By completing your purchase, clicking "I Agree," or downloading, accessing, or using any Drive AI Product, you confirm that:</strong>
