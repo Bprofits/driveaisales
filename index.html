@@ -422,7 +422,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .svc-body strong{color:#fff}
 .svc-body ul{list-style:none;padding:0;margin:.8rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
 .svc-body li{background:rgba(232,122,0,.12);border:1px solid rgba(232,122,0,.22);color:#E87A00;padding:.3rem .7rem;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;border-radius:4px}
-.svc-more{display:inline-block;margin-top:.7rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E87A00;text-decoration:none}
+.svc-more{display:inline-block;margin-top:.35rem;padding:.35rem 0;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E87A00;text-decoration:none}
 .svc-more:hover{color:#FF9D2E}
 
 
@@ -445,7 +445,7 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .pv-cap{display:flex;align-items:baseline;gap:.6rem;padding:.65rem .5rem .35rem;flex-wrap:wrap}
 .pv-cap b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:1.15rem;letter-spacing:2.5px;color:#FFE6CC}
 .pv-cap span{font-family:'Barlow Condensed',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.pv-note{margin-top:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.pv-note{margin-top:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .pv-note em{font-style:normal;color:#E87A00}
 .pv-dlg{border:none;padding:0;background:transparent;max-width:min(94vw,1500px);width:100%}
 .pv-dlg::backdrop{background:rgba(0,0,0,.88);backdrop-filter:blur(6px)}
@@ -510,10 +510,10 @@ body{background:#000;color:#fff;font-family:'Barlow',sans-serif;-webkit-font-smo
 .social-row a:hover{transform:translateY(-4px)}
 .social-row a:hover img{transform:scale(1.06);filter:drop-shadow(0 0 18px rgba(232,122,0,.6))}
 .footer-bot{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;align-items:center}
-.footer-c{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.5px}
+.footer-c{font-size:.6rem;color:rgba(255,255,255,.55);letter-spacing:.5px}
 .footer-l{display:flex;gap:1rem;flex-wrap:wrap}
 .footer-terms{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.7rem 1.1rem;padding:1.4rem 0;border-top:1px solid rgba(232,122,0,.12);border-bottom:1px solid rgba(232,122,0,.12);width:100%}
-.footer-terms-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-right:.4rem}
+.footer-terms-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-right:.4rem}
 .footer-terms-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;background:rgba(232,122,0,.06);border:1px solid rgba(232,122,0,.32);border-radius:6px;color:#E87A00;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;transition:all .3s}
 .footer-terms-btn svg{flex-shrink:0;opacity:.8;transition:opacity .3s,transform .3s}
 .footer-terms-btn:hover{background:rgba(232,122,0,.14);border-color:rgba(232,122,0,.65);color:#FF8C00;box-shadow:0 0 16px rgba(232,122,0,.22),0 4px 14px rgba(0,0,0,.4);transform:translateY(-1px)}
@@ -629,7 +629,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
 </div>
 
 <!-- WANDA MODAL -->
-<div class="wanda-modal" id="wandaModal" role="dialog" aria-modal="true" aria-labelledby="wandaTitle" aria-hidden="true">
+<div class="wanda-modal" id="wandaModal" role="dialog" aria-modal="true" aria-labelledby="wandaTitle" aria-hidden="true" inert>
   <div class="wanda-modal-inner">
     <button class="wanda-close" id="wandaClose" aria-label="Close">×</button>
     <div class="wanda-avatar">
@@ -645,7 +645,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
 </div>
 
 <!-- CONTACT MODAL -->
-<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
+<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true" inert>
   <div class="contact-modal-inner">
     <button class="contact-modal-close" id="contactModalClose" aria-label="Close">×</button>
     <div class="contact-modal-title" id="contactModalTitle">Get In Touch</div>
@@ -733,7 +733,7 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
     </div>
 
     <!-- WANDA particle orb, click to open call modal. Canvas renders orange particle field. -->
-    <div class="orb-wrap" id="wandaOrb" role="button" tabindex="0" aria-label="Talk to Wanda, our AI voice agent">
+    <div class="orb-wrap" id="wandaOrb" role="button" tabindex="0" aria-label="Tap to talk to Wanda, our AI voice agent">
       <canvas class="orb-canvas" id="wandaHeroCanvas"></canvas>
       <div class="orb-caption">Tap to talk to <strong>Wanda</strong></div>
     </div>
@@ -1545,11 +1545,13 @@ function track(n,d){try{window.va('event',{name:n,data:d||{}});}catch(e){}}</scr
   function open(){
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
+    modal.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
   }
   function close(){
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('inert', '');
     document.body.style.overflow = '';
   }
   trigger.addEventListener('click', function(e){ e.preventDefault(); open(); });
@@ -1836,12 +1838,14 @@ document.querySelectorAll('.btn-liquid').forEach(function(btn){
   function openModal(){
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
+    modal.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
     if(modalOrb) modalOrb.setTalking(true); // demo talk animation while modal is open
   }
   function closeModal(){
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('inert', '');
     document.body.style.overflow = '';
     if(modalOrb) modalOrb.setTalking(false);
   }
